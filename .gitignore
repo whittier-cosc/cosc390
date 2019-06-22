@@ -1,0 +1,11 @@
+.DS_store
+*.hex
+*.map
+*.o
+*.elf
+*.dep
+*.dis
+log.*
+*.xml*
+*.swp
+*~     
