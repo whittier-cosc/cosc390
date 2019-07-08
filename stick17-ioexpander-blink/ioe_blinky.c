@@ -46,15 +46,15 @@ int main(void) {
     printLine(1, 3, msg);
 
 	ioe_init(); // initialize port expander
-	ioe_PortYSetPinsOut(0xff); // set all port Y (GPA) pins as outputs
-	ioe_PortZSetPinsOut(0xff); // set all port Z (GPB) pins as outputs
+	ioe_portYSetPinsOut(0xff); // set all port Y (GPA) pins as outputs
+	ioe_portZSetPinsOut(0xff); // set all port Z (GPB) pins as outputs
 	//writePE(OLATY, 0x42);
 	
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
                             // bit 0 to zero, for output.  Others are inputs.
     LATAbits.LATA0 = 0;     // Turn LED off.
     
-	unsigned char out_value = 0x48;
+	unsigned char out_value = 0x00;
 	unsigned char read_value;
     while(1) {
 		LATAINV = 0x1;             // toggle LED

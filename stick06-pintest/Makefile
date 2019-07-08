@@ -1,7 +1,10 @@
 PORT=
 TERMEMU=
+#TOOL=PKOB   # microstickII pickit on board
+TOOL=PK4     # pickit 4
 
-ifdef ComSpec
+
+ifdef OS
 	IPECMD=ipecmd.exe
 else
 	IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
@@ -62,12 +65,12 @@ OBJDMP=xc32-objdump
 
 #the bootloader utility
 #WRITE="$(NU32PATH)/nu32utility"
-WRITE=$(IPECMD) -P32MX250F128B -TPPKOB -M -OL
+WRITE=$(IPECMD) -P32MX250F128B -TP$(TOOL) -M -OL
 
 #the output target $(TARGET).hex
 TARGET=out
 
-ifdef ComSpec
+ifdef OS
 	TARGETDIR=
 else
 	TARGETDIR=${CURDIR}/

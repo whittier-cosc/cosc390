@@ -73,7 +73,8 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
     // main DDS phase and wave table lookup
     phase_accum_main += phase_incr_main;
     DAC_data = sin_table[phase_accum_main>>24];
-	DAC_data2 = saw_table[(phase_accum_main)>>24];
+	DAC_data2 = sin_table[(phase_accum_main)>>24];
+	//DAC_data2 = saw_table[(phase_accum_main)>>24];
  
 	// wait for possible port expander transactions to complete
     while (!SpiChnTxBuffEmpty(DAC_SPI_CHN)) { ; }
@@ -177,6 +178,27 @@ int main(void) {
     LATAbits.LATA0 = 0;     // Turn LED off.
     
 	__builtin_enable_interrupts();
+	
+	//*****************************************
+	// next, check the cause of the Reset
+	if(RCON & 0x0003)
+	{
+		sprintf(msg, "Power-on reset");
+	}
+	else if(RCON & 0x0002)
+	{
+		sprintf(msg, "Brown-out reset");
+	}
+	else if(RCON & 0x0080)
+	{
+		sprintf(msg, "MCLR reset");
+	}
+	else 
+	{
+		sprintf(msg, "Unknown reset");
+	}
+	RCON &= ~0x0083; // clear the 3 bits checked above
+	printLine(4, 3, msg);
 	
     while(1) {
 		;

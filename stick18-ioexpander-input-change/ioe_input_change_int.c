@@ -6,7 +6,7 @@
 #include "config.h"
 #include "tft_master.h"
 #include "tft_gfx.h"
-#include "port_expander_brl4.h"
+#include "io_expander.h"
 
 void delay(void);
 
@@ -28,8 +28,8 @@ void printLine(int line_number, int char_size, char *print_buffer) {
 void __ISR(_EXTERNAL_1_VECTOR, IPL2SOFT) pe_isr(void) {
 	static unsigned char val;
 	IFS0bits.INT1IF = 0;  // clear interrupt flag on PIC
-	val = readPE(GPIOY);  // must read from pin on PE that generated interrupt (Y0)
-	writePE(OLATZ, val);  // update pin Z0 on PE	
+	val = ioe_read(GPIOY);  // must read from pin on PE that generated interrupt (Y0)
+	ioe_write(OLATZ, val);  // update pin Z0 on PE	
 }
 
 int main(void) {
@@ -58,11 +58,11 @@ int main(void) {
     IFS0bits.INT1IF = 0;   // clear interrupt flag
     INTCONbits.INT1EP = 0; // trigger on falling edge
 	
-	initPE(); // initialize port expander
+	ioe_init(); // initialize port expander
 	// default for port expander: interrupt line active-low
 	//writePE(IOCON, SET_INTPOL); // interrupt line active-high
-	mPortZSetPinsOut(0x01); // set GPB0 as output
-	mPortYIntEnable(0x01); // enable interrupt-on-change for GPA0
+	ioe_portZSetPinsOut(0x01); // set GPB0 as output
+	ioe_portYIntEnable(0x01); // enable interrupt-on-change for GPA0
 	PPSInput(4, INT1, RPA3); // Pin 10
 	
 	
