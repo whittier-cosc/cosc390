@@ -1,6 +1,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+/*
+ * Remember to change SYSCLK (and possibly PBCLK) in hwprofile.h if you change
+ * the oscillator setup here!
+ */
+
 #pragma config FNOSC = FRCPLL   // Fast internal RC oscillator (8 MHz) with PLL
 #pragma config FPLLIDIV = DIV_2 // PLL requires 4-5 MHz input, so divide by 2
 #pragma config FPLLMUL = MUL_20 // then multiply by 20 to get 80 MHz
@@ -17,9 +22,6 @@
 
 #define _SUPPRESS_PLIB_WARNING 
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
-#include <plib.h> 
-
-#define SYSCLK 40000000 // 40 MHz
-#define PBCLK  SYSCLK
+#include <plib.h>
 
 #endif

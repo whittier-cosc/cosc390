@@ -1,10 +1,20 @@
-// This is a library for the TPA2016D2 Class D Amplifier
-
+/*!
+ * @file amp.c
+ *
+ * @author Jeff Lutgen
+ * @brief A PIC32 library for the TPA2016D2 Class D Amplifier.
+ *
+ * Ported from Adafruit's Arduino library.
+ */
 
 #include "amp.h"
+#include "hwprofile.h"
 
-// Portions of this code adapted from following Adafruit code.
-/*!
+#define DEBUG
+
+// Portions of this code adapted from Adafruit's Arduino library:
+
+/*
  *  @file Adafruit_TPA2016.cpp
  *
  *  This is a library for the TPA2016D2 Class D Amplifier Breakout
@@ -26,31 +36,32 @@
  *  BSD license, all text above must be included in any redistribution
  */
 
+#define I2C_CLOCK_FREQ              100000
  
-// private utility functions
+// utility functions
 void write8(uint8_t address, uint8_t data);
 uint8_t read8(uint8_t address);
-BOOL start_transfer( BOOL restart );
-void stop_transfer( void );
-BOOL transmit_byte( UINT8 data );
+bool start_transfer(bool restart);
+void stop_transfer();
+bool transmit_byte(uint8_t data);
 
 // NOTE:
-// amp_init() sets up I2C:
+// amp_init() sets up I2C on channel 1:
 //				SCL1 pin 17 (B8)
 //				SDA1 pin 18 (B9)
-// and UART1 (for debugging):
+// and UART on channel 1 (for debugging) with these pin mappings:
 //              U1RX pin 9  (RPA2)
 //              U1TX pin 7  (RPB3)
 void amp_init() {
 
-    /********************** UART SETUP (DEBUGGING) *************/
+#ifdef DEBUG
+    // ------------ Configure UART1 ----------------
+
     // Map pins for UART1 RX/TX
     CFGCONbits.IOLOCK = 0;
     U1RXR = 0; // Map RPA2 (pin 9) to U1RX
     RPB3R = 1; // Map RPB3 (pin 7) to U1TX
     CFGCONbits.IOLOCK = 1;
-
-    // Configure UART1
 
     // Set baud to BAUDRATE
     U1MODEbits.BRGH = 0;  // High-speed mode disabled
@@ -70,29 +81,31 @@ void amp_init() {
     // Enable the UART
     U1MODEbits.ON = 1;
     /************************************************************/
-
+#endif
 
     char msg[80];
-    UINT32 actualClock;
+    uint32_t actual_clock;
 
     // Set the I2C baudrate
-    I2CSetFrequency(TPA2016_I2C_BUS, GetPeripheralClock(), I2C_CLOCK_FREQ);
-    if (abs(actualClock - I2C_CLOCK_FREQ) > I2C_CLOCK_FREQ/10)
-    {
-        sprintf(msg, "Error: I2C1 clock frequency (%u) error exceeds 10%%.\n", (unsigned)actualClock);
+    actual_clock = I2CSetFrequency(TPA2016_I2C_BUS, PBCLK, I2C_CLOCK_FREQ);
+    if (abs(actual_clock - I2C_CLOCK_FREQ) > I2C_CLOCK_FREQ/10) {
+        sprintf(msg, "Error: I2C1 clock frequency (%u) error exceeds 10%%.\n",
+                (unsigned) actual_clock);
         debug_log(msg);
     }
 
     // Enable the I2C bus
-    I2CEnable(TPA2016_I2C_BUS, TRUE);
+    I2CEnable(TPA2016_I2C_BUS, true);
 }
 
-void amp_enableChannel(bool r, bool l);
+void amp_enableChannel(bool r, bool l) {
+    // TODO
+}
 
 /*!
- *    @brief  Set gain in dB by writing to TPA2016_GAIN.
+ *    @brief  Sets gain in dB by writing to TPA2016_GAIN.
  *    @param  g
- *            value in dB (clamped between -28 to 30)
+ *            value in dB (clamped to be in range -28..+30)
  */
 void amp_setGain(int8_t g) {
 	if (g > 30)
@@ -161,18 +174,23 @@ void amp_setAGCCompression(uint8_t x) {
 void amp_setAGCMaxGain(uint8_t x) {
 	// TODO
 }
-  
-uint8_t read8(uint8_t address)
-{
-    BOOL success;
+
+/*!
+ * @brief   read one byte from a TPA2016 register
+ * @param   address
+ *          the address of the register from which to read
+ * @return  the byte that was read
+ */
+uint8_t read8(uint8_t address) {
+    bool success;
 	uint8_t data;
 	I2C_7_BIT_ADDRESS SlaveAddress;
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_WRITE);
     
-	// Start the transfer to write data to the EEPROM
-    if( !start_transfer(FALSE) )
-    {
-        while(1);
+    // Start the transfer to write data to the TPA2016
+    if(!start_transfer(false)) {
+        while(1) { ; }
+        debug_log("read8: start_transfer failed\n");
     }
 	
     // Send slave address and register address
@@ -188,9 +206,9 @@ uint8_t read8(uint8_t address)
     }
 	
 	// Restart to do the read
-	if( !start_transfer(TRUE) )
-    {
-        while(1);
+    if(!start_transfer(true)) {
+        debug_log("read8: start_transfer (restart) failed\n");
+        while(1) { ; }
     }
     
     // Transmit the slave address with the READ bit set
@@ -200,7 +218,7 @@ uint8_t read8(uint8_t address)
         while(1) { ; }
     }
 
-    if (I2CReceiverEnable(TPA2016_I2C_BUS, TRUE) == I2C_RECEIVE_OVERFLOW) {
+    if (I2CReceiverEnable(TPA2016_I2C_BUS, true) == I2C_RECEIVE_OVERFLOW) {
         debug_log("read8: receiver enable failed (receive overflow)\n");
         while(1) { ; }
     }
@@ -213,15 +231,20 @@ uint8_t read8(uint8_t address)
 	return data;
 }
 
-void write8(uint8_t address, uint8_t data)
-{
-    BOOL success;
+/*!
+ * @brief   Writes a byte to a TPA2016 register
+ * @param   address
+ *          the address of the register to which to write
+ * @param   data
+ *          the byte to be written
+ */
+void write8(uint8_t address, uint8_t data) {
+    bool success;
 	I2C_7_BIT_ADDRESS SlaveAddress;
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_WRITE);
     
-	// Start the transfer to write data to the EEPROM
-    if( !start_transfer(FALSE) )
-    {
+    // Start the transfer to write data to the TPA2016
+    if(!start_transfer(false)) {
         while(1);
     }
 	
@@ -245,101 +268,82 @@ void write8(uint8_t address, uint8_t data)
 	stop_transfer();
 }
 
-/*******************************************************************************
-  Function:
-    BOOL start_transfer( BOOL restart )
-
-  Summary:
-    Starts (or restarts) a transfer to/from the EEPROM.
-
-  Description:
-    This routine starts (or restarts) a transfer to/from the EEPROM, waiting (in
-    a blocking loop) until the start (or re-start) condition has completed.
-
-  Precondition:
-    The I2C module must have been initialized.
-
-  Parameters:
-    restart - If FALSE, send a "Start" condition
-            - If TRUE, send a "Restart" condition
-    
-  Returns:
-    TRUE    - If successful
-    FALSE   - If a collision occurred during Start signaling
-    
-  Remarks:
-    This is a blocking routine that waits for the bus to be idle and the Start
-    (or Restart) signal to complete.
-  *****************************************************************************/
-BOOL start_transfer( BOOL restart )
-{
+/*!
+ * @brief   Starts (or restarts) a transfer to/from the TPA2016
+ *
+ *          This routine starts (or restarts) a transfer to/from the TPA2016,
+ *          waiting (in a blocking loop) until the start (or re-start) condition
+ *          has completed.
+ *
+ *          This is a blocking routine that waits for the bus to be idle and the
+ *          Start (or Restart) signal to complete.
+ *
+ * @pre     The I2C module must have been initialized.
+ * @param   restart
+ *          if false, send a "Start" condition
+            if true, send a "Restart" condition
+ * @return  true if successful, false if a collision occured during Start
+ *          signaling
+ */
+bool start_transfer( bool restart ) {
     I2C_STATUS  status;
 
     // Send the Start (or Restart) signal
-    if(restart)
-    {
+    if(restart) {
         I2CRepeatStart(TPA2016_I2C_BUS);
     }
-    else
-    {
+    else {
         // Wait for the bus to be idle, then start the transfer
-        while( !I2CBusIsIdle(TPA2016_I2C_BUS) );
+        while(!I2CBusIsIdle(TPA2016_I2C_BUS)) { ; }
 
-        if(I2CStart(TPA2016_I2C_BUS) != I2C_SUCCESS)
-        {
+        if(I2CStart(TPA2016_I2C_BUS) != I2C_SUCCESS) {
             debug_log("Error: Bus collision during transfer Start\n");
-            return FALSE;
+            return false;
         }
     }
 
     // Wait for the signal to complete
-    do
-    {
+    do {
         status = I2CGetStatus(TPA2016_I2C_BUS);
+    } while (!(status & I2C_START));
 
-    } while ( !(status & I2C_START) );
-
-    return TRUE;
+    return true;
 }
 
-void stop_transfer( void )
-{
+void stop_transfer() {
     I2C_STATUS  status;
 
     // Send the Stop signal
     I2CStop(TPA2016_I2C_BUS);
 
     // Wait for the signal to complete
-    do
-    {
+    do {
         status = I2CGetStatus(TPA2016_I2C_BUS);
-
-    } while ( !(status & I2C_STOP) );
+    } while (!(status & I2C_STOP));
 }
 
-BOOL transmit_byte( UINT8 data )
-{
+bool transmit_byte(uint8_t data) {
     // Wait for the transmitter to be ready
     while(!I2CTransmitterIsReady(TPA2016_I2C_BUS));
 
     // Transmit the byte
-    if(I2CSendByte(TPA2016_I2C_BUS, data) == I2C_MASTER_BUS_COLLISION)
-    {
+    if(I2CSendByte(TPA2016_I2C_BUS, data) == I2C_MASTER_BUS_COLLISION) {
         debug_log("Error: I2C Master Bus Collision\n");
-        return FALSE;
+        return false;
     }
 
     // Wait for the transmission to finish
     while(!I2CTransmissionHasCompleted(TPA2016_I2C_BUS));
 
-    if(!I2CByteWasAcknowledged(TPA2016_I2C_BUS))
-    {
+    if(!I2CByteWasAcknowledged(TPA2016_I2C_BUS)) {
         debug_log("Error: Sent byte was not acknowledged\n");
-        return FALSE;
+        return false;
     }
-    return TRUE;
+    return true;
 }
 
 void debug_log(const char *string) {
+#ifdef DEBUG
     Stick_WriteUART1(string);
+#endif
 }

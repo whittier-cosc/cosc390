@@ -6,18 +6,10 @@
 #define _SUPPRESS_PLIB_WARNING 
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "hwprofile.h"
 #include "uart.h"
-
-typedef unsigned char uint8_t;
-typedef char int8_t;
-typedef char bool;
-
-// Clock Constants
-#define SYS_CLOCK 40000000 // 40 MHz
-#define GetSystemClock()            (SYS_CLOCK)
-#define GetPeripheralClock()        (SYS_CLOCK) // FPBDIV = DIV_1
-#define GetInstructionClock()       (SYS_CLOCK)
-#define I2C_CLOCK_FREQ              100000
 
 // Portions of this code adapted from following Adafruit code.
 /*!
