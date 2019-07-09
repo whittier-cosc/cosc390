@@ -6,6 +6,7 @@
 #define _SUPPRESS_PLIB_WARNING 
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
+#include "uart.h"
 
 typedef unsigned char uint8_t;
 typedef char int8_t;
@@ -67,7 +68,7 @@ typedef char bool;
 #define TPA2016_I2C_BUS I2C1
 #define TPA2016_I2CADDR 0x58 ///< Default TPA2016 i2c address
 
-//void amp_init(uint8_t addr = TPA2016_I2CADDR, TwoWire *theWire = &Wire);
+void amp_init();
 
 void amp_enableChannel(bool r, bool l);
 
@@ -92,5 +93,7 @@ void amp_setLimitLevel(uint8_t limit);
 // Register #7
 void amp_setAGCCompression(uint8_t x);
 void amp_setAGCMaxGain(uint8_t x);
+
+void debug_log(const char *string);
   
 #endif

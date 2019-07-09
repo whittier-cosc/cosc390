@@ -31,16 +31,13 @@ int main(void) {
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 	
-	// I2C pins: 
+    // amp_init() sets up I2C:
 	//				SCL1 pin 17 (B8)
 	//				SDA1 pin 18 (B9)
-	
-	// Set the I2C baudrate
-    I2CSetFrequency(TPA2016_I2C_BUS, GetPeripheralClock(), I2C_CLOCK_FREQ);
-	// Enable the I2C bus
-    I2CEnable(TPA2016_I2C_BUS, TRUE);
-	
-	//amp_init();
+    // and UART1 (for debugging):
+    //              U1RX pin 9  (RPA2)
+    //              U1TX pin 7  (RPB3)
+    amp_init();
 	
 	sprintf(msg, "compression off");
 	printLine(1, 3, msg);
