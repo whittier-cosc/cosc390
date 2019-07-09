@@ -10,7 +10,7 @@
 #include "amp.h"
 #include "hwprofile.h"
 
-#define DEBUG
+#define DEBUG   // comment this out to disable serial debug output
 
 // Portions of this code adapted from Adafruit's Arduino library:
 
@@ -36,8 +36,8 @@
  *  BSD license, all text above must be included in any redistribution
  */
 
-#define I2C_CLOCK_FREQ              100000
- 
+#define I2C_CLOCK_FREQ 100000  // standard 10 KHz I2C clock speed
+
 // utility functions
 void write8(uint8_t address, uint8_t data);
 uint8_t read8(uint8_t address);
@@ -45,13 +45,18 @@ bool start_transfer(bool restart);
 void stop_transfer();
 bool transmit_byte(uint8_t data);
 
-// NOTE:
-// amp_init() sets up I2C on channel 1:
-//				SCL1 pin 17 (B8)
-//				SDA1 pin 18 (B9)
-// and UART on channel 1 (for debugging) with these pin mappings:
-//              U1RX pin 9  (RPA2)
-//              U1TX pin 7  (RPB3)
+
+/*!
+ * \brief Configure and enable an I2C module for communicating with the TPA2016.
+ *
+ * NOTE:
+ *      amp_init() sets up I2C on channel 1:
+ *          SCL1 pin 17 (B8)
+ *          SDA1 pin 18 (B9)
+ *      and UART on channel 1 (for debugging) with these pin mappings:
+ *          U1RX pin 9  (RPA2)
+ *          U1TX pin 7  (RPB3)
+ */
 void amp_init() {
 
 #ifdef DEBUG
@@ -67,7 +72,7 @@ void amp_init() {
     U1MODEbits.BRGH = 0;  // High-speed mode disabled
     // With PBCLK = SYSCLK = 40 M, we have U1BRG = 259, giving
     // baud rate = 9615.4 (see DS61107F, Table 21-2).
-    U1BRG = ((GetPeripheralClock()  / BAUDRATE) / 16) - 1;
+    U1BRG = ((PBCLK  / BAUDRATE) / 16) - 1;
     // 8 bit, no parity bit, 1 stop bit (8N1)
     U1MODEbits.PDSEL = 0;
     U1MODEbits.STSEL = 0;
@@ -98,8 +103,27 @@ void amp_init() {
     I2CEnable(TPA2016_I2C_BUS, true);
 }
 
+/*!
+ *    @brief  Turns on/off right and left channels by writing to
+ * TPA2016_SETUP.
+ *    @param  r
+ *            right channel
+ *    @param  l
+ *            left channel
+ *
+ */
 void amp_enableChannel(bool r, bool l) {
-    // TODO
+    uint8_t setup = read8(TPA2016_SETUP);
+    if (r)
+        setup |= TPA2016_SETUP_R_EN;
+    else
+        setup &= ~TPA2016_SETUP_R_EN;
+    if (l)
+        setup |= TPA2016_SETUP_L_EN;
+    else
+        setup &= ~TPA2016_SETUP_L_EN;
+
+    write8(TPA2016_SETUP, setup);
 }
 
 /*!
@@ -108,17 +132,26 @@ void amp_enableChannel(bool r, bool l) {
  *            value in dB (clamped to be in range -28..+30)
  */
 void amp_setGain(int8_t g) {
-	if (g > 30)
-		g = 30;
-	if (g < -28)
-		g = -28;
+    if (g > 30)
+        g = 30;
+    if (g < -28)
+        g = -28;
 
-	write8(TPA2016_GAIN, g);
+    write8(TPA2016_GAIN, g);
 }
 
+/*!
+ *    @brief  Gets the gain value by readig from TPA2016_GAIN.
+ *    @return Returns gain value in dB
+ */
 int8_t amp_getGain() {
-	// TODO
-	return 0;
+    int8_t gain = (int8_t) read8(TPA2016_GAIN);
+    gain = gain << 2;
+    if ((gain & 0x80) > 0)
+        gain = (gain >> 2) | 0xC0;   // it's a negative value
+    else
+        gain = gain >> 2;            // it's a positive value
+    return gain;
 }
 
 /*!
@@ -127,31 +160,69 @@ int8_t amp_getGain() {
  *            release value (only 6 bits)
  */
 void amp_setReleaseControl(uint8_t release) {
-	if (release > 0x3F)
-		return; // only 6 bits!
+    if (release > 0x3F)
+        return; // only 6 bits!
 
-	write8(TPA2016_REL, release);
+    write8(TPA2016_REL, release);
 }
 
-// Register #2
+/*!
+ *    @brief  Sets AGC Attack time by writing to TPA2016_ATK.
+ *    @param  attack
+ *            attack value (only 6 bits)
+ */
 void amp_setAttackControl(uint8_t attack) {
-	// TODO
+    if (attack > 0x3F)
+        return; // only 6 bits!
+
+     write8(TPA2016_ATK, attack);
 }
 
-// Register #4
+/*!
+ *    @brief  Sets AGC Hold time by writing to TPA2016_HOLD.
+ *    @param  hold
+ *            hold time value (only 6 bits)
+ */
 void amp_setHoldControl(uint8_t hold) {
-	// TODO
+    if (hold > 0x3F)
+        return; // only 6 bits!
+
+    write8(TPA2016_HOLD, hold);
 }
 
-// Register #6
+/*!
+ *    @brief  Turns Power limiter on by writing to TPA2016_AGCLIMIT.
+ */
 void amp_setLimitLevelOn() {
-	// TODO
+    uint8_t agc = read8(TPA2016_AGCLIMIT);
+    agc &= ~(0x80); // mask off top bit
+    write8(TPA2016_AGCLIMIT, agc);
 }
+
+/*!
+ *    @brief  Turns Power limiter off by writing to TPA2016_AGCLIMIT.
+ */
 void amp_setLimitLevelOff() {
-	// TODO
+    uint8_t agc = read8(TPA2016_AGCLIMIT);
+    agc |= 0x80; // turn on top bit
+    write8(TPA2016_AGCLIMIT, agc);
 }
+
+/*!
+ *    @brief  Sets limit level by writing to TPA2016_AGCLIMIT.
+ *    @param  limit
+ *            value (max 31)
+ */
 void amp_setLimitLevel(uint8_t limit) {
-	// TODO
+    if (limit > 31)
+        return;
+
+    uint8_t agc = read8(TPA2016_AGCLIMIT);
+
+    agc &= ~(0x1F); // mask off bottom 5 bits
+    agc |= limit;   // set the limit level.
+
+    write8(TPA2016_AGCLIMIT, agc);
 }
 
 /*!
@@ -162,17 +233,28 @@ void amp_setLimitLevel(uint8_t limit) {
  *            TPA2016_AGC_8 1:8
  */
 void amp_setAGCCompression(uint8_t x) {
-	if (x > 3)
-		return; // only 2 bits!
+    if (x > 3)
+        return; // only 2 bits!
 
-	uint8_t agc = read8(TPA2016_AGC);
-	agc &= ~(0x03); // mask off bottom 2 bits
-	agc |= x;       // set the compression ratio.
-	write8(TPA2016_AGC, agc);
+    uint8_t agc = read8(TPA2016_AGC);
+    agc &= ~(0x03); // mask off bottom 2 bits
+    agc |= x;       // set the compression ratio.
+    write8(TPA2016_AGC, agc);
 }
 
+/*!
+ *    @brief  Sets max gain by writing to TPA2016_AGC.
+ *    @param  x
+ *            value (max 12)
+ */
 void amp_setAGCMaxGain(uint8_t x) {
-	// TODO
+    if (x > 12)
+        return; // max gain max is 12 (30dB)
+
+    uint8_t agc = read8(TPA2016_AGC);
+    agc &= ~(0xF0);  // mask off top 4 bits
+    agc |= (x << 4); // set the max gain
+    write8(TPA2016_AGC, agc);
 }
 
 /*!
@@ -183,52 +265,59 @@ void amp_setAGCMaxGain(uint8_t x) {
  */
 uint8_t read8(uint8_t address) {
     bool success;
-	uint8_t data;
-	I2C_7_BIT_ADDRESS SlaveAddress;
+    uint8_t data;
+    I2C_7_BIT_ADDRESS SlaveAddress;
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_WRITE);
     
+    debug_log("read8: start_transfer\n");
+
     // Start the transfer to write data to the TPA2016
     if(!start_transfer(false)) {
-        while(1) { ; }
         debug_log("read8: start_transfer failed\n");
+        while(1) { ; }
     }
-	
+    debug_log("read8: transfer byte 1\n");
     // Send slave address and register address
     success = transmit_byte(SlaveAddress.byte);
     if (!success) {
         debug_log("read8: transmitting slave address byte failed\n");
         while(1) { ; }
     }
+    debug_log("read8: transfer byte 2\n");
     success = transmit_byte(address);
     if (!success) {
         debug_log("read8: transmitting slave address byte failed\n");
         while(1) { ; }
     }
-	
-	// Restart to do the read
+    debug_log("read8: restart\n");
+    // Restart to do the read
     if(!start_transfer(true)) {
         debug_log("read8: start_transfer (restart) failed\n");
         while(1) { ; }
     }
-    
+    debug_log("read8: transmit slave addr (switch to read)\n");
     // Transmit the slave address with the READ bit set
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_READ);
+    success = transmit_byte(SlaveAddress.byte);
     if (!success) {
         debug_log("read8: transmitting slave address byte (switch to read) failed\n");
         while(1) { ; }
     }
-
+    debug_log("read8: enable receiver\n");
     if (I2CReceiverEnable(TPA2016_I2C_BUS, true) == I2C_RECEIVE_OVERFLOW) {
         debug_log("read8: receiver enable failed (receive overflow)\n");
         while(1) { ; }
     }
+    debug_log("read8: wait for recv'd data available\n");
+    while(!I2CReceivedDataIsAvailable(TPA2016_I2C_BUS)) { ; }
+    debug_log("read8: send nack\n");
+    I2CAcknowledgeByte(TPA2016_I2C_BUS, false); // send NACK after receiving final (and only) byte!
+    debug_log("read8: get byte\n");
+    data = I2CGetByte(TPA2016_I2C_BUS);
 
-	while(!I2CReceivedDataIsAvailable(TPA2016_I2C_BUS)) { ; }
-	data = I2CGetByte(TPA2016_I2C_BUS);
-	
-	stop_transfer();
-	
-	return data;
+    stop_transfer();
+
+    return data;
 }
 
 /*!
@@ -240,14 +329,15 @@ uint8_t read8(uint8_t address) {
  */
 void write8(uint8_t address, uint8_t data) {
     bool success;
-	I2C_7_BIT_ADDRESS SlaveAddress;
+    I2C_7_BIT_ADDRESS SlaveAddress;
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_WRITE);
     
     // Start the transfer to write data to the TPA2016
     if(!start_transfer(false)) {
-        while(1);
+        debug_log("write8: start transfer failed\n");
+        while(1) { ; }
     }
-	
+
     // Transmit the byte
     success = transmit_byte(SlaveAddress.byte);
     if (!success) {
@@ -265,7 +355,7 @@ void write8(uint8_t address, uint8_t data) {
         while(1) { ; }
     }
 
-	stop_transfer();
+    stop_transfer();
 }
 
 /*!
@@ -310,6 +400,9 @@ bool start_transfer( bool restart ) {
     return true;
 }
 
+/*!
+ * \brief Stops a transfer to or from the TPA2016
+ */
 void stop_transfer() {
     I2C_STATUS  status;
 
@@ -322,19 +415,30 @@ void stop_transfer() {
     } while (!(status & I2C_STOP));
 }
 
+/*!
+ * \brief   Transmit a byte via I2C to the TPA2016
+ * \param   data
+ *              the byte to be transmitted
+ * \return  true if successful
+ *          false if unsuccessful
+ */
 bool transmit_byte(uint8_t data) {
     // Wait for the transmitter to be ready
-    while(!I2CTransmitterIsReady(TPA2016_I2C_BUS));
+    debug_log("transmit_byte: wait for transmitter ready\n");
+    while(!I2CTransmitterIsReady(TPA2016_I2C_BUS)) { ; }
 
     // Transmit the byte
+    debug_log("transmit_byte: send byte\n");
     if(I2CSendByte(TPA2016_I2C_BUS, data) == I2C_MASTER_BUS_COLLISION) {
         debug_log("Error: I2C Master Bus Collision\n");
         return false;
     }
 
     // Wait for the transmission to finish
-    while(!I2CTransmissionHasCompleted(TPA2016_I2C_BUS));
+    debug_log("transmit_byte: wait for transmission to finish\n");
+    while(!I2CTransmissionHasCompleted(TPA2016_I2C_BUS)) { ; }
 
+    debug_log("check if byte ack'd\n");
     if(!I2CByteWasAcknowledged(TPA2016_I2C_BUS)) {
         debug_log("Error: Sent byte was not acknowledged\n");
         return false;
