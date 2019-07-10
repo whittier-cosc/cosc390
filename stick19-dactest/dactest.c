@@ -125,12 +125,12 @@ int main(void) {
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 
-	INTCONbits.MVEC = 1;   // multi-vector mode on
-	
-	ANSELA = 0; ANSELB = 0; 
+    INTCONbits.MVEC = 1;   // multi-vector mode on
 
-	// set up DAC
-	// timer interrupt //////////////////////////
+    ANSELA = 0; ANSELB = 0;
+
+    // set up DAC
+    // timer interrupt //////////////////////////
     // Timer2 on, interrupts, internal clock, prescaler 1, period in counts
     // At 40 MHz PB clock 40 counts is one microsecond
     // 400 counts is 100 ksamples/sec (10 microseconds between samples)
@@ -146,24 +146,24 @@ int main(void) {
     mPORTBSetPinsDigitalOut(BIT_4);
     DAC_SET_CS
     // SCK2 is pin 26 
-	// The following PPS mapping is already done by initPE, so don't need
-	// it if using IO Expander.
+    // The following PPS mapping is already done by initPE, so don't need
+    // it if using IO Expander.
     // SDO2 (MOSI) is in PPS output group 2, map to RB5 (pin 14)
-    //PPSOutput(2, RPB5, SDO2);
+    PPSOutput(2, RPB5, SDO2);
     
-	// The following SpiChnOpen is redundant if using IO Expander. initPE() does the same
-	// thing, but using MODE8, but that's fine, since when talking to the DAC
-	// we always set MODE16 first.
-    //SpiChnOpen(SPI_CHANNEL2, SPI_OPEN_ON | SPI_OPEN_MODE16 | SPI_OPEN_MSTEN | SPI_OPEN_CKE_REV , 4);
-	// end DAC setup
+    // The following SpiChnOpen is redundant if using IO Expander. initPE() does the same
+    // thing, but using MODE8, but that's fine, since when talking to the DAC
+    // we always set MODE16 first.
+    SpiChnOpen(SPI_CHANNEL2, SPI_OPEN_ON | SPI_OPEN_MODE16 | SPI_OPEN_MSTEN | SPI_OPEN_CKE_REV , 4);
+    // end DAC setup
     
-	// === build the lookup tables =======
-	// scaled to produce values between 0 and 4095
-	int i;
-	for (i = 0; i < table_size; i++) {
-		 sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
-		 saw_table[i] = 4095*i/table_size;
-	}
+    // === build the lookup tables =======
+    // scaled to produce values between 0 and 4095
+    int i;
+    for (i = 0; i < table_size; i++) {
+             sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
+             saw_table[i] = 4095*i/table_size;
+    }
 
     // === Set up I/O expander ===
     OpenTimer4(T4_ON | T4_SOURCE_INT | T4_PS_1_256, 65535);
@@ -177,31 +177,11 @@ int main(void) {
                             // bit 0 to zero, for output.  Others are inputs.
     LATAbits.LATA0 = 0;     // Turn LED off.
     
-	__builtin_enable_interrupts();
+    __builtin_enable_interrupts();
 	
-	//*****************************************
-	// next, check the cause of the Reset
-	if(RCON & 0x0003)
-	{
-		sprintf(msg, "Power-on reset");
-	}
-	else if(RCON & 0x0002)
-	{
-		sprintf(msg, "Brown-out reset");
-	}
-	else if(RCON & 0x0080)
-	{
-		sprintf(msg, "MCLR reset");
-	}
-	else 
-	{
-		sprintf(msg, "Unknown reset");
-	}
-	RCON &= ~0x0083; // clear the 3 bits checked above
-	printLine(4, 3, msg);
-	
+
     while(1) {
-		;
+        ;
     }
     return 0;
 }

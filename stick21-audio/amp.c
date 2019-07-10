@@ -136,7 +136,8 @@ void amp_setGain(int8_t g) {
         g = 30;
     if (g < -28)
         g = -28;
-
+    if (g < 0)
+        g = g & 0x3f; // convert to 6-bit two's complement
     write8(TPA2016_GAIN, g);
 }
 
