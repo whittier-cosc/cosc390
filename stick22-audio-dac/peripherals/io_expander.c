@@ -12,7 +12,7 @@
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
 
-#include "hwprofile.h"
+#include "../hwprofile.h"
 #include "io_expander.h"
 
 #define IOE_SPI_CHN     SPI_CHANNEL2

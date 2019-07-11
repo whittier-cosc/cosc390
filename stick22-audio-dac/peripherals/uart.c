@@ -12,7 +12,7 @@
  */
 
 #include <xc.h>
-#include "hwprofile.h"
+#include "../hwprofile.h"
 #include "uart.h"
 
 /*!

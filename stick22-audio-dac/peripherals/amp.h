@@ -8,7 +8,6 @@
 #include <plib.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "hwprofile.h"
 #include "uart.h"
 
 // Portions of this code adapted from following Adafruit code.

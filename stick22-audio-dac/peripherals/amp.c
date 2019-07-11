@@ -10,7 +10,7 @@
  */
 
 #include "amp.h"
-#include "hwprofile.h"
+#include "../hwprofile.h"
 #include "uart.h"
 
 #define DEBUG   // comment this out to disable serial debug output

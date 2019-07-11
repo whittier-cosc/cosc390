@@ -2,11 +2,11 @@ PORT=
 TERMEMU=
 #TOOL=PKOB   # microstickII pickit on board
 TOOL=PK4     # pickit 4
+INCLUDEPATH=peripherals
 
-
-ifdef OS
+ifdef OS     # Windows
 	IPECMD=ipecmd.exe
-else
+else         # MacOS
 	IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
 endif
 
@@ -33,13 +33,6 @@ endif
 # Mac example:
 # HARMONYPATH=/Users/kevin/harmony/v1_06
 #
-# NU32PATH is the path to the nu32utility.
-# You compiled this and named it nu32utility
-# Example:
-# if your nu32utility is in
-# /home/student/PIC32/nu32utilty, then
-# NU32PATH=/home/student/PIC32
-#
 # PORT is the COM port used by the PIC32
 # Windows Example:
 # PORT=\\.\COM22
@@ -54,20 +47,19 @@ endif
 # TERMEMU=screen
 #END user configurable variables
 
-#the c compiler
+# the c compiler
 CC=xc32-gcc
 
-#the hexfile maker
+# the hexfile maker
 HX=xc32-bin2hex
 
-#object dumper
+# object dumper
 OBJDMP=xc32-objdump
 
-#the bootloader utility
-#WRITE="$(NU32PATH)/nu32utility"
+# the download utility
 WRITE=$(IPECMD) -P32MX250F128B -TP$(TOOL) -M -OL
 
-#the output target $(TARGET).hex
+# the output target $(TARGET).hex
 TARGET=out
 
 ifdef OS
@@ -76,64 +68,65 @@ else
 	TARGETDIR=${CURDIR}/
 endif
 
-#the linker script
+# the linker script
 #LINKSCRIPT=NU32bootloaded.ld
 
-#additional linker flags
+# additional linker flags
 LINKFLAGS=-Map=$(TARGET).map
 
-#if we have specified a linker script add it
+# if we have specified a linker script add it
 ifdef LINKSCRIPT
 	LINKFLAGS:=$(LINKFLAGS)
 endif
 
-OBJS := $(patsubst %.c, %.o,$(wildcard *.c))
-HDRS := $(wildcard *.h)
+OBJS := $(patsubst %.c, %.o, $(wildcard *.c)) \
+        $(patsubst %.c, %.o, $(wildcard peripherals/*.c))
+HDRS := $(wildcard *.h) \
+        $(wildcard peripherals/*.h)
 PROC = 32MX250F128B
-CFLAGS=-g -O1 -x c 
-#CFLAGS=-g -x c
+CFLAGS = -g -O1 -x c -I$(INCLUDEPATH)
 
-#if on windows use a different RM
-ifdef ComSpec
+# if on windows use a different RM
+ifdef OS
 	RM = del /Q
 endif
 
-#what to do when make all
-.PHONY : all
+# what to do when make all
+.PHONY: all
 all : $(TARGET).hex $(TARGET).dis
 # Turn the elf file into a hex file.
-$(TARGET).hex : $(TARGET).elf
+$(TARGET).hex: $(TARGET).elf
 	@echo Creating hex file
 	$(HX) $(TARGET).elf
 
 # perform disassembly
-$(TARGET).dis : $(TARGET).elf
+$(TARGET).dis: $(TARGET).elf
 	$(OBJDMP) -S $< > $@
 
 # Link all the object files into an elf file.
-$(TARGET).elf : $(OBJS)
+$(TARGET).elf: $(OBJS)
 	@echo Linking elf file
 	$(CC) -mprocessor=$(PROC) -o $(TARGET).elf $(OBJS) -Wl,$(LINKFLAGS)
 
 # Create an object file for each C file.
-%.o : %.c $(HDRS)
+%.o: %.c $(HDRS)
 	@echo Creating object file $@
 	$(CC) $(CFLAGS) -c -mprocessor=$(PROC) -o $@ $<
 
 .PHONY: clean
 # Erase all hex, map, object, and elf files.
-clean :
+clean:
 	$(RM) *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~     
 
 .PHONY: write
 # After making, use MPLAB's ipecmd to program the chip
-write : $(TARGET).hex $(TARGET).dis
+write: $(TARGET).hex $(TARGET).dis
 	$(WRITE) -F$(TARGETDIR)$(TARGET).hex 
 
 .PHONY: putty
-putty :
+putty:
 	"$(TERMEMU)" -serial -sercfg 230400,R "$(PORT)"
 
 .PHONY: screen
-screen :
+screen:
 	"$(TERMEMU)" "$(PORT)" 230400,crtscts
