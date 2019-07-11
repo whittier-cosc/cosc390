@@ -120,7 +120,7 @@ int main(void) {
     OSCTUN = 56; 			// 56 is best, empirically
     SYSKEY = 0;          	// lock
 
-    tft_init_hw();
+    tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left

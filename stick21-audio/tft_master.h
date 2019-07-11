@@ -132,7 +132,7 @@
 #define dTime_ms PBCLK/2000
 #define dTime_us PBCLK/2000000
 
-void tft_init_hw(void);
+void tft_init(void);
 void tft_spiwrite(unsigned char c);
 void tft_spiwrite8(unsigned char c);
 void tft_spiwrite16(unsigned short c);

@@ -44,7 +44,7 @@ int main(void) {
 
     INTCONbits.MVEC = 1; // multi-vector interrupt mode
 
-    tft_init_hw();
+    tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left

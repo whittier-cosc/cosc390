@@ -51,7 +51,7 @@ int main(void) {
     // RAM wait state, and enable prefetch and cache mode.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 	
-    tft_init_hw();
+    tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left

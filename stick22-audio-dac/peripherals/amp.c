@@ -51,9 +51,9 @@ void debug_log(const char *string);
 static void delay(void);
 
 /*!
- * \brief Configure and enable an I2C module for communicating with the TPA2016.
+ * @brief Configures and enables an I2C module for communicating with the TPA2016.
  *
- * NOTE:
+ * @remark
  *      amp_init() sets up I2C on channel 1:
  *          SCL1 pin 17 (B8)
  *          SDA1 pin 18 (B9)

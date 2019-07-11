@@ -39,7 +39,7 @@ int main(void) {
 
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
     __builtin_disable_interrupts();
-    tft_init_hw();
+    tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLUE);
     tft_setRotation(3); // landscape mode, pins at left

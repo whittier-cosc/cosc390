@@ -20,17 +20,17 @@
 #define IOE_CLEAR_CS()  mPORTBClearBits(BIT_9)
 
 // Change the SPI bit modes on the fly, mid-transaction if necessary
-inline void SPI_Mode16(void){  // configure SPI2 for 16-bit mode
+static inline void SPI_Mode16(void){  // configure SPI2 for 16-bit mode
     SPI2CONSET = 0x400;
     SPI2CONCLR = 0x800;
 }
 
-inline void SPI_Mode8(void){   // configure SPI2 for 8-bit mode
+static inline void SPI_Mode8(void){   // configure SPI2 for 8-bit mode
     SPI2CONCLR = 0x400;
     SPI2CONCLR = 0x800;
 }
 
-inline void SPI_Mode32(void){  // configure SPI2 for 32-bit mode
+static inline void SPI_Mode32(void){  // configure SPI2 for 32-bit mode
     SPI2CONCLR = 0x400;
     SPI2CONSET = 0x800;
 }
@@ -62,28 +62,28 @@ void ioe_init() {
               CLEAR_INTPOL);
 }
 
-void clearBits(unsigned char addr, unsigned char bitmask){
+static void clearBits(unsigned char addr, unsigned char bitmask){
     if (addr <= 0x15){
         unsigned char cur_val = ioe_read(addr);
         ioe_write(addr, cur_val & ~bitmask);
     }
 }
 
-void setBits(unsigned char addr, unsigned char bitmask){
+static void setBits(unsigned char addr, unsigned char bitmask){
     if (addr <= 0x15){
         unsigned char cur_val = ioe_read(addr);
         ioe_write(addr, cur_val | bitmask);
     }
 }
 
-void toggleBits(unsigned char addr, unsigned char bitmask){
+static void toggleBits(unsigned char addr, unsigned char bitmask){
     if (addr <= 0x15){
         unsigned char cur_val = ioe_read(addr);
         ioe_write(addr, cur_val ^ bitmask);
     }
 }
 
-unsigned char readBits(unsigned char addr, unsigned char bitmask){
+static unsigned char readBits(unsigned char addr, unsigned char bitmask){
     if (addr <= 0x15){
         unsigned char cur_val = ioe_read(addr) & bitmask ;
         return cur_val ;

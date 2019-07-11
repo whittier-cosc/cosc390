@@ -7,9 +7,10 @@
 
 #include <math.h>
 #include "config.h"
+#include "hwprofile.h"
 #include "amp.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "dac.h"
+#include "tft.h"
 
 static void delay(void);
 char msg[40];
@@ -32,23 +33,18 @@ void display_message(char *message) {
 }
 
 // DAC constants
-#define DAC_SPI_CHN             SPI_CHANNEL2
-// channel A, 1x gain, active
-#define DAC_config_chan_A       0b0011000000000000
-// channel B, 1x gain, active
-#define DAC_config_chan_B       0b1011000000000000
-#define DAC_SET_CS              {mPORTBSetBits(BIT_4);}
-#define DAC_CLEAR_CS            {mPORTBClearBits(BIT_4);}
+#define DAC_CONFIG_A    (DAC_A | DAC_GAIN1X | DAC_ACTIVE)
+#define DAC_CONFIG_B    (DAC_B | DAC_GAIN1X | DAC_ACTIVE)
 
 // DDS constants
 #define two32           4294967296.0 // 2^32
 #define samples_per_sec 100000
-#define timer2period    (PBCLK/samples_per_sec)
-#define output_freq_1     440 // 440 Hz
-#define output_freq_2     660
+#define timer2period    (PBCLK / samples_per_sec)
+#define output_freq_1   440 // 440 Hz
+#define output_freq_2   660
 
 // Globals for Timer2 interrupt handler
-volatile unsigned int DAC_data_1, DAC_data_2 ;// output value
+volatile unsigned int dac_data_1, dac_data_2 ;// output value
 
 // the DDS units:
 volatile unsigned int phase_accum_main_1, phase_accum_main_2;
@@ -64,15 +60,6 @@ int saw_table[table_size];
 char out_value = 0x55;
 unsigned char read_value;
 
-inline void dac_write(unsigned int msg) {
-    DAC_CLEAR_CS // CS low to start transaction
-    SpiChnWriteC(DAC_SPI_CHN, msg);
-    while (SpiChnIsBusy(DAC_SPI_CHN)) { ; } // wait for end of transaction
-    DAC_SET_CS // CS high to end transaction
-    // need to read SPI channel to avoid confusing port expander
-    SpiChnReadC(DAC_SPI_CHN); // (ignore return value )
-}
-
 // Timer2 Interrupt handler.
 // Compute DDS phase, update both DAC channels.
 void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
@@ -83,15 +70,11 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
     phase_accum_main_1 += phase_incr_main_1;
     phase_accum_main_2 += phase_incr_main_2;
 
-    DAC_data_1 = sin_table[phase_accum_main_1>>24];
-    DAC_data_2 = sin_table[phase_accum_main_2>>24];
+    dac_data_1 = sin_table[phase_accum_main_1>>24];
+    dac_data_2 = sin_table[phase_accum_main_2>>24];
 
-    // wait for possible port expander transactions to complete
-    while (!SpiChnTxBuffEmpty(DAC_SPI_CHN)) { ; }
-    SPI_Mode16(); // reset spi mode to avoid conflict with port expander
-
-    dac_write(DAC_config_chan_A | DAC_data_1);
-    dac_write(DAC_config_chan_B | DAC_data_2);
+    dac_write(DAC_CONFIG_A | dac_data_1);
+    dac_write(DAC_CONFIG_B | dac_data_2);
 }
 
 int main(void) {
@@ -117,44 +100,25 @@ int main(void) {
     ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_2);
     mT2ClearIntFlag(); // and clear the interrupt flag
 
-    // CS for DAC is RB4 (pin 11)
-    // set CS high initially
-    mPORTBSetPinsDigitalOut(BIT_4);
-    DAC_SET_CS
+    __builtin_enable_interrupts();
 
-    // SCK2 is pin 26
-    // The following PPS mapping is already done by initPE, so don't need
-    // it if using IO Expander.
-    // SDO2 (MOSI) is in PPS output group 2, map to RB5 (pin 14)
-    PPSOutput(2, RPB5, SDO2);
 
-    // The following SpiChnOpen is redundant if using IO Expander. initPE() does the same
-    // thing, but using MODE8, but that's fine, since when talking to the DAC
-    // we always set MODE16 first.
-    SpiChnOpen(SPI_CHANNEL2, SPI_OPEN_ON | SPI_OPEN_MODE16 | SPI_OPEN_MSTEN | SPI_OPEN_CKE_REV , 4);
-    // end DAC setup
 
-    // === build the lookup tables =======
-    // scaled to produce values between 0 and 4095
+    // Build the lookup tables
+    // Scaled to generate values between 0 and 4095 for 12-bit DAC
     int i;
     for (i = 0; i < table_size; i++) {
         sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
         saw_table[i] = 4095*i/table_size;
     }
 
-    __builtin_enable_interrupts();
+    dac_init();
 
-    tft_init_hw();
+    tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 
-    // amp_init() sets up I2C:
-    //      SCL1 pin 17 (B8)
-    //  SDA1 pin 18 (B9)
-    // and UART1 (for debugging):
-    //              U1RX pin 9  (RPA2)
-    //              U1TX pin 7  (RPB3)
     amp_init();
 
     display_message("compression 2:1");
@@ -174,39 +138,21 @@ int main(void) {
     amp_setGain(-28);
 
     while(1) {
-        // We can update the gain, from -28dB up to 30dB
-        int8_t i, gain;
-        for (i = -28; i <= 0; i += 2) {
-            if (i < 0)
-                sprintf(msg, "Gain = %d", -(-i & 0x00ff));
-            else
-                sprintf(msg, "Gain = %d", i & 0x00ff);
-            display_message(msg);
-            amp_setGain(i);
-            delay();
-            gain = amp_getGain();
-            if (gain < 0)
-                sprintf(msg, "getGain returned %d", -(-gain & 0x00ff));
-            else
-                sprintf(msg, "getGain returned %d", gain & 0x00ff);
-            display_message(msg);
-            delay();
-        }
-//        display_message("Right only");
-//        amp_enableChannel(true, false);
-//        delay();
-//        display_message("Left only");
-//        amp_enableChannel(false, true);
-//        delay();
-//        display_message("Left + Right");
-//        amp_enableChannel(true, true);
-//        delay();
+        display_message("Right only");
+        amp_enableChannel(true, false);
+        delay();
+        display_message("Left only");
+        amp_enableChannel(false, true);
+        delay();
+        display_message("Left + Right");
+        amp_enableChannel(true, true);
+        delay();
     }
     return 0;
 }
 
 static void delay(void) {
     volatile int j;
-    for (j = 0; j < 1000000; j++) {
+    for (j = 0; j < 100000; j++) {
     }
 }

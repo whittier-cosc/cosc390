@@ -72,7 +72,7 @@ int main(void) {
 	
 	// init the display
 	// Note: this init assumes SPI channel 1 connections
-	tft_init_hw();
+	tft_init();
 	tft_begin();
 	tft_fillScreen(ILI9340_BLACK);
 	//240x320 vertical display
