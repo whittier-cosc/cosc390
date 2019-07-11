@@ -24,7 +24,7 @@
 #include "tft_master.h"
 #include "tft_gfx.h"
 
-void delay(void);
+void delay(int ms);
 char msg[40];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
@@ -83,30 +83,31 @@ int main(void) {
             sprintf(msg, "Gain = %d", i & 0x00ff);
         display_message(msg);
         amp_setGain(i);
-        delay();
+        delay(250);
         gain = amp_getGain();
         if (gain < 0)
             sprintf(msg, "getGain returned %d", -(-gain & 0x00ff));
         else
             sprintf(msg, "getGain returned %d", gain & 0x00ff);
         display_message(msg);
-        delay();delay();
+        delay(500);
     }
 
     // Set gain back to reasonable level
     display_message("Setting gain to 0");
     amp_setGain(0);
+    delay(250);
 
     // Each channel can be individually controlled
     display_message("Left off");
     amp_enableChannel(true, false);
-    delay();
+    delay(250);
     display_message("Left On, Right off");
     amp_enableChannel(false, true);
-    delay();
+    delay(250);
     display_message("Left On, Right On");
     amp_enableChannel(true, true);
-    delay();
+    delay(250);
 
     // OK now we'll turn the AGC back on and mess with the settings :)
 
@@ -116,24 +117,24 @@ int main(void) {
     //  TPA2016_AGC_8 (1:8 compression)
     display_message("Setting AGC Compression");
     amp_setAGCCompression(TPA2016_AGC_2);
-    delay();
+    delay(250);
 
     // See Datasheet page 22 for value -> dBV conversion table
     display_message("Setting Limit Level");
     amp_setLimitLevelOn();
     // or turn off with setLimitLevelOff()
     amp_setLimitLevel(25);  // range from 0 (-6.5dBv) to 31 (9dBV)
-    delay();
+    delay(250);
 
     // See Datasheet page 23 for value -> ms conversion table
     display_message("Setting AGC Attack");
     amp_setAttackControl(5);
-    delay();
+    delay(250);
 
     // See Datasheet page 24 for value -> ms conversion table
     display_message("Setting AGC Hold");
     amp_setHoldControl(0);
-    delay();
+    delay(250);
 
     // See Datasheet page 24 for value -> ms conversion table
     display_message("Setting AGC Release");
@@ -145,8 +146,12 @@ int main(void) {
     return 0;
 }
 
-void delay(void) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
     volatile int j;
-    for (j = 0; j < 1000000; j++) {
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }

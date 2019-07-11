@@ -11,7 +11,7 @@
 #include "dac.h"
 #include "tft.h"
 
-static void delay(void);
+void delay(int ms);
 char msg[40];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
@@ -117,11 +117,11 @@ int main(void) {
 
     display_message("compression 2:1");
     amp_setAGCCompression(TPA2016_AGC_2);
-    delay();
+    delay(150);
 
     display_message("limiter 0.67 Vpp");
     amp_setLimitLevel(0);
-    delay();
+    delay(150);
 
 //    display_message("release off");
 //    // we also have to turn off the release to really turn off AGC
@@ -134,19 +134,23 @@ int main(void) {
     while(1) {
         display_message("Right only");
         amp_enableChannel(true, false);
-        delay();
+        delay(50);
         display_message("Left only");
         amp_enableChannel(false, true);
-        delay();
+        delay(50);
         display_message("Left + Right");
         amp_enableChannel(true, true);
-        delay();
+        delay(50);
     }
     return 0;
 }
 
-static void delay(void) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
     volatile int j;
-    for (j = 0; j < 100000; j++) {
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }

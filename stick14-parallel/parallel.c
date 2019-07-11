@@ -44,9 +44,13 @@ void parallel_init() {
     PMCONbits.ON = 1;
 }
 
-void delay() {
-    volatile int i;
-    for (i = 0; i < 10; i++) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
+    volatile int j;
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }
 
@@ -65,7 +69,7 @@ int main(void) {
     char c = 'a';
     PMADDR = 0x8899;
     while(1) {
-     //   delay();
+     //   delay(250);
      //   LATBINV = 8;
         PMDIN = c++;
         if (c == 'z' + 1)
@@ -75,4 +79,3 @@ int main(void) {
     }
     return 0;
 }
-

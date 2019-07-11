@@ -7,7 +7,7 @@
 // Read from UART1
 // block other functions until you get a '\r' or '\n'
 // send the pointer to your char array and the number of elements in the array
-void Stick_ReadUART1(char * message, int maxLength) {
+void uart_read(char * message, int maxLength) {
     char data = 0;
     int complete = 0, num_bytes = 0;
     // loop until you get a '\r' or '\n'
@@ -31,7 +31,7 @@ void Stick_ReadUART1(char * message, int maxLength) {
 }
 
 // Write a character array using UART1
-void Stick_WriteUART1(const char * string) {
+void uart_write(const char * string) {
     while (*string != '\0') {
         while (BusyUART1()) {
             ; // wait until tx buffer isn't full

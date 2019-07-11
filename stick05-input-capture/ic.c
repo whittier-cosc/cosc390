@@ -24,9 +24,13 @@ char msg[BUFLEN];
 static volatile int ticks;
 static volatile int interrupts;
 
-void delay(void) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
     volatile int j;
-    for (j = 0; j < 1000000; j++) { // number is 1 million
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }
 
@@ -115,26 +119,26 @@ int main(void) {
 
     __builtin_enable_interrupts();
 
-    Stick_WriteUART1("RESET\r\n");
+    uart_write("RESET\r\n");
     int myticks, myinterrupts;
     while(1) {
-        Stick_ReadUART1(msg, 39); // block until user hits ENTER
-        Stick_WriteUART1("running\r\n");
-        delay(); // allow some time to measure input
+        uart_read(msg, 39); // block until user hits ENTER
+        uart_write("running\r\n");
+        delay(200); // allow some time to measure input
         __builtin_disable_interrupts(); // while we copy
         myticks = ticks;
         myinterrupts = interrupts;
         __builtin_enable_interrupts();
         sprintf(msg, "ticks: %d\r\n", myticks);
-        Stick_WriteUART1(msg);
+        uart_write(msg);
         if (myticks == 0)
-            Stick_WriteUART1("freq: infinity\r\n");
+            uart_write("freq: infinity\r\n");
         else {
             sprintf(msg, "freq: %d Hz\r\n", PBCLK / myticks);
-            Stick_WriteUART1(msg);
+            uart_write(msg);
         }
         sprintf(msg, "interrupts: %d\r\n", myinterrupts);
-        Stick_WriteUART1(msg);
+        uart_write(msg);
         LATAINV = 0x0001;    // toggle LED
     }
     return 0;

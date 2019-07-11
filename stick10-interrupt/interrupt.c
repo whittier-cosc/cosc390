@@ -6,7 +6,7 @@
  * occurred.
  */
 
-void delay(void) {
+void delay(int ms) {
     volatile int i;
     for (i = 0; i < 1000000; i++) {
         ;
@@ -54,7 +54,7 @@ int main(void) {
     LATAbits.LATA0 = 1;
     int i;
     for (i = 0; i < 6; i++) {
-        delay();
+        delay(250);
         LATAINV = 1;
     }
 

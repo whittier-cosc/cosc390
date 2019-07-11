@@ -2,7 +2,7 @@
 #include "tft_master.h"
 #include "tft_gfx.h"
 
-void delay(void);
+void delay(int ms);
 
 char msg[40];
 
@@ -34,16 +34,20 @@ int main(void) {
 
     while(1) {
         // Very annoying flashing effect
-        //delay();
+        //delay(250);
         //tft_writecommand(0x21);  // invert all pixels
-        //delay();
+        //delay(250);
         //tft_writecommand(0x20);  // back to normal
     }
     return 0;
 }
 
-void delay(void) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
     volatile int j;
-    for (j = 0; j < 1000000; j++) { // number is 1 million
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }

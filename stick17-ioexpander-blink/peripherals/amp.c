@@ -48,7 +48,7 @@ bool start_transfer(bool restart);
 void stop_transfer();
 bool transmit_byte(uint8_t data);
 void debug_log(const char *string);
-static void delay(void);
+static void delay();
 
 /*!
  * @brief Configures and enables an I2C module for communicating with the TPA2016.
@@ -442,7 +442,7 @@ void debug_log(const char *string) {
 #endif
 }
 
-static void delay(void) {
+static void delay() {
     volatile int j;
     for (j = 0; j < 10; j++) {
     }

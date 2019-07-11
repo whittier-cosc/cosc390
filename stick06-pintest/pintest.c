@@ -1,6 +1,6 @@
 #include "config.h"
 
-void delay(void);
+void delay(int ms);
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
@@ -9,18 +9,22 @@ int main(void) {
     LATA = 0;         // Set all port A pins low 
     LATB = 0;         // Set all port B pins low 
     while(1) {
-        delay();
+        delay(250);
         LATAINV = 0xFFFF;    // Toggle all port A pins
         LATBINV = 0xFFFF;    // Toggle all port B pins
         //LATBINV = 1 << 10;
-        //delay();
+        //delay(250);
         //LATBINV = 1 << 11;
     }
     return 0;
 }
 
-void delay(void) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
     volatile int j;
-    for (j = 0; j < 1000000; j++) { // number is 1 million
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }

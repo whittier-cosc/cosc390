@@ -53,15 +53,15 @@ int main(void) {
     LATAbits.LATA0 = 0;    // Turn LED off.
 
     sprintf(msg, "U1BRG = %d\n", U1BRG);
-    Stick_WriteUART1(msg);
+    uart_write(msg);
     unsigned int duty_cycle;
     while(1) {
-        Stick_ReadUART1(msg, BUFLEN - 1); // Block until we receive a string
+        uart_read(msg, BUFLEN - 1); // Block until we receive a string
         duty_cycle = atoi(msg); // 0..100 percent
         OC4RS = duty_cycle * 0x10000 / 100; // Update duty cycle
         LATAINV = 0x0001;      // Toggle LED
-        Stick_WriteUART1(msg); // Echo the string we received
-		Stick_WriteUART1("\n");
+        uart_write(msg); // Echo the string we received
+		uart_write("\n");
     }
     return 0;
 }

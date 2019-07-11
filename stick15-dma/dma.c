@@ -24,9 +24,13 @@ void printLine(int line_number, int char_size, char *print_buffer) {
     tft_writeString(print_buffer);
 }
 
-void delay() {
-    volatile int i;
-    for (i = 0; i < 1000; i++) {
+// Delay for a given number of milliseconds. This crude implementation
+// is often good enough, but accuracy will suffer if significant time
+// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
+// for a better implementation that uses the core timer.
+void delay(int ms) {
+    volatile int j;
+    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
     }
 }
 
@@ -49,7 +53,7 @@ int main() {
     DCH0CONbits.CHEN = 1; // enable channel 0
     DCH0ECONbits.CFORCE = 1;
 
-    delay(); // allow tranfer to finish
+    delay(1); // allow tranfer to finish
 
     printLine(5, 3, dst);
 

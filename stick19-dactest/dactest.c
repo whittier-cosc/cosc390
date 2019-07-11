@@ -8,8 +8,6 @@
 #include "io_expander.h"
 #include <math.h>
 
-void delay(void);
-
 char msg[40];
 
 void printLine(int line_number, int char_size, char *print_buffer) {

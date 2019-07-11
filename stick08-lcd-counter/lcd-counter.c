@@ -2,8 +2,6 @@
 #include "tft_master.h"
 #include "tft_gfx.h"
 
-void delay(void);
-
 char msg[40];
 volatile int clock;
 
@@ -54,10 +52,4 @@ int main(void) {
     while(1) {
     }
     return 0;
-}
-
-void delay(void) {
-    volatile int j;
-    for (j = 0; j < 1000000; j++) { // number is 1 million
-    }
 }

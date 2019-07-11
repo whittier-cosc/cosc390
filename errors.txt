@@ -1,0 +1,471 @@
+Creating object file audio_dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o audio_dac.o audio_dac.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  audio_dac.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file blink.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o blink.o blink.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  blink.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file blink-int.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o blink-int.o blink-int.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  blink-int.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file uart_test.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o uart_test.o uart_test.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  uart_test.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file pwm.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o pwm.o pwm.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  pwm.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file ic.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o ic.o ic.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  ic.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file pintest.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o pintest.o pintest.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  pintest.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file tftlcd_test.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o tftlcd_test.o tftlcd_test.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  tftlcd_test.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file lcd-counter.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o lcd-counter.o lcd-counter.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  lcd-counter.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file comparator.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o comparator.o comparator.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  comparator.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file interrupt.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o interrupt.o interrupt.c
+interrupt.c: In function 'ExtIntISR':
+interrupt.c:26:9: error: too few arguments to function 'delay'
+         delay();
+         ^
+interrupt.c:9:6: note: declared here
+ void delay(int ms) {
+      ^
+make: *** [interrupt.o] Error 255
+Creating object file temp_sensor.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o temp_sensor.o temp_sensor.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  temp_sensor.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file temp_sensor_int.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o temp_sensor_int.o temp_sensor_int.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  temp_sensor_int.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file int_timing.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o int_timing.o int_timing.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  int_timing.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file parallel.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o parallel.o parallel.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  parallel.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file dma.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o dma.o dma.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  dma.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file main.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o main.o main.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  main.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  ioe_blinky.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+ioe_blinky.o: In function `main':
+c:/users/jlutg/pic32-projects/stick17-ioexpander-blink/ioe_blinky.c:49: undefined reference to `ioe_portYSetPinsOut'
+c:/users/jlutg/pic32-projects/stick17-ioexpander-blink/ioe_blinky.c:50: undefined reference to `ioe_portZSetPinsOut'
+collect2.exe: error: ld returned 255 exit status
+make: *** [out.elf] Error 255
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  ioe_input_change_int.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+ioe_input_change_int.o: In function `main':
+c:/users/jlutg/pic32-projects/stick18-ioexpander-input-change/ioe_input_change_int.c:59: undefined reference to `ioe_portZSetPinsOut'
+c:/users/jlutg/pic32-projects/stick18-ioexpander-input-change/ioe_input_change_int.c:60: undefined reference to `ioe_portYIntEnable'
+collect2.exe: error: ld returned 255 exit status
+make: *** [out.elf] Error 255
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  dactest.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+peripherals/dac.o: In function `dac_write':
+c:/users/jlutg/pic32-projects/stick19-dactest/peripherals/dac.c:61: multiple definition of `dac_write'
+dactest.o:c:/users/jlutg/pic32-projects/stick19-dactest/dactest.c:56: first defined here
+c:\program files (x86)\microchip\xc32\v1.40\bin\bin\gcc\pic32mx\4.8.3\..\..\..\..\bin/xc32-ld.exe: Link terminated due to previous error(s).
+collect2.exe: error: ld returned 255 exit status
+make: *** [out.elf] Error 255
+Creating object file keypad.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o keypad.o keypad.c
+Creating object file port_expander_brl4.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o port_expander_brl4.o port_expander_brl4.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  keypad.o  port_expander_brl4.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file amp_test.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o amp_test.o amp_test.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  amp_test.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+Creating object file audio_dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o audio_dac.o audio_dac.c
+Creating object file peripherals/amp.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/amp.o peripherals/amp.c
+Creating object file peripherals/dac.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/dac.o peripherals/dac.c
+Creating object file peripherals/glcdfont.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/glcdfont.o peripherals/glcdfont.c
+Creating object file peripherals/io_expander.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/io_expander.o peripherals/io_expander.c
+Creating object file peripherals/tft_gfx.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_gfx.o peripherals/tft_gfx.c
+Creating object file peripherals/tft_master.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/tft_master.o peripherals/tft_master.c
+Creating object file peripherals/uart.o
+xc32-gcc -g -O1 -x c -Iperipherals -c -mprocessor=32MX250F128B -o peripherals/uart.o peripherals/uart.c
+Linking elf file
+xc32-gcc -mprocessor=32MX250F128B -o out.elf  audio_dac.o  peripherals/amp.o  peripherals/dac.o  peripherals/glcdfont.o  peripherals/io_expander.o  peripherals/tft_gfx.o  peripherals/tft_master.o  peripherals/uart.o -Wl,-Map=out.map
+Creating hex file
+xc32-bin2hex out.elf
+xc32-objdump -S out.elf > out.dis
+rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
+cd peripherals && rm -f *.hex *.map *.o *.elf *.dep *.dis log.* *.xml* *~
