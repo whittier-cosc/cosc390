@@ -1,14 +1,17 @@
 /*!
- * @file amp.c
+ *  @file amp.c
  *
- * @author Jeff Lutgen
- * @brief A PIC32 library for the TPA2016D2 Class D Amplifier.
+ *  @brief A PIC32 library for the TPA2016D2 Class D Amplifier.
  *
- * Ported from Adafruit's Arduino library.
+ *      Intended for use with the PIC32MX250F128B.
+ *      Ported from Adafruit's Arduino library.
+ *
+ *  @author Jeff Lutgen
  */
 
 #include "amp.h"
 #include "hwprofile.h"
+#include "uart.h"
 
 #define DEBUG   // comment this out to disable serial debug output
 
@@ -44,10 +47,10 @@ uint8_t read8(uint8_t address);
 bool start_transfer(bool restart);
 void stop_transfer();
 bool transmit_byte(uint8_t data);
-
+void debug_log(const char *string);
 
 /*!
- * \brief Configure and enable an I2C module for communicating with the TPA2016.
+ * @brief Configure and enable an I2C module for communicating with the TPA2016.
  *
  * NOTE:
  *      amp_init() sets up I2C on channel 1:
@@ -60,32 +63,7 @@ bool transmit_byte(uint8_t data);
 void amp_init() {
 
 #ifdef DEBUG
-    // ------------ Configure UART1 ----------------
-
-    // Map pins for UART1 RX/TX
-    CFGCONbits.IOLOCK = 0;
-    U1RXR = 0; // Map RPA2 (pin 9) to U1RX
-    RPB3R = 1; // Map RPB3 (pin 7) to U1TX
-    CFGCONbits.IOLOCK = 1;
-
-    // Set baud to BAUDRATE
-    U1MODEbits.BRGH = 0;  // High-speed mode disabled
-    // With PBCLK = SYSCLK = 40 M, we have U1BRG = 259, giving
-    // baud rate = 9615.4 (see DS61107F, Table 21-2).
-    U1BRG = ((PBCLK  / BAUDRATE) / 16) - 1;
-    // 8 bit, no parity bit, 1 stop bit (8N1)
-    U1MODEbits.PDSEL = 0;
-    U1MODEbits.STSEL = 0;
-
-    // Enable TX & RX, taking over U1RX/TX pins
-    U1STAbits.UTXEN = 1;
-    U1STAbits.URXEN = 1;
-    // Do not enable RTS or CTS
-    U1MODEbits.UEN = 0;
-
-    // Enable the UART
-    U1MODEbits.ON = 1;
-    /************************************************************/
+    uart_init();
 #endif
 
     char msg[80];
@@ -420,7 +398,7 @@ void stop_transfer() {
  * \brief   Transmit a byte via I2C to the TPA2016
  * \param   data
  *              the byte to be transmitted
- * \return  true if successful
+ * \return  true if successful,
  *          false if unsuccessful
  */
 bool transmit_byte(uint8_t data) {
@@ -449,6 +427,6 @@ bool transmit_byte(uint8_t data) {
 
 void debug_log(const char *string) {
 #ifdef DEBUG
-    Stick_WriteUART1(string);
+    uart_write(string);
 #endif
 }

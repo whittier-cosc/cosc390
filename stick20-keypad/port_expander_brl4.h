@@ -34,7 +34,7 @@
 
 
 // **** Register Addresses (BANK=0) ****
-// Note: Rename all PortA to PortY, PortB to PortZ to avoid confusion with PIC
+// Note: Rename all PortA to PortC, PortB to PortD to avoid confusion with PIC
 #define IODIRY   0x00
 #define IODIRZ   0x01
 #define IPOLY    0x02
@@ -69,29 +69,29 @@
  */
 void initPE();
 
-void mPortYSetPinsOut(unsigned char);
+void mPortCSetPinsOut(unsigned char);
 
-void mPortZSetPinsOut(unsigned char);
+void mPortDSetPinsOut(unsigned char);
 
-void mPortYSetPinsIn(unsigned char);
+void mPortCSetPinsIn(unsigned char);
 
-void mPortZSetPinsIn(unsigned char);
+void mPortDSetPinsIn(unsigned char);
 
-void mPortYIntEnable(unsigned char);
+void mPortCIntEnable(unsigned char);
 
-void mPortYIntDisable(unsigned char);
+void mPortCIntDisable(unsigned char);
 
-void mPortZIntEnable(unsigned char);
+void mPortDIntEnable(unsigned char);
 
-void mPortZIntDisable(unsigned char);
+void mPortDIntDisable(unsigned char);
 
-void mPortYEnablePullUp(unsigned char);
+void mPortCEnablePullUp(unsigned char);
 
-void mPortZEnablePullUp(unsigned char);
+void mPortDEnablePullUp(unsigned char);
 
-void mPortYDisablePullUp(unsigned char);
+void mPortCDisablePullUp(unsigned char);
 
-void mPortZDisablePullUp(unsigned char);
+void mPortDDisablePullUp(unsigned char);
 
 
 /* Takes a register address on port expander and a data byte, and writes the 

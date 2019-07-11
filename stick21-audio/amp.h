@@ -57,35 +57,27 @@
 #define TPA2016_AGC_4 0x02   ///< AGC compression ratio 1:4
 #define TPA2016_AGC_8 0x03   ///< AGC compression ratio 1:8
 
-#define TPA2016_I2C_BUS I2C1
-#define TPA2016_I2CADDR 0x58 ///< Default TPA2016 i2c address
+#define TPA2016_I2C_BUS I2C1 ///< I2C channel to use
+#define TPA2016_I2CADDR 0x58 ///< Default TPA2016 I2C address
 
 void amp_init();
 
 void amp_enableChannel(bool r, bool l);
 
-// Register #5
 void amp_setGain(int8_t g);
 int8_t amp_getGain();
 
-// Register #3
 void amp_setReleaseControl(uint8_t release);
 
-// Register #2
 void amp_setAttackControl(uint8_t attack);
 
-// Register #4
 void amp_setHoldControl(uint8_t hold);
 
-// Register #6
 void amp_setLimitLevelOn();
 void amp_setLimitLevelOff();
 void amp_setLimitLevel(uint8_t limit);
 
-// Register #7
 void amp_setAGCCompression(uint8_t x);
 void amp_setAGCMaxGain(uint8_t x);
-
-void debug_log(const char *string);
   
 #endif

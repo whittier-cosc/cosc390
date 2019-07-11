@@ -7,10 +7,6 @@
 #ifndef IO_EXPANDER_H
 #define	IO_EXPANDER_H
 
-#define _SUPPRESS_PLIB_WARNING 
-#define _DISABLE_OPENADC10_CONFIGPORT_WARNING
-#include "plib.h"
-
 #define IOE_OPCODE_HEADER 0b01000000
 #define IOE_READ 0b00000001
 #define IOE_WRITE 0b00000000
@@ -32,8 +28,8 @@
 #define CLEAR_INTPOL 0x00
 
 
-// **** Register Addresses (BANK=0) ****
-// Note: Rename all PortA to PortY, PortB to PortZ to avoid confusion with PIC
+// **** Register Addresses (BANK = 0) ****
+// Note: Rename all PortA to PortC, PortB to PortD to avoid confusion with PIC
 #define IODIRY   0x00
 #define IODIRZ   0x01
 #define IPOLY    0x02
@@ -68,29 +64,29 @@
  */
 void ioe_init();
 
-void ioe_portYSetPinsOut(unsigned char);
+void ioe_PortCSetPinsOut(unsigned char);
 
-void ioe_portZSetPinsOut(unsigned char);
+void ioe_PortDSetPinsOut(unsigned char);
 
-void ioe_portYSetPinsIn(unsigned char);
+void ioe_PortCSetPinsIn(unsigned char);
 
-void ioe_portZSetPinsIn(unsigned char);
+void ioe_PortDSetPinsIn(unsigned char);
 
-void ioe_portYIntEnable(unsigned char);
+void ioe_PortCIntEnable(unsigned char);
 
-void ioe_portYIntDisable(unsigned char);
+void ioe_PortCIntDisable(unsigned char);
 
-void ioe_portZIntEnable(unsigned char);
+void ioe_PortDIntEnable(unsigned char);
 
-void ioe_portZIntDisable(unsigned char);
+void ioe_PortDIntDisable(unsigned char);
 
-void ioe_portYEnablePullUp(unsigned char);
+void ioe_PortCEnablePullUp(unsigned char);
 
-void ioe_portZEnablePullUp(unsigned char);
+void ioe_PortDEnablePullUp(unsigned char);
 
-void ioe_portYDisablePullUp(unsigned char);
+void ioe_PortCDisablePullUp(unsigned char);
 
-void ioe_portZDisablePullUp(unsigned char);
+void ioe_PortDDisablePullUp(unsigned char);
 
 
 /* Takes a register address on I/O expander and a data byte, and writes the 
