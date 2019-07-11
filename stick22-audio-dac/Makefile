@@ -115,7 +115,7 @@ $(TARGET).dis: $(TARGET).elf
 # Link all the object files into an elf file.
 $(TARGET).elf: $(OBJS)
 	@echo Linking elf file
-	$(CC) -mprocessor=$(PROC) -o $(TARGET).elf $(OBJS) -Wl,$(LINKFLAGS)
+	$(CC) -mprocessor=$(PROCESSOR) -o $(TARGET).elf $(OBJS) -Wl,$(LINKFLAGS)
 
 # Create an object file for each C file. Force recompile if *any* header has changed.
 %.o: %.c $(HDRS)

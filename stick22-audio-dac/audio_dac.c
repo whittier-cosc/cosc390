@@ -7,7 +7,6 @@
 
 #include <math.h>
 #include "config.h"
-#include "hwprofile.h"
 #include "amp.h"
 #include "dac.h"
 #include "tft.h"
@@ -78,10 +77,7 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
 }
 
 int main(void) {
-    // Configure the device for maximum performance for the given system clock,
-    // but do not change the PBDIV.
-    // With the given options, this function will change the flash wait states,
-    // RAM wait state, and enable prefetch and cache mode.
+    // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
     INTCONbits.MVEC = 1;   // multi-vector mode on
@@ -101,8 +97,6 @@ int main(void) {
     mT2ClearIntFlag(); // and clear the interrupt flag
 
     __builtin_enable_interrupts();
-
-
 
     // Build the lookup tables
     // Scaled to generate values between 0 and 4095 for 12-bit DAC
