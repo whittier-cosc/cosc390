@@ -1,7 +1,3 @@
-#include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-
 /*
  * Use the ADC to read a temperature sensor (Analog Devices TMP36).
  * 750 mV output from TMP36 -> 25 C
@@ -11,12 +7,15 @@
  * ADC conversion trigger is Timer3, set to a period of 65536 * 256 * TPB,
  * or 0.42 seconds (since PBCLK = 40 MHz). ADC set to issue interrupt after
  * every 8 conversions, so every 3.4 seconds. The ISR averages the 8 readings,
- * and then averages that with the previous average (this has the effect of 
+ * and then averages that with the previous average (this has the effect of
  * smoothing out glitches due to glitches in the supply voltage to the temp-
  * erature sensor.
  */
 
-char msg[40];
+#include "config.h"
+#include "tft.h"
+
+char msg[80];
 int prev_reading;
 
 void printLine(int line_number, int char_size, char *print_buffer) {

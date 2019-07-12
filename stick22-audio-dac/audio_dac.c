@@ -2,17 +2,18 @@
  *  @file   dac_audio.c
  *
  *  @brief  Synthesize some audio with the DAC
+ *
  *  @author Jeff Lutgen
  */
 
 #include <math.h>
 #include "config.h"
+#include "util.h"
 #include "amp.h"
 #include "dac.h"
 #include "tft.h"
 
-void delay(int ms);
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -45,7 +46,7 @@ void display_message(char *message) {
 // Globals for Timer2 interrupt handler
 volatile unsigned int dac_data_1, dac_data_2 ;// output value
 
-// the DDS units:
+// DDS units:
 volatile unsigned int phase_accum_main_1, phase_accum_main_2;
 volatile unsigned int phase_incr_main_1 = output_freq_1*two32/samples_per_sec;
 volatile unsigned int phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
@@ -57,7 +58,6 @@ int saw_table[table_size];
 
 // Globals for Timer2 interrupt handler
 char out_value = 0x55;
-unsigned char read_value;
 
 // Timer2 Interrupt handler.
 // Compute DDS phase, update both DAC channels.
@@ -68,10 +68,8 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
     // main DDS phase and wave table lookup
     phase_accum_main_1 += phase_incr_main_1;
     phase_accum_main_2 += phase_incr_main_2;
-
     dac_data_1 = sin_table[phase_accum_main_1>>24];
     dac_data_2 = sin_table[phase_accum_main_2>>24];
-
     dac_write(DAC_CONFIG_A | dac_data_1);
     dac_write(DAC_CONFIG_B | dac_data_2);
 }
@@ -95,8 +93,6 @@ int main(void) {
     // set up the timer interrupt with a priority of 2
     ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_2);
     mT2ClearIntFlag(); // and clear the interrupt flag
-
-    __builtin_enable_interrupts();
 
     // Build the lookup tables
     // Scaled to generate values between 0 and 4095 for 12-bit DAC
@@ -131,6 +127,8 @@ int main(void) {
     display_message("Setting gain to -28");
     amp_setGain(-28);
 
+    __builtin_enable_interrupts();
+
     while(1) {
         display_message("Right only");
         amp_enableChannel(true, false);
@@ -143,14 +141,4 @@ int main(void) {
         delay(50);
     }
     return 0;
-}
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
 }

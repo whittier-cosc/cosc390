@@ -4,11 +4,10 @@
  */
 
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "tft.h"
 #include "io_expander.h"
 
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -34,10 +33,7 @@ int main(void) {
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
-    SYSKEY = 0xAA996655; // two-step unlocking sequence
-    SYSKEY = 0x556699AA;
-    OSCTUN = 56; // 56 is best
-    SYSKEY = 0;          // lock
+    osc_tune(56);
 
     tft_init();
     tft_begin();
@@ -56,8 +52,8 @@ int main(void) {
     ioe_init(); // initialize port expander
     // default for port expander: interrupt line active-low
     //writePE(IOCON, SET_INTPOL); // interrupt line active-high
-    ioe_portZSetPinsOut(0x01); // set GPB0 as output
-    ioe_portYIntEnable(0x01); // enable interrupt-on-change for GPA0
+    ioe_PortDSetPinsOut(0x01); // set GPB0 as output
+    ioe_PortCIntEnable(0x01); // enable interrupt-on-change for GPA0
     PPSInput(4, INT1, RPA3); // Pin 10
 
 

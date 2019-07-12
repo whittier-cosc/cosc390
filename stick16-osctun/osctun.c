@@ -23,11 +23,11 @@
  */
 
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "tft.h"
+#include "util.h"
 
 #define CP0PERIOD 100000
-char msg[40];
+char msg[80];
 
 void __ISR(_CORE_TIMER_VECTOR, IPL6SOFT) CoreTimerISR(void) {
     IFS0bits.CTIF = 0;         // clear CT int flag IFS0<0>, same as IFS0CLR=0x0001
@@ -50,16 +50,10 @@ void printLine(int line_number, int char_size, char *print_buffer) {
 }
 
 int main(void) {
-    // Configure the device for maximum performance for the given system clock,
-    // but do not change the PBDIV.
-    // With the given options, this function will change the flash wait states,
-    // RAM wait state, and enable prefetch and cache mode.
+    // Configure the device for maximum performance for the given system clock.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
-    SYSKEY = 0xAA996655; // two-step unlocking sequence
-    SYSKEY = 0x556699AA;
-    OSCTUN = 56; // 56 is best
-    SYSKEY = 0;          // lock
+    osc_tune(56);
 
     tft_init();
     tft_begin();
@@ -73,7 +67,7 @@ int main(void) {
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
                             // bit 0 to zero, for output.  Others are inputs.
     LATAbits.LATA0 = 0;     // Turn LED off.
-    _CP0_SET_COMPARE(CP0PERIOD);       // CP0_COMPARE set to 40 M
+    _CP0_SET_COMPARE(CP0PERIOD);    // CP0_COMPARE set to 40 M
     IPC0bits.CTIP = 6;              // interrupt priority
     IPC0bits.CTIS = 0;              // subpriority 0 (default)
     IFS0bits.CTIF = 0;              // clear CT interrupt flag
@@ -86,4 +80,3 @@ int main(void) {
     }
     return 0;
 }
-

@@ -4,13 +4,11 @@
  */
 
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "util.h"
+#include "tft.h"
 #include "io_expander.h"
 
-void delay(int ms);
-
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -26,16 +24,10 @@ void printLine(int line_number, int char_size, char *print_buffer) {
 }
 
 int main(void) {
-    // Configure the device for maximum performance for the given system clock,
-    // but do not change the PBDIV.
-    // With the given options, this function will change the flash wait states,
-    // RAM wait state, and enable prefetch and cache mode.
+    // Configure the device for maximum performance for the given system clock
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
-    SYSKEY = 0xAA996655; // two-step unlocking sequence
-    SYSKEY = 0x556699AA;
-    OSCTUN = 56; // 56 is best
-    SYSKEY = 0;          // lock
+    osc_tune(56);
 
     tft_init();
     tft_begin();
@@ -46,8 +38,8 @@ int main(void) {
     printLine(1, 3, msg);
 
 	ioe_init(); // initialize port expander
-	ioe_portYSetPinsOut(0xff); // set all port Y (GPA) pins as outputs
-	ioe_portZSetPinsOut(0xff); // set all port Z (GPB) pins as outputs
+	ioe_PortCSetPinsOut(0xff); // set all port Y (GPA) pins as outputs
+	ioe_PortDSetPinsOut(0xff); // set all port Z (GPB) pins as outputs
 	//writePE(OLATY, 0x42);
 	
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
@@ -69,14 +61,4 @@ int main(void) {
 		delay(250);
     }
     return 0;
-}
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
 }

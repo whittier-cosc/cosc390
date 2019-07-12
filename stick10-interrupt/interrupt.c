@@ -1,17 +1,11 @@
-#include "config.h"
-
 /*
  * Try internal interrupts 0 and 1. Use single-vector mode, so the 
  * ISR needs to examine INTSTAT to determine which of the two interrupts
  * occurred.
  */
 
-void delay(int ms) {
-    volatile int i;
-    for (i = 0; i < 1000000; i++) {
-        ;
-    }
-}
+#include "config.h"
+#include "util.h"
 
 void __ISR_SINGLE__ ExtIntISR(void) {
 
@@ -23,11 +17,10 @@ void __ISR_SINGLE__ ExtIntISR(void) {
     else if (INTSTATbits.VEC == _EXTERNAL_1_VECTOR) {
         /* Toggle the LED twice if we're handling external interrupt 1 */
         LATAINV = 1;
-        delay();
+        delay(250);
         LATAINV = 1;
         IFS0bits.INT1IF = 0;
     }
-        
 }
 
 int main(void) {
@@ -63,4 +56,3 @@ int main(void) {
     }
     return 0;
 }
-

@@ -1,12 +1,11 @@
-#include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-
 /*
  * See how long an interrupt service takes.
  */
 
-char msg[40];
+#include "config.h"
+#include "tft.h"
+
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -26,7 +25,6 @@ void timer3_init() {
     PR3 = 0xffff; // default
     T3CONbits.ON = 1;
 }
-
 
 void __ISR(_CORE_SOFTWARE_0_VECTOR, IPL2SOFT) my_isr(void) {
     //LATAINV = 2; // toggle A1
@@ -98,4 +96,3 @@ int main(void) {
     }
     return 0;
 }
-

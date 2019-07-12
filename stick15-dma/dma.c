@@ -1,13 +1,12 @@
-#include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-
 /*
  * Experiment with DMA transfers
  */
 
-char msg[40];
+#include "config.h"
+#include "util.h"
+#include "tft.h"
 
+char msg[80];
 char src[4] = {'a', 'b', 'c', 'd'};
 char dst[17] = "XXXXXXXXXXXXXXXX";
 
@@ -22,16 +21,6 @@ void printLine(int line_number, int char_size, char *print_buffer) {
     tft_setTextColor(ILI9340_BLUE); 
     tft_setTextSize(char_size);
     tft_writeString(print_buffer);
-}
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
 }
 
 int main() {
@@ -57,7 +46,6 @@ int main() {
 
     printLine(5, 3, dst);
 
-    
     //TRISB = 0xFFF7; // RB3 pin 7 LED output
 
     while(1) {

@@ -12,11 +12,9 @@
 // B9 -- col 3 -- internal pulldown resistor
 
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-#include "port_expander_brl4.h"
+#include "tft.h"
+#include "io_expander.h"
 
-////////////////////////////////////
 // some precise, fixed, short delays
 // to use for extending pulse durations on the keypad
 // if behavior is erratic
@@ -25,9 +23,7 @@
 #define wait20 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 // one microsec
 #define wait40 wait20;wait20;
-////////////////////////////////////
 
-////////////////////////////////////
 // pullup/down macros for keypad
 // PORT B
 #define EnablePullDownB(bits) CNPUBCLR=bits; CNPDBSET=bits;
@@ -39,9 +35,8 @@
 #define DisablePullDownA(bits) CNPDACLR=bits;
 #define EnablePullUpA(bits) CNPDACLR=bits; CNPUASET=bits;
 #define DisablePullUpA(bits) CNPUACLR=bits;
-////////////////////////////////////
 
-char buffer[40];
+char buffer[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -57,23 +52,14 @@ void printLine(int line_number, int char_size, char *print_buffer) {
 }
 
 int main(void) {
-    // Configure the device for maximum performance for the given system clock,
-    // but do not change the PBDIV.
-    // With the given options, this function will change the flash wait states,
-    // RAM wait state, and enable prefetch and cache mode.
+    // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
-    SYSKEY = 0xAA996655; // two-step unlocking sequence
-    SYSKEY = 0x556699AA;
-    OSCTUN = 56; // 56 is best
-    SYSKEY = 0;          // lock
+    osc_tune(56);
 
-    // init the display
-    // Note: this init assumes SPI channel 1 connections
     tft_init();
     tft_begin();
     tft_fillScreen(ILI9340_BLACK);
-    //240x320 vertical display
     tft_setRotation(3); // landscape mode, pins at left
 
     static int keypad, i, pattern;

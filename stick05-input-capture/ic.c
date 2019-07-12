@@ -1,15 +1,11 @@
-#include "config.h"
-#include "uart.h"
-
-
 // A basic frequency counter using input capture (IC).
 //
 // We configure PWM so you can hook up the PWM output to the IC input for
-// testing. 
+// testing.
 //
 // If the input frequency is less than about 600 Hz (the frequency at which the
 // timer rolls over (assuming 40 MHz PBCLK), then of course the frequency
-// calculation is nonsense. 
+// calculation is nonsense.
 //
 // Also, if the input frequency is too large (greater than around 800 KHz, our
 // delay-loop method slows things down to the point where the program is
@@ -18,41 +14,13 @@
 // Finally, the frequency calculation assumes PBCLK is accurate. If it's not,
 // then some calibration is needed.
 
+#include "config.h"
+#include "util.h"
+#include "uart.h"
 
-#define BUFLEN 40
-char msg[BUFLEN];
+char msg[80];
 static volatile int ticks;
 static volatile int interrupts;
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
-}
-
-void uart_config(void) {
-    // Set baud to BAUDRATE
-    U1MODEbits.BRGH = 0;  // High-speed mode disabled
-    // With PBCLK = SYSCLK = 40 M, we have U1BRG = 259, giving 
-    // baud rate = 9615.4 (see DS61107F, Table 21-2).
-    U1BRG = ((PBCLK / BAUDRATE) / 16) - 1;
-    // 8 bit, no parity bit, 1 stop bit (8N1)
-    U1MODEbits.PDSEL = 0;
-    U1MODEbits.STSEL = 0;
-
-    // Enable TX & RX, taking over U1RX/TX pins
-    U1STAbits.UTXEN = 1;
-    U1STAbits.URXEN = 1;
-    // Do not enable RTS or CTS
-    U1MODEbits.UEN = 0;
-
-    // Enable the UART
-    U1MODEbits.ON = 1;
-}
 
 void pwm_config(void) {
     // PWM on OC4. 
@@ -92,12 +60,9 @@ void ic_config(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    __builtin_disable_interrupts();
+    osc_tune(56);
 
-    SYSKEY = 0xAA996655; // two-step unlocking sequence
-    SYSKEY = 0x556699AA;
-    OSCTUN = 56; // 56 is best
-    SYSKEY = 0;          // lock
+    __builtin_disable_interrupts();
 
     TRISA = 0xFFFE;        // A0 is LED, so make it an output.
     // enable multi vector interrupts
@@ -111,7 +76,7 @@ int main(void) {
     IC1R = 2;  // map RPA4 (pin 12) to IC1
     CFGCONbits.IOLOCK = 1;
 
-    uart_config();
+    uart_init();
     pwm_config();
     ic_config();
 

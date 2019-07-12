@@ -1,10 +1,8 @@
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "tft.h"
+#include "util.h"
 
-void delay(int ms);
-
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -40,14 +38,4 @@ int main(void) {
         //tft_writecommand(0x20);  // back to normal
     }
     return 0;
-}
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
 }

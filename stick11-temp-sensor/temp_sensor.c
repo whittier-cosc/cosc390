@@ -1,7 +1,3 @@
-#include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-
 /*
  * Use the ADC to read a temperature sensor (Analog Devices TMP36).
  * 750 mV output from TMP36 -> 25 C
@@ -15,9 +11,11 @@
  * the writes to the TFT display.
  */
 
-void delay(int ms);
+#include "config.h"
+#include "util.h"
+#include "tft.h"
 
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -111,14 +109,4 @@ int main(void) {
         printLine(10, 4, msg);
     }
     return 0;
-}
-
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
 }

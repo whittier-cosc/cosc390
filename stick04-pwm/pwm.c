@@ -1,28 +1,7 @@
 #include "config.h"
 #include "uart.h"
 
-#define BUFLEN 40
-char msg[BUFLEN];
-
-void uart_config(void) {
-    // Set baud to BAUDRATE
-    U1MODEbits.BRGH = 0;  // High-speed mode disabled
-    // With PBCLK = SYSCLK = 40 M, we have U1BRG = 259, giving 
-    // baud rate = 9615.4 (see DS61107F, Table 21-2).
-    U1BRG = ((PBCLK / BAUDRATE) / 16) - 1;
-    // 8 bit, no parity bit, 1 stop bit (8N1)
-    U1MODEbits.PDSEL = 0;
-    U1MODEbits.STSEL = 0;
-
-    // Enable TX & RX, taking over U1RX/TX pins
-    U1STAbits.UTXEN = 1;
-    U1STAbits.URXEN = 1;
-    // Do not enable RTS or CTS
-    U1MODEbits.UEN = 0;
-
-    // Enable the UART
-    U1MODEbits.ON = 1;
-}
+char msg[80];
 
 void pwm_config(void) {
     // PWM on OC4. Default is 16-bit timer, Timer2.
@@ -46,7 +25,7 @@ int main(void) {
     RPB2R = 5; // Map RPB2 (pin 6) to OC4 (PWM output)
     CFGCONbits.IOLOCK = 1;
 
-    uart_config();
+    uart_init();
     pwm_config();
 
     TRISA = 0xFFFE;        // A0 is LED, so make it an output.
@@ -61,7 +40,7 @@ int main(void) {
         OC4RS = duty_cycle * 0x10000 / 100; // Update duty cycle
         LATAINV = 0x0001;      // Toggle LED
         uart_write(msg); // Echo the string we received
-		uart_write("\n");
+        uart_write("\n");
     }
     return 0;
 }

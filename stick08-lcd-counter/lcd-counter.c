@@ -1,8 +1,7 @@
 #include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
+#include "tft.h"
 
-char msg[40];
+char msg[80];
 volatile int clock;
 
 #define ROLLOVER (SYSCLK / 5)

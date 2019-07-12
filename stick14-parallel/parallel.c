@@ -1,16 +1,12 @@
-#include "config.h"
-#include "tft_master.h"
-#include "tft_gfx.h"
-
 /*
  * Try out the parallel port
  */
 
-#define	GetSystemClock() 			(40000000ul)
-#define	GetPeripheralClock()		(GetSystemClock()/(1 << OSCCONbits.PBDIV))
-#define	GetInstructionClock()		(GetSystemClock())
+#include "config.h"
+#include "util.h"
+#include "tft.h"
 
-char msg[40];
+char msg[80];
 
 void printLine(int line_number, int char_size, char *print_buffer) {
     // line number 0 to 30
@@ -44,18 +40,8 @@ void parallel_init() {
     PMCONbits.ON = 1;
 }
 
-// Delay for a given number of milliseconds. This crude implementation
-// is often good enough, but accuracy will suffer if significant time
-// is spent in interrupt service routines. See delay_ms() in peripherals/tft_master.c
-// for a better implementation that uses the core timer.
-void delay(int ms) {
-    volatile int j;
-    for (j = 0; j < (SYSCLK / 8920) * ms; j++) { // magic constant 8920 obtained empirically
-    }
-}
-
 int main(void) {
-    SYSTEMConfig(GetSystemClock(), SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
+    SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
 
     tft_init();
     tft_begin();
