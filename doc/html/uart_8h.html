@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: uart.h File Reference</title>
+<title>WC PIC32Lib: peripherals/uart.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -67,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -76,50 +78,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">uart.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a href="uart_8h_source.html">Go to the source code of this file.</a></p>
+<p>A PIC32 library for serial communication using the UART1 module.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a734bbab06e1a9fd2e5522db0221ff6e3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#a734bbab06e1a9fd2e5522db0221ff6e3">BAUDRATE</a>&#160;&#160;&#160;9600</td></tr>
-<tr class="separator:a734bbab06e1a9fd2e5522db0221ff6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afb7289a759c23900417c9b49099ed312"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#afb7289a759c23900417c9b49099ed312">uart_read</a> (char *string, int maxLength)</td></tr>
-<tr class="memdesc:afb7289a759c23900417c9b49099ed312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a string from UART1. Blocks until an '' or '<br />
-' is seen.  <a href="#afb7289a759c23900417c9b49099ed312">More...</a><br /></td></tr>
-<tr class="separator:afb7289a759c23900417c9b49099ed312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16501cc979a05771be83680ff01387b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#a16501cc979a05771be83680ff01387b4">uart_read</a> (char *message, int maxLength)</td></tr>
+<tr class="separator:a16501cc979a05771be83680ff01387b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5cf47a799ebafbea3243721f3b84a14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a> (const char *string)</td></tr>
-<tr class="memdesc:ad5cf47a799ebafbea3243721f3b84a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a null-terminated string to UART1.  <a href="#ad5cf47a799ebafbea3243721f3b84a14">More...</a><br /></td></tr>
 <tr class="separator:ad5cf47a799ebafbea3243721f3b84a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6e353d39a7ced9a87517a68bd13768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#abd6e353d39a7ced9a87517a68bd13768">uart_printf</a> (const char *fmt,...)</td></tr>
+<tr class="separator:abd6e353d39a7ced9a87517a68bd13768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a734bbab06e1a9fd2e5522db0221ff6e3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BAUDRATE&#160;&#160;&#160;9600</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="uart_8h_source.html#l00004">4</a> of file <a class="el" href="uart_8h_source.html">uart.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="afb7289a759c23900417c9b49099ed312"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A PIC32 library for serial communication using the UART1 module. </p>
+<p>This code is intended for use with the PIC32MX250F128B.</p>
+<p>Portions based on the Northwestern University NU32 package by Nick Marchuk, et al.</p>
+<dl class="section author"><dt>Author</dt><dd>Jeff Lutgen </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a16501cc979a05771be83680ff01387b4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -142,19 +132,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Reads a string from UART1. Blocks until an '' or '<br />
-' is seen. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">message</td><td>char array in which to store the received string </td></tr>
-    <tr><td class="paramname">maxLength</td><td>number of elements in the array </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00058">58</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
-
+<p>Reads a string from UART1. Blocks until an <code>\r</code> or <code>\n</code> is seen.</p>
+<p>The received string is stored in <code>message</code>, which should have at least <code>maxLength</code> elements. If there are more than <code>maxLength</code> elements in the received string, wraparound occurs.</p>
+<p>Example: </p><pre class="fragment">char msg[80];
+uart_read(msg, 80);</pre> 
 </div>
 </div>
 <a class="anchor" id="ad5cf47a799ebafbea3243721f3b84a14"></a>
@@ -170,23 +151,42 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Writes a null-terminated string to UART1. </p>
 
-<p>Write a null-terminated string to UART1. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">string</td><td>char array containing the string </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00086">86</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
-
+</div>
+</div>
+<a class="anchor" id="abd6e353d39a7ced9a87517a68bd13768"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Like printf(), but for UART1!</p>
+<p>Truncates strings of length &gt; 80.</p>
+<p>Example: </p><pre class="fragment">uart_printf("TRISA = 0x%04x\n", TRISA);</pre> 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:31:37 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: tft_gfx.c File Reference</title>
+<title>Pikky: peripherals/tft_gfx.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -76,199 +77,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">tft_gfx.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="tft__gfx_8h_source.html">tft_gfx.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="glcdfont_8c_source.html">glcdfont.c</a>&quot;</code><br />
+
+<p>A PIC32 library for the Adafruit 2.2" SPI display.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;tft_gfx.h&quot;</code><br />
+<code>#include &quot;glcdfont.c&quot;</code><br />
 <code>#include &quot;<a class="el" href="tft__master_8h_source.html">tft_master.h</a>&quot;</code><br />
-</div>
-<p><a href="tft__gfx_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a48c60b057902adf805797f183286728d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a48c60b057902adf805797f183286728d">pgm_read_byte</a>(addr)&#160;&#160;&#160;(*(const unsigned char *)(addr))</td></tr>
-<tr class="separator:a48c60b057902adf805797f183286728d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0592bd081c6938a0778d14d65a875bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a0592bd081c6938a0778d14d65a875bfd">tft_drawCircle</a> (short x0, short y0, short r, unsigned short color)</td></tr>
+<tr class="memdesc:a0592bd081c6938a0778d14d65a875bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a circle outline with center (x0,y0) and radius r, with given color.  <a href="#a0592bd081c6938a0778d14d65a875bfd">More...</a><br /></td></tr>
 <tr class="separator:a0592bd081c6938a0778d14d65a875bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63537eee3f0ce9ffb13ba07b50f105a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a63537eee3f0ce9ffb13ba07b50f105a0">tft_drawCircleHelper</a> (short x0, short y0, short r, unsigned char cornername, unsigned short color)</td></tr>
-<tr class="separator:a63537eee3f0ce9ffb13ba07b50f105a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa080841aaa8a2a8a3cc246f2418fb345"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#aa080841aaa8a2a8a3cc246f2418fb345">tft_fillCircle</a> (short x0, short y0, short r, unsigned short color)</td></tr>
+<tr class="memdesc:aa080841aaa8a2a8a3cc246f2418fb345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a filled circle with center (x0,y0) and radius r, with given color.  <a href="#aa080841aaa8a2a8a3cc246f2418fb345">More...</a><br /></td></tr>
 <tr class="separator:aa080841aaa8a2a8a3cc246f2418fb345"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa88d865219bf5575163d8a30d90fe6d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#aa88d865219bf5575163d8a30d90fe6d6">tft_fillCircleHelper</a> (short x0, short y0, short r, unsigned char cornername, short delta, unsigned short color)</td></tr>
-<tr class="separator:aa88d865219bf5575163d8a30d90fe6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae81c8457f8d8ee5846e548844fefae10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#ae81c8457f8d8ee5846e548844fefae10">tft_drawLine</a> (short x0, short y0, short x1, short y1, unsigned short color)</td></tr>
+<tr class="memdesc:ae81c8457f8d8ee5846e548844fefae10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a straight line from (x0,y0) to (x1,y1) with given color.  <a href="#ae81c8457f8d8ee5846e548844fefae10">More...</a><br /></td></tr>
 <tr class="separator:ae81c8457f8d8ee5846e548844fefae10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa40d3c4517f348c6b729dfb32789a620"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#aa40d3c4517f348c6b729dfb32789a620">tft_drawRect</a> (short x, short y, short w, short h, unsigned short color)</td></tr>
+<tr class="memdesc:aa40d3c4517f348c6b729dfb32789a620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a rectangle outline with top left vertex (x,y), width w, and height h with given color.  <a href="#aa40d3c4517f348c6b729dfb32789a620">More...</a><br /></td></tr>
 <tr class="separator:aa40d3c4517f348c6b729dfb32789a620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed792ce1bb568eb8c6831c5601df8049"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#aed792ce1bb568eb8c6831c5601df8049">tft_drawRoundRect</a> (short x, short y, short w, short h, short r, unsigned short color)</td></tr>
+<tr class="memdesc:aed792ce1bb568eb8c6831c5601df8049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a rounded rectangle outline with top left vertex (x,y), width w, and height h with given color.  <a href="#aed792ce1bb568eb8c6831c5601df8049">More...</a><br /></td></tr>
 <tr class="separator:aed792ce1bb568eb8c6831c5601df8049"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d0f3a3aa4642adfb91d4ea800cacd6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a1d0f3a3aa4642adfb91d4ea800cacd6f">tft_fillRoundRect</a> (short x, short y, short w, short h, short r, unsigned short color)</td></tr>
-<tr class="separator:a1d0f3a3aa4642adfb91d4ea800cacd6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3651cc21d133dca46720fad54b029441"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a3651cc21d133dca46720fad54b029441">tft_drawTriangle</a> (short x0, short y0, short x1, short y1, short x2, short y2, unsigned short color)</td></tr>
+<tr class="memdesc:a3651cc21d133dca46720fad54b029441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a triangle outline with vertices (x0,y0),(x1,y1),(x2,y2) with given color.  <a href="#a3651cc21d133dca46720fad54b029441">More...</a><br /></td></tr>
 <tr class="separator:a3651cc21d133dca46720fad54b029441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca34e811cbe3dd4d985af4acdb7d64ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#aca34e811cbe3dd4d985af4acdb7d64ff">tft_fillTriangle</a> (short x0, short y0, short x1, short y1, short x2, short y2, unsigned short color)</td></tr>
+<tr class="memdesc:aca34e811cbe3dd4d985af4acdb7d64ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a filled triangle with vertices (x0,y0),(x1,y1),(x2,y2) with given color.  <a href="#aca34e811cbe3dd4d985af4acdb7d64ff">More...</a><br /></td></tr>
 <tr class="separator:aca34e811cbe3dd4d985af4acdb7d64ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30f7465612361660573b1eee169a571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#af30f7465612361660573b1eee169a571">tft_drawBitmap</a> (short x, short y, const unsigned char *bitmap, short w, short h, unsigned short color)</td></tr>
-<tr class="separator:af30f7465612361660573b1eee169a571"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a640b0a31eb0f9cb8cde9f6279f416fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a640b0a31eb0f9cb8cde9f6279f416fe9">tft_write</a> (unsigned char c)</td></tr>
-<tr class="separator:a640b0a31eb0f9cb8cde9f6279f416fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac57a43575e58804e1209bb7455c51e09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#ac57a43575e58804e1209bb7455c51e09">tft_writeString</a> (char *str)</td></tr>
-<tr class="separator:ac57a43575e58804e1209bb7455c51e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c583052b402fe6181ca11bff4de5d3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a2c583052b402fe6181ca11bff4de5d3b">tft_drawChar</a> (short x, short y, unsigned char c, unsigned short color, unsigned short bg, unsigned char size)</td></tr>
-<tr class="separator:a2c583052b402fe6181ca11bff4de5d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503e72a24a6c9ad0432ba5b05de4ca18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a503e72a24a6c9ad0432ba5b05de4ca18">tft_setCursor</a> (short x, short y)</td></tr>
-<tr class="separator:a503e72a24a6c9ad0432ba5b05de4ca18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85b883a802ef8d638f95a5a3c0d3b257"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a85b883a802ef8d638f95a5a3c0d3b257">tft_setTextSize</a> (unsigned char s)</td></tr>
-<tr class="separator:a85b883a802ef8d638f95a5a3c0d3b257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad81b70d7329b1b5abd6aab2901a257a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#ad81b70d7329b1b5abd6aab2901a257a6">tft_setTextColor</a> (unsigned short c)</td></tr>
-<tr class="separator:ad81b70d7329b1b5abd6aab2901a257a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a426f0a23b10f05896c9093e3d272b37d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a426f0a23b10f05896c9093e3d272b37d">tft_setTextColor2</a> (unsigned short c, unsigned short b)</td></tr>
-<tr class="separator:a426f0a23b10f05896c9093e3d272b37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454c51e02f6d97e9b50aca642144ec8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a454c51e02f6d97e9b50aca642144ec8e">tft_setTextWrap</a> (char w)</td></tr>
-<tr class="separator:a454c51e02f6d97e9b50aca642144ec8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a559204bfd803d7405cc7e5976ff21bb4"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a559204bfd803d7405cc7e5976ff21bb4">tft_getRotation</a> (void)</td></tr>
-<tr class="separator:a559204bfd803d7405cc7e5976ff21bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad08d2549ad08939a6c8e9c3e3eaab8fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#ad08d2549ad08939a6c8e9c3e3eaab8fc">tft_gfx_setRotation</a> (unsigned char x)</td></tr>
-<tr class="separator:ad08d2549ad08939a6c8e9c3e3eaab8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af723f5d68593cc838fbef9c86f0eaa35"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#af723f5d68593cc838fbef9c86f0eaa35">tft_width</a> (void)</td></tr>
-<tr class="separator:af723f5d68593cc838fbef9c86f0eaa35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4140398b0e07615e3dd8e8d06bb8b8ef"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__gfx_8c.html#a4140398b0e07615e3dd8e8d06bb8b8ef">tft_height</a> (void)</td></tr>
-<tr class="separator:a4140398b0e07615e3dd8e8d06bb8b8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a48c60b057902adf805797f183286728d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define pgm_read_byte</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">addr</td><td>)</td>
-          <td>&#160;&#160;&#160;(*(const unsigned char *)(addr))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00045">45</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="af30f7465612361660573b1eee169a571"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_drawBitmap </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>bitmap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>h</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00393">393</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2c583052b402fe6181ca11bff4de5d3b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_drawChar </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>bg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00440">440</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A PIC32 library for the Adafruit 2.2" SPI display. </p>
+<p>Intended for use with the PIC32MX250F128B.</p>
+<p>Code rewritten from the Adafruit Arduino library for the TFT by Syed Tahmid Mahbub.</p>
+<p>The TFT is Adafruit product 1480.</p>
+<p>This file includes the text header from the original Adafruit library followed by the code.</p>
+<dl class="section author"><dt>Author</dt><dd>Syed Tahmid Mahbub </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a0592bd081c6938a0778d14d65a875bfd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -305,53 +164,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00047">47</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a63537eee3f0ce9ffb13ba07b50f105a0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_drawCircleHelper </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>cornername</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00091">91</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a circle outline with center (x0,y0) and radius r, with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>x-coordinate of center of circle. The top-left of the screen has x-coordinate 0 and increases to the right </td></tr>
+    <tr><td class="paramname">y0</td><td>y-coordinate of center of circle. The top-left of the screen has y-coordinate 0 and increases to the bottom </td></tr>
+    <tr><td class="paramname">r</td><td>radius of circle </td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value for the circle. Note that the circle isn't filled, so this is the color of the outline of the circle. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -397,7 +219,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00174">174</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a straight line from (x0,y0) to (x1,y1) with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>x-coordinate of starting point of line. The x-coordinate of the top-left of the screen is 0. It increases to the right. </td></tr>
+    <tr><td class="paramname">y0</td><td>y-coordinate of starting point of line. The y-coordinate of the top-left of the screen is 0. It increases to the bottom. </td></tr>
+    <tr><td class="paramname">x1</td><td>x-coordinate of ending point of line. The x-coordinate of the top-left of the screen is 0. It increases to the right. </td></tr>
+    <tr><td class="paramname">y1</td><td>y-coordinate of ending point of line. The y-coordinate of the top-left of the screen is 0. It increases to the bottom. </td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value for line </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -443,7 +275,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00228">228</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a rectangle outline with top left vertex (x,y), width w, and height h with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>x-coordinate of top-left vertex. The x-coordinate of the top-left of the screen is 0. It increases to the right. </td></tr>
+    <tr><td class="paramname">y</td><td>y-coordinate of top-left vertex. The y-coordinate of the top-left of the screen is 0. It increases to the bottom. </td></tr>
+    <tr><td class="paramname">w</td><td>width of the rectangle </td></tr>
+    <tr><td class="paramname">h</td><td>height of the rectangle </td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value of the rectangle outline </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -495,7 +337,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00248">248</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a rounded rectangle outline with top left vertex (x,y), width w, and height h with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>x-coordinate of top-left vertex. The x-coordinate of the top-left of the screen is 0. It increases to the right. </td></tr>
+    <tr><td class="paramname">y</td><td>y-coordinate of top-left vertex. The y-coordinate of the top-left of the screen is 0. It increases to the bottom. </td></tr>
+    <tr><td class="paramname">w</td><td>width of the rectangle </td></tr>
+    <tr><td class="paramname">h</td><td>height of the rectangle </td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value of the rectangle outline </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -553,7 +405,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00286">286</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a triangle outline with vertices (x0,y0),(x1,y1),(x2,y2) with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td></td></tr>
+    <tr><td class="paramname">y0</td><td></td></tr>
+    <tr><td class="paramname">x1</td><td></td></tr>
+    <tr><td class="paramname">y1</td><td></td></tr>
+    <tr><td class="paramname">x2</td><td></td></tr>
+    <tr><td class="paramname">y2</td><td></td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value for triangle outline </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -593,111 +457,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00128">128</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa88d865219bf5575163d8a30d90fe6d6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_fillCircleHelper </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>cornername</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>delta</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00143">143</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1d0f3a3aa4642adfb91d4ea800cacd6f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_fillRoundRect </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>h</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00275">275</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a filled circle with center (x0,y0) and radius r, with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>x-coordinate of center of circle. The top-left of the screen has x-coordinate 0 and increases to the right </td></tr>
+    <tr><td class="paramname">y0</td><td>y-coordinate of center of circle. The top-left of the screen has y-coordinate 0 and increases to the bottom </td></tr>
+    <tr><td class="paramname">r</td><td>radius of circle </td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value for the circle </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -755,304 +524,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00306">306</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a559204bfd803d7405cc7e5976ff21bb4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char tft_getRotation </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00513">513</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad08d2549ad08939a6c8e9c3e3eaab8fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_gfx_setRotation </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00523">523</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4140398b0e07615e3dd8e8d06bb8b8ef"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">short tft_height </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00553">553</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a503e72a24a6c9ad0432ba5b05de4ca18"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setCursor </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00473">473</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad81b70d7329b1b5abd6aab2901a257a6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setTextColor </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00493">493</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a426f0a23b10f05896c9093e3d272b37d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setTextColor2 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00499">499</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a85b883a802ef8d638f95a5a3c0d3b257"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setTextSize </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00484">484</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a454c51e02f6d97e9b50aca642144ec8e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setTextWrap </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>w</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00509">509</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af723f5d68593cc838fbef9c86f0eaa35"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">short tft_width </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00549">549</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a640b0a31eb0f9cb8cde9f6279f416fe9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_write </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00408">408</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac57a43575e58804e1209bb7455c51e09"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_writeString </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>str</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__gfx_8c_source.html#l00429">429</a> of file <a class="el" href="tft__gfx_8c_source.html">tft_gfx.c</a>.</p>
+<p>Draw a filled triangle with vertices (x0,y0),(x1,y1),(x2,y2) with given color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td></td></tr>
+    <tr><td class="paramname">y0</td><td></td></tr>
+    <tr><td class="paramname">x1</td><td></td></tr>
+    <tr><td class="paramname">y1</td><td></td></tr>
+    <tr><td class="paramname">x2</td><td></td></tr>
+    <tr><td class="paramname">y2</td><td></td></tr>
+    <tr><td class="paramname">color</td><td>16-bit color value for triangle </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:31:37 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 12 2019 10:58:38 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

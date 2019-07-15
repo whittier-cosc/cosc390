@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: io_expander.h Source File</title>
+<title>WC PIC32Lib: /Users/jlutgen/PIC32/skeleton/peripherals/io_expander.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -62,13 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,134 +78,121 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3ef55737ac2d3b5e1be3684b862a7232.html">skeleton</a></li><li class="navelem"><a class="el" href="dir_2df8e498f07bde5e873e352f447fc7a1.html">peripherals</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">io_expander.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * File:   io_expander.h</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Library for interfacing with MCP23S17 I/O expander</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef IO_EXPANDER_H</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define IO_EXPANDER_H</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define IOE_OPCODE_HEADER 0b01000000</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define IOE_READ 0b00000001</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define IOE_WRITE 0b00000000</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// IOCON Settings</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define SET_BANK     0x80</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define CLEAR_BANK   0x00</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define SET_MIRROR   0x40</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define CLEAR_MIRROR 0x00</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define SET_SEQOP    0x20</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define CLEAR_SEQOP  0x00</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define SET_DISSLW   0x10</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define CLEAR_DISSLW 0x00</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define SET_HAEN     0x08</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define CLEAR_HAEN   0x00</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define SET_ODR      0x04</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define CLEAR_ODR    0x00</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define SET_INTPOL   0x02</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define CLEAR_INTPOL 0x00</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// **** Register Addresses (BANK = 0) ****</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// Note: Rename all PortA to PortC, PortB to PortD to avoid confusion with PIC</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define IODIRY   0x00</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define IODIRZ   0x01</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define IPOLY    0x02</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define IPOLZ    0x03</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define GPINTENY 0x04</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define GPINTENZ 0x05</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define DEFVALY  0x06</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define DEFVALZ  0x07</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define INTCONY  0x08</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define INTCONZ  0x09</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#define IOCON    0x0A</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//#define IOCON    0x0B</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define GPPUY    0x0C</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define GPPUZ    0x0D</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define INTFY    0x0E</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#define INTFZ    0x0F</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#define INTCAPY  0x10</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define INTCAPZ  0x11</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#define GPIOY    0x12</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#define GPIOZ    0x13</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define OLATY    0x14</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define OLATZ    0x15</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/* Initializes SPI channel 2 with 8-bit mode, RPB9 for CS. </span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> * Pins used:</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> *  --  CS - RPB9 (Pin 18)</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> *  -- SCK - SCK2 (Pin 26)</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> *  -- SDI - RPB2 (Pin  6)</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> *  -- SDO - RPB5 (Pin 14)</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * Sets the clock divisor for PBCLK to 4, giving 10MHz (fastest possible for</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * the MCP23S17 chip).</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a49dd7fa773dd422fb420be8392a48abc">ioe_init</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a996ef0646677f0677698557d9722ab94">ioe_PortCSetPinsOut</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#aa06158e36d852e0c4a94a5c84becc77d">ioe_PortDSetPinsOut</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#ac10d4b4281dcd20423a1beacea1d3700">ioe_PortCSetPinsIn</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a2e897e0225286877c4e3fab3912a495f">ioe_PortDSetPinsIn</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#abd2fa7d928a9ed749c91778f0ee42951">ioe_PortCIntEnable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a1881fbfc7c45f15210f867da67c390dd">ioe_PortCIntDisable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a4cacc67ded947380af3b5921807d21a4">ioe_PortDIntEnable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#a4943b87b173f5e9848804b077e3f5090">ioe_PortDIntDisable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#adc7e90f5a31407c0921f893ad69643eb">ioe_PortCEnablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#abe6afc1640d6e74d604ad1bb8553acee">ioe_PortDEnablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#ac46d87e948b3125ef06abb4283846894">ioe_PortCDisablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#ae632ffc217c164d5f4acd17d0554f8cd">ioe_PortDDisablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<a href="io__expander_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef IO_EXPANDER_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define IO_EXPANDER_H</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define IOE_OPCODE_HEADER 0b01000000</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define IOE_READ 0b00000001</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define IOE_WRITE 0b00000000</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// IOCON Settings</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define SET_BANK     0x80</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define CLEAR_BANK   0x00</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define SET_MIRROR   0x40</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define CLEAR_MIRROR 0x00</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define SET_SEQOP    0x20</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define CLEAR_SEQOP  0x00</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define SET_DISSLW   0x10</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define CLEAR_DISSLW 0x00</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define SET_HAEN     0x08</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define CLEAR_HAEN   0x00</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define SET_ODR      0x04</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define CLEAR_ODR    0x00</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define SET_INTPOL   0x02</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define CLEAR_INTPOL 0x00</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a5b74eaa60b40365a9b87f30e3b39daf0">   44</a></span>&#160;<span class="preprocessor">#define IODIRC   0x00   </span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a485fb959af22e21997b2d1a7f6c4f959">   45</a></span>&#160;<span class="preprocessor">#define IODIRD   0x01   </span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="io__expander_8h.html#adc9a5bec87d6b8ab0abbeb96e72db094">   46</a></span>&#160;<span class="preprocessor">#define IPOLC    0x02   </span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ac0d0ba6e72d67d3414a254959302a5ab">   47</a></span>&#160;<span class="preprocessor">#define IPOLD    0x03   </span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ab7b8a87b55b7cdbb2582f9632df87bf9">   48</a></span>&#160;<span class="preprocessor">#define GPINTENC 0x04   </span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ab922886856b71c1d41294aaf5d60f097">   49</a></span>&#160;<span class="preprocessor">#define GPINTEND 0x05   </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ab649807efca8f31cee5283362c61204e">   50</a></span>&#160;<span class="preprocessor">#define DEFVALC  0x06   </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a3b859c7752f70f30c17bd615455db34d">   51</a></span>&#160;<span class="preprocessor">#define DEFVALD  0x07   </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ac9bb951635527621ec2199e834fb755a">   52</a></span>&#160;<span class="preprocessor">#define INTCONC  0x08   </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a8761772e470a76b41f2d98d3117500a8">   53</a></span>&#160;<span class="preprocessor">#define INTCOND  0x09   </span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a7cb7b41beb2b7038bbb1ff94c0b43905">   54</a></span>&#160;<span class="preprocessor">#define IOCON    0x0A   </span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">//#define IOCON    0x0B</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a2b601179bef7f9e7b7dcd487d4616069">   56</a></span>&#160;<span class="preprocessor">#define GPPUC    0x0C   </span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="io__expander_8h.html#ac6578485ff4c894df669c72582e855d3">   57</a></span>&#160;<span class="preprocessor">#define GPPUD    0x0D   </span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="io__expander_8h.html#aaef85c2c2c555e498bc6909ff9b35cb9">   58</a></span>&#160;<span class="preprocessor">#define INTFC    0x0E   </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a7114bfaf8f1b7686ccaf35a7079228c6">   59</a></span>&#160;<span class="preprocessor">#define INTFD    0x0F   </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a822a862d51b19fa4a9495c156649a37b">   60</a></span>&#160;<span class="preprocessor">#define INTCAPC  0x10   </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a7f9c048c9455c1f1bacaca7fdd32afe9">   61</a></span>&#160;<span class="preprocessor">#define INTCAPD  0x11   </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a2dca03332d620196ba943bc2346eaa08">   62</a></span>&#160;<span class="preprocessor">#define GPIOC    0x12   </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a7580b1a929ea9df59725ba9c18eba6ac">   63</a></span>&#160;<span class="preprocessor">#define GPIOD    0x13   </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a2419430a19a3769398263e926188f48d">   64</a></span>&#160;<span class="preprocessor">#define OLATC    0x14   </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="io__expander_8h.html#a8cac244dc92b0a6450b7fd31d48cf2d8">   65</a></span>&#160;<span class="preprocessor">#define OLATD    0x15   </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">void ioe_init();</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a5d8e6f16406d5cd7887e18cd582b6b03">ioe_PortCSetPinsOut</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a73b42c917b6ea5e06594b739db22b1ee">ioe_PortDSetPinsOut</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#ac02168a738e87b1366ff47b89dcb67c4">ioe_PortCSetPinsIn</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a74f54972aa8b46f5471d8c4a04104085">ioe_PortDSetPinsIn</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#acfb83661c01aa3bd80521db3f1c68437">ioe_PortCIntEnable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#aca142607ab995ea804c9787faf39e47d">ioe_PortCIntDisable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#af4655e273f9cefc7320b49a4d6c01347">ioe_PortDIntEnable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a980dbf5e80bc619292dc7a2987edcb9e">ioe_PortDIntDisable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#ae6cafe0b797beb1f5fc5ff5a8572143c">ioe_PortCEnablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a262f82ff14624f77c6e2246f3661f092">ioe_PortDEnablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a53a8e6058d4ed283c800d17a407f2668">ioe_PortCDisablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/* Takes a register address on I/O expander and a data byte, and writes the </span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * data to the target register. */</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="io__expander_8c.html#ad58f3a2d629195c0a797cd015b117989">ioe_write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/* Takes a register address on I/O expander and returns the data byte from that</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * target register. */</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="io__expander_8c.html#af2583a71e322d04a6475581f0dc2f132">ioe_read</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// spi2 lock so that I/O expander OR DAC can use the channel</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">extern</span> <span class="keyword">volatile</span> <span class="keywordtype">int</span> spi2_lock ;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a772f81178a17d6150329d2c82864afa0">ioe_PortDDisablePullUp</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">/* Takes a register address on I/O expander and a data byte, and writes the </span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * data to the target register. */</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="io__expander_8h.html#a0a3a97ee4e136b9fbd9c0b91ea19b3a6">ioe_write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">/* Takes a register address on I/O expander and returns the data byte from that</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * target register. */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="io__expander_8h.html#a6a848bb361f98af710b6c9620e3ed91f">ioe_read</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* IO_EXPANDER_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="ttc" id="io__expander_8c_html_adc7e90f5a31407c0921f893ad69643eb"><div class="ttname"><a href="io__expander_8c.html#adc7e90f5a31407c0921f893ad69643eb">ioe_PortCEnablePullUp</a></div><div class="ttdeci">void ioe_PortCEnablePullUp(unsigned char bitmask)</div><div class="ttdoc">Enables the internal pull-up resistor on a given collection of Port C pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00178">io_expander.c:178</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a1881fbfc7c45f15210f867da67c390dd"><div class="ttname"><a href="io__expander_8c.html#a1881fbfc7c45f15210f867da67c390dd">ioe_PortCIntDisable</a></div><div class="ttdeci">void ioe_PortCIntDisable(unsigned char bitmask)</div><div class="ttdoc">Disables interrupts for a given collection of Port C pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00157">io_expander.c:157</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a996ef0646677f0677698557d9722ab94"><div class="ttname"><a href="io__expander_8c.html#a996ef0646677f0677698557d9722ab94">ioe_PortCSetPinsOut</a></div><div class="ttdeci">void ioe_PortCSetPinsOut(unsigned char bitmask)</div><div class="ttdoc">Sets a given collection of Port C pins as outputs. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00097">io_expander.c:97</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a4943b87b173f5e9848804b077e3f5090"><div class="ttname"><a href="io__expander_8c.html#a4943b87b173f5e9848804b077e3f5090">ioe_PortDIntDisable</a></div><div class="ttdeci">void ioe_PortDIntDisable(unsigned char bitmask)</div><div class="ttdoc">Disables interrupts for a given collection of Port D pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00167">io_expander.c:167</a></div></div>
-<div class="ttc" id="io__expander_8c_html_abd2fa7d928a9ed749c91778f0ee42951"><div class="ttname"><a href="io__expander_8c.html#abd2fa7d928a9ed749c91778f0ee42951">ioe_PortCIntEnable</a></div><div class="ttdeci">void ioe_PortCIntEnable(unsigned char bitmask)</div><div class="ttdoc">Enables interrupts for a given collection of Port C pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00137">io_expander.c:137</a></div></div>
-<div class="ttc" id="io__expander_8c_html_ad58f3a2d629195c0a797cd015b117989"><div class="ttname"><a href="io__expander_8c.html#ad58f3a2d629195c0a797cd015b117989">ioe_write</a></div><div class="ttdeci">void ioe_write(unsigned char reg_addr, unsigned char data)</div><div class="ttdoc">Writes a byte of data to a register on the I/O expander. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00222">io_expander.c:222</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a49dd7fa773dd422fb420be8392a48abc"><div class="ttname"><a href="io__expander_8c.html#a49dd7fa773dd422fb420be8392a48abc">ioe_init</a></div><div class="ttdeci">void ioe_init()</div><div class="ttdoc">Initializes the MCP23S17 I/O expander and configures one of the PIC&#39;s SPI modules for communication w...</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00046">io_expander.c:46</a></div></div>
-<div class="ttc" id="io__expander_8c_html_af2583a71e322d04a6475581f0dc2f132"><div class="ttname"><a href="io__expander_8c.html#af2583a71e322d04a6475581f0dc2f132">ioe_read</a></div><div class="ttdeci">unsigned char ioe_read(unsigned char reg_addr)</div><div class="ttdoc">Reads and returns the data byte from a register on the I/O expander. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00257">io_expander.c:257</a></div></div>
-<div class="ttc" id="io__expander_8c_html_aa06158e36d852e0c4a94a5c84becc77d"><div class="ttname"><a href="io__expander_8c.html#aa06158e36d852e0c4a94a5c84becc77d">ioe_PortDSetPinsOut</a></div><div class="ttdeci">void ioe_PortDSetPinsOut(unsigned char bitmask)</div><div class="ttdoc">Sets a given collection of Port D pins as outputs. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00107">io_expander.c:107</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a2e897e0225286877c4e3fab3912a495f"><div class="ttname"><a href="io__expander_8c.html#a2e897e0225286877c4e3fab3912a495f">ioe_PortDSetPinsIn</a></div><div class="ttdeci">void ioe_PortDSetPinsIn(unsigned char bitmask)</div><div class="ttdoc">Sets a given collection of Port D pins as inputs. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00127">io_expander.c:127</a></div></div>
-<div class="ttc" id="io__expander_8c_html_abe6afc1640d6e74d604ad1bb8553acee"><div class="ttname"><a href="io__expander_8c.html#abe6afc1640d6e74d604ad1bb8553acee">ioe_PortDEnablePullUp</a></div><div class="ttdeci">void ioe_PortDEnablePullUp(unsigned char bitmask)</div><div class="ttdoc">Enables the internal pull-up resistor on a given collection of Port D pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00189">io_expander.c:189</a></div></div>
-<div class="ttc" id="io__expander_8c_html_ae632ffc217c164d5f4acd17d0554f8cd"><div class="ttname"><a href="io__expander_8c.html#ae632ffc217c164d5f4acd17d0554f8cd">ioe_PortDDisablePullUp</a></div><div class="ttdeci">void ioe_PortDDisablePullUp(unsigned char bitmask)</div><div class="ttdoc">Disables the internal pull-up resistor on a given collection of Port D pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00211">io_expander.c:211</a></div></div>
-<div class="ttc" id="io__expander_8c_html_ac46d87e948b3125ef06abb4283846894"><div class="ttname"><a href="io__expander_8c.html#ac46d87e948b3125ef06abb4283846894">ioe_PortCDisablePullUp</a></div><div class="ttdeci">void ioe_PortCDisablePullUp(unsigned char bitmask)</div><div class="ttdoc">Disables the internal pull-up resistor on a given collection of Port C pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00200">io_expander.c:200</a></div></div>
-<div class="ttc" id="io__expander_8c_html_ac10d4b4281dcd20423a1beacea1d3700"><div class="ttname"><a href="io__expander_8c.html#ac10d4b4281dcd20423a1beacea1d3700">ioe_PortCSetPinsIn</a></div><div class="ttdeci">void ioe_PortCSetPinsIn(unsigned char bitmask)</div><div class="ttdoc">Sets a given collection of Port C pins as inputs. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00117">io_expander.c:117</a></div></div>
-<div class="ttc" id="io__expander_8c_html_a4cacc67ded947380af3b5921807d21a4"><div class="ttname"><a href="io__expander_8c.html#a4cacc67ded947380af3b5921807d21a4">ioe_PortDIntEnable</a></div><div class="ttdeci">void ioe_PortDIntEnable(unsigned char bitmask)</div><div class="ttdoc">Enables interrupts for a given collection of Port D pins. </div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00147">io_expander.c:147</a></div></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// spi2 lock so that I/O expander OR DAC can use the channel</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">extern</span> <span class="keyword">volatile</span> <span class="keywordtype">int</span> spi2_lock ;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* IO_EXPANDER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="ttc" id="io__expander_8h_html_a74f54972aa8b46f5471d8c4a04104085"><div class="ttname"><a href="io__expander_8h.html#a74f54972aa8b46f5471d8c4a04104085">ioe_PortDSetPinsIn</a></div><div class="ttdeci">void ioe_PortDSetPinsIn(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00128">io_expander.c:128</a></div></div>
+<div class="ttc" id="io__expander_8h_html_aca142607ab995ea804c9787faf39e47d"><div class="ttname"><a href="io__expander_8h.html#aca142607ab995ea804c9787faf39e47d">ioe_PortCIntDisable</a></div><div class="ttdeci">void ioe_PortCIntDisable(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00149">io_expander.c:149</a></div></div>
+<div class="ttc" id="io__expander_8h_html_ae6cafe0b797beb1f5fc5ff5a8572143c"><div class="ttname"><a href="io__expander_8h.html#ae6cafe0b797beb1f5fc5ff5a8572143c">ioe_PortCEnablePullUp</a></div><div class="ttdeci">void ioe_PortCEnablePullUp(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00163">io_expander.c:163</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a6a848bb361f98af710b6c9620e3ed91f"><div class="ttname"><a href="io__expander_8h.html#a6a848bb361f98af710b6c9620e3ed91f">ioe_read</a></div><div class="ttdeci">unsigned char ioe_read(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00231">io_expander.c:231</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a772f81178a17d6150329d2c82864afa0"><div class="ttname"><a href="io__expander_8h.html#a772f81178a17d6150329d2c82864afa0">ioe_PortDDisablePullUp</a></div><div class="ttdeci">void ioe_PortDDisablePullUp(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00184">io_expander.c:184</a></div></div>
+<div class="ttc" id="io__expander_8h_html_af4655e273f9cefc7320b49a4d6c01347"><div class="ttname"><a href="io__expander_8h.html#af4655e273f9cefc7320b49a4d6c01347">ioe_PortDIntEnable</a></div><div class="ttdeci">void ioe_PortDIntEnable(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00142">io_expander.c:142</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a0a3a97ee4e136b9fbd9c0b91ea19b3a6"><div class="ttname"><a href="io__expander_8h.html#a0a3a97ee4e136b9fbd9c0b91ea19b3a6">ioe_write</a></div><div class="ttdeci">void ioe_write(unsigned char, unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00195">io_expander.c:195</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a980dbf5e80bc619292dc7a2987edcb9e"><div class="ttname"><a href="io__expander_8h.html#a980dbf5e80bc619292dc7a2987edcb9e">ioe_PortDIntDisable</a></div><div class="ttdeci">void ioe_PortDIntDisable(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00156">io_expander.c:156</a></div></div>
+<div class="ttc" id="io__expander_8h_html_acfb83661c01aa3bd80521db3f1c68437"><div class="ttname"><a href="io__expander_8h.html#acfb83661c01aa3bd80521db3f1c68437">ioe_PortCIntEnable</a></div><div class="ttdeci">void ioe_PortCIntEnable(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00135">io_expander.c:135</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a73b42c917b6ea5e06594b739db22b1ee"><div class="ttname"><a href="io__expander_8h.html#a73b42c917b6ea5e06594b739db22b1ee">ioe_PortDSetPinsOut</a></div><div class="ttdeci">void ioe_PortDSetPinsOut(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00114">io_expander.c:114</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a5d8e6f16406d5cd7887e18cd582b6b03"><div class="ttname"><a href="io__expander_8h.html#a5d8e6f16406d5cd7887e18cd582b6b03">ioe_PortCSetPinsOut</a></div><div class="ttdeci">void ioe_PortCSetPinsOut(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00107">io_expander.c:107</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a53a8e6058d4ed283c800d17a407f2668"><div class="ttname"><a href="io__expander_8h.html#a53a8e6058d4ed283c800d17a407f2668">ioe_PortCDisablePullUp</a></div><div class="ttdeci">void ioe_PortCDisablePullUp(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00177">io_expander.c:177</a></div></div>
+<div class="ttc" id="io__expander_8h_html_a262f82ff14624f77c6e2246f3661f092"><div class="ttname"><a href="io__expander_8h.html#a262f82ff14624f77c6e2246f3661f092">ioe_PortDEnablePullUp</a></div><div class="ttdeci">void ioe_PortDEnablePullUp(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00170">io_expander.c:170</a></div></div>
+<div class="ttc" id="io__expander_8h_html_ac02168a738e87b1366ff47b89dcb67c4"><div class="ttname"><a href="io__expander_8h.html#ac02168a738e87b1366ff47b89dcb67c4">ioe_PortCSetPinsIn</a></div><div class="ttdeci">void ioe_PortCSetPinsIn(unsigned char)</div><div class="ttdef"><b>Definition:</b> <a href="io__expander_8c_source.html#l00121">io_expander.c:121</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:48:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 16:07:03 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

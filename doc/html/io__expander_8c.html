@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: io_expander.c File Reference</title>
+<title>Pikky: peripherals/io_expander.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -76,10 +77,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">io_expander.c File Reference</div>  </div>
@@ -89,55 +93,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A PIC32 library for interfacing with the MCP23S17 I/O expander.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;plib.h&gt;</code><br />
-<code>#include &quot;hwprofile.h&quot;</code><br />
+<code>#include &quot;../hwprofile.h&quot;</code><br />
 <code>#include &quot;io_expander.h&quot;</code><br />
-</div>
-<p><a href="io__expander_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c5ad667ee8b3fc41e20f88fef4093d8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>_SUPPRESS_PLIB_WARNING</b></td></tr>
-<tr class="separator:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e476b569a3714860cc40d57acaba880"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e476b569a3714860cc40d57acaba880"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>_DISABLE_OPENADC10_CONFIGPORT_WARNING</b></td></tr>
-<tr class="separator:a7e476b569a3714860cc40d57acaba880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ca3d41c8b9197a1028b658661ebb53a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ca3d41c8b9197a1028b658661ebb53a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_SPI_CHN</b>&#160;&#160;&#160;SPI_CHANNEL2</td></tr>
-<tr class="separator:a7ca3d41c8b9197a1028b658661ebb53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1d72ece7b505fe46e4c8010510e92e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1d72ece7b505fe46e4c8010510e92e5"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_SET_CS</b>()&#160;&#160;&#160;mPORTBSetBits(BIT_9)</td></tr>
-<tr class="separator:ab1d72ece7b505fe46e4c8010510e92e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a7b4baace5607e777dbc49a63f542d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a7b4baace5607e777dbc49a63f542d2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_CLEAR_CS</b>()&#160;&#160;&#160;mPORTBClearBits(BIT_9)</td></tr>
-<tr class="separator:a0a7b4baace5607e777dbc49a63f542d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac896272b8feba4a01d0362911c602a4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac896272b8feba4a01d0362911c602a4d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SPI_Mode16</b> (void)</td></tr>
-<tr class="separator:ac896272b8feba4a01d0362911c602a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61300453acfcdcf58274aa3c3f375972"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61300453acfcdcf58274aa3c3f375972"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SPI_Mode8</b> (void)</td></tr>
-<tr class="separator:a61300453acfcdcf58274aa3c3f375972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bd1763f85992f6251f19a24aa4a82e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bd1763f85992f6251f19a24aa4a82e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SPI_Mode32</b> (void)</td></tr>
-<tr class="separator:a5bd1763f85992f6251f19a24aa4a82e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49dd7fa773dd422fb420be8392a48abc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8c.html#a49dd7fa773dd422fb420be8392a48abc">ioe_init</a> ()</td></tr>
 <tr class="memdesc:a49dd7fa773dd422fb420be8392a48abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the MCP23S17 I/O expander and configures one of the PIC's SPI modules for communication with the I/O expander.  <a href="#a49dd7fa773dd422fb420be8392a48abc">More...</a><br /></td></tr>
 <tr class="separator:a49dd7fa773dd422fb420be8392a48abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c57812176ece820a79710b6b6474865"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c57812176ece820a79710b6b6474865"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearBits</b> (unsigned char addr, unsigned char bitmask)</td></tr>
-<tr class="separator:a2c57812176ece820a79710b6b6474865"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4be65e1782ea42749745ddd631518e45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4be65e1782ea42749745ddd631518e45"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBits</b> (unsigned char addr, unsigned char bitmask)</td></tr>
-<tr class="separator:a4be65e1782ea42749745ddd631518e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a706fd1c6258b1d6c8466f8029262d4e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a706fd1c6258b1d6c8466f8029262d4e2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleBits</b> (unsigned char addr, unsigned char bitmask)</td></tr>
-<tr class="separator:a706fd1c6258b1d6c8466f8029262d4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f6f984fdeb203e0a396f109f4068241"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f6f984fdeb203e0a396f109f4068241"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b> (unsigned char addr, unsigned char bitmask)</td></tr>
-<tr class="separator:a4f6f984fdeb203e0a396f109f4068241"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a996ef0646677f0677698557d9722ab94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8c.html#a996ef0646677f0677698557d9722ab94">ioe_PortCSetPinsOut</a> (unsigned char bitmask)</td></tr>
 <tr class="memdesc:a996ef0646677f0677698557d9722ab94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a given collection of Port C pins as outputs.  <a href="#a996ef0646677f0677698557d9722ab94">More...</a><br /></td></tr>
 <tr class="separator:a996ef0646677f0677698557d9722ab94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,8 +147,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A PIC32 library for interfacing with the MCP23S17 I/O expander. </p>
 <dl class="section author"><dt>Authors</dt><dd>Sean Carroll, Bruce Land, Jeff Lutgen </dd></dl>
-
-<p>Definition in file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a49dd7fa773dd422fb420be8392a48abc"></a>
 <div class="memitem">
@@ -201,9 +162,8 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
 </div><div class="memdoc">
 
 <p>Initializes the MCP23S17 I/O expander and configures one of the PIC's SPI modules for communication with the I/O expander. </p>
-<p>Pin mappings: RPB5 (pin 14) &ndash;&gt; SDO2 (MOSI) RPA4 (pin 12) &ndash;&gt; SDI2 (MISO) </p>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00046">46</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
+<p>Pin mappings: RPB5 (pin 14) &ndash;&gt; SDO2 (MOSI) RPA4 (pin 12) &ndash;&gt; SDI2 (MISO)</p>
+<p>Uses RB9 (pin 18) as the chip select (CS) line. </p>
 
 </div>
 </div>
@@ -229,8 +189,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00200">200</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="adc7e90f5a31407c0921f893ad69643eb"></a>
@@ -254,8 +212,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00178">178</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -281,8 +237,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00157">157</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abd2fa7d928a9ed749c91778f0ee42951"></a>
@@ -306,8 +260,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00137">137</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -333,8 +285,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00117">117</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a996ef0646677f0677698557d9722ab94"></a>
@@ -358,8 +308,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00097">97</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -385,8 +333,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00211">211</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="abe6afc1640d6e74d604ad1bb8553acee"></a>
@@ -410,8 +356,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00189">189</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -437,8 +381,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00167">167</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a4cacc67ded947380af3b5921807d21a4"></a>
@@ -462,8 +404,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00147">147</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -489,8 +429,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00127">127</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa06158e36d852e0c4a94a5c84becc77d"></a>
@@ -514,8 +452,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00107">107</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -549,8 +485,6 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the byte of data that was read </dd></dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00257">257</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
 
 </div>
 </div>
@@ -595,14 +529,12 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>readBits</b>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00222">222</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:48:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 12 2019 11:30:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

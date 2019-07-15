@@ -14,22 +14,10 @@
 
 #include "config.h"
 #include "tft.h"
+#include "tft_printline.h"
 
 char msg[80];
 int prev_reading;
-
-void printLine(int line_number, int char_size, char *print_buffer) {
-    // line number 0 to 30
-    // char_size 1 to 5
-    // print_buffer the string to print
-    int v_pos;
-    v_pos = line_number * 10 ;
-    tft_fillRoundRect(0, v_pos, 319, 10*char_size, 1, ILI9340_BLACK);// x,y,w,h,radius,color
-    tft_setCursor(0, v_pos);
-    tft_setTextColor(ILI9340_BLUE); 
-    tft_setTextSize(char_size);
-    tft_writeString(print_buffer);
-}
 
 void timer3_init() {
     T3CONbits.TCKPS = 7; // prescaler = 256
@@ -116,9 +104,9 @@ void __ISR(_ADC_VECTOR, IPL2SOFT) adc_isr(void) {
     tempC =  -50 + (adc_reading * 325) / (float) 1023; // Vdd = 3.25 V
     tempF =  (9 * tempC) / 5 + 32;
     sprintf(msg, "%3.1f C", tempC);
-    printLine(4, 4, msg);
+    tft_printLine(4, 4, msg);
     sprintf(msg, "%3.1f F", tempF);
-    printLine(10, 4, msg);
+    tft_printLine(10, 4, msg);
 
     IFS0bits.AD1IF = 0; // Persistent interrupt, so clearing flag has no effect
                         // unless ADC1BUF0 has been read!
@@ -133,7 +121,6 @@ int main(void) {
     INTCONbits.MVEC = 1; // multi-vector interrupt mode
 
     tft_init();
-    tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 

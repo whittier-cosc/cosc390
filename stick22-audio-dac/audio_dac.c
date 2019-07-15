@@ -12,24 +12,12 @@
 #include "amp.h"
 #include "dac.h"
 #include "tft.h"
+#include "tft_printline.h"
 
 char msg[80];
 
-void printLine(int line_number, int char_size, char *print_buffer) {
-    // line number 0 to 30
-    // char_size 1 to 5
-    // print_buffer the string to print
-    int v_pos;
-    v_pos = line_number * 10 ;
-    tft_fillRoundRect(0, v_pos, 319, 21, 1, ILI9340_BLACK); // x,y,w,h,radius,color
-    tft_setCursor(0, v_pos);
-    tft_setTextColor(ILI9340_YELLOW);
-    tft_setTextSize(char_size);
-    tft_writeString(print_buffer);
-}
-
 void display_message(char *message) {
-    printLine(1, 2, message);
+    tft_printLine(1, 2, message);
 }
 
 // DAC constants
@@ -105,7 +93,6 @@ int main(void) {
     dac_init();
 
     tft_init();
-    tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 

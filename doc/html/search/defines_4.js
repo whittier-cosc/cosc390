@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['font5x7_5fh',['FONT5X7_H',['../glcdfont_8c.html#ade0434f760ed161602cde133a3136c95',1,'glcdfont.c']]]
+  ['pbclk',['PBCLK',['../hwprofile_8h.html#aac23c0047c8aba00b8c269fc2a181959',1,'hwprofile.h']]]
 ];

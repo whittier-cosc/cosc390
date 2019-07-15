@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: uart.h Source File</title>
+<title>WC PIC32Lib: /Users/jlutgen/PIC32/skeleton/peripherals/uart.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -62,13 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,26 +78,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3ef55737ac2d3b5e1be3684b862a7232.html">skeleton</a></li><li class="navelem"><a class="el" href="dir_2df8e498f07bde5e873e352f447fc7a1.html">peripherals</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">uart.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef UART_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define UART_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define BAUDRATE 9600</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="uart_8c.html#a16501cc979a05771be83680ff01387b4">uart_read</a>(<span class="keywordtype">char</span> * <span class="keywordtype">string</span>, <span class="keywordtype">int</span> maxLength);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="uart_8c.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keywordtype">string</span>);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="uart_8c_html_a16501cc979a05771be83680ff01387b4"><div class="ttname"><a href="uart_8c.html#a16501cc979a05771be83680ff01387b4">uart_read</a></div><div class="ttdeci">void uart_read(char *message, int maxLength)</div><div class="ttdoc">Reads a string from UART1. Blocks until an &#39;&#39; or &#39; &#39; is seen. </div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00058">uart.c:58</a></div></div>
-<div class="ttc" id="uart_8c_html_ad5cf47a799ebafbea3243721f3b84a14"><div class="ttname"><a href="uart_8c.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a></div><div class="ttdeci">void uart_write(const char *string)</div><div class="ttdoc">Write a null-terminated string to UART1. </div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00086">uart.c:86</a></div></div>
+<a href="uart_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef UART_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define UART_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define BAUDRATE 9600</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="uart_8h.html#a16501cc979a05771be83680ff01387b4">uart_read</a>(<span class="keywordtype">char</span> *message, <span class="keywordtype">int</span> maxLength);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="uart_8h.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="uart_8h.html#abd6e353d39a7ced9a87517a68bd13768">uart_printf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ...);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="uart_8h_html_ad5cf47a799ebafbea3243721f3b84a14"><div class="ttname"><a href="uart_8h.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a></div><div class="ttdeci">void uart_write(const char *string)</div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00092">uart.c:92</a></div></div>
+<div class="ttc" id="uart_8h_html_a16501cc979a05771be83680ff01387b4"><div class="ttname"><a href="uart_8h.html#a16501cc979a05771be83680ff01387b4">uart_read</a></div><div class="ttdeci">void uart_read(char *message, int maxLength)</div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00066">uart.c:66</a></div></div>
+<div class="ttc" id="uart_8h_html_abd6e353d39a7ced9a87517a68bd13768"><div class="ttname"><a href="uart_8h.html#abd6e353d39a7ced9a87517a68bd13768">uart_printf</a></div><div class="ttdeci">void uart_printf(const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> <a href="uart_8c_source.html#l00111">uart.c:111</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:48:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 16:07:03 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

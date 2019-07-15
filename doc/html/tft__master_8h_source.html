@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: tft_master.h Source File</title>
+<title>WC PIC32Lib: /Users/jlutgen/PIC32/skeleton/peripherals/tft_master.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -62,13 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,176 +78,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3ef55737ac2d3b5e1be3684b862a7232.html">skeleton</a></li><li class="navelem"><a class="el" href="dir_2df8e498f07bde5e873e352f447fc7a1.html">peripherals</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">tft_master.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* Code rewritten from Adafruit Arduino library for the TFT</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *  by Syed Tahmid Mahbub</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * The TFT itself is Adafruit product 1480</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Included below is the text header from the original Adafruit library</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  followed by the code</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/***************************************************</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">  This is an Arduino Library for the Adafruit 2.2&quot; SPI display.</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">  This library works with the Adafruit 2.2&quot; TFT Breakout w/SD card</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  ----&gt; http://www.adafruit.com/products/1480</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">  Check out the links above for our tutorials and wiring diagrams</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  These displays use SPI to communicate, 4 or 5 pins are required to</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  interface (RST is optional)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  Adafruit invests time and resources providing this open source code,</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  please support Adafruit and open-source hardware by purchasing</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">  products from Adafruit!</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  Written by Limor Fried/Ladyada for Adafruit Industries.</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">  MIT license, all text above must be included in any redistribution</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> ****************************************************/</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define _SUPPRESS_PLIB_WARNING </span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define _DISABLE_OPENADC10_CONFIGPORT_WARNING</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;plib.h&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//#include &lt;Adafruit_GFX.h&gt;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define _dc         LATBbits.LATB0</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define TRIS_dc     TRISBbits.TRISB0</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define _dc_high()  {LATBSET = 1;}</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define _dc_low()   {LATBCLR = 1;}</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define _cs         LATBbits.LATB1</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define TRIS_cs     TRISBbits.TRISB1</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define _cs_high()  {LATBSET = 2;}</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define _cs_low()   {LATBCLR = 2;}</span></div>
+<a href="tft__master_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TFT_MASTER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TFT_MASTER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">/***************************************************</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">  This is an Arduino Library for the Adafruit 2.2&quot; SPI display.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">  This library works with the Adafruit 2.2&quot; TFT Breakout w/SD card</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">  ----&gt; http://www.adafruit.com/products/1480</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">  Check out the links above for our tutorials and wiring diagrams</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">  These displays use SPI to communicate, 4 or 5 pins are required to</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">  interface (RST is optional)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">  Adafruit invests time and resources providing this open source code,</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">  please support Adafruit and open-source hardware by purchasing</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">  products from Adafruit!</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">  Written by Limor Fried/Ladyada for Adafruit Industries.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">  MIT license, all text above must be included in any redistribution</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> ****************************************************/</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define _rst        LATBbits.LATB2</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define TRIS_rst    TRISBbits.TRISB2</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define _rst_high() {LATBSET = 4;}</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define _rst_low()  {LATBCLR = 4;}</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define ILI9340_TFTWIDTH  240</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define ILI9340_TFTHEIGHT 320</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define ILI9340_NOP     0x00</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#define ILI9340_SWRESET 0x01</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#define ILI9340_RDDID   0x04</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#define ILI9340_RDDST   0x09</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#define ILI9340_SLPIN   0x10</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define ILI9340_SLPOUT  0x11</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define ILI9340_PTLON   0x12</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define ILI9340_NORON   0x13</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define ILI9340_RDMODE  0x0A</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define ILI9340_RDMADCTL  0x0B</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define ILI9340_RDPIXFMT  0x0C</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#define ILI9340_RDIMGFMT  0x0A</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define ILI9340_RDSELFDIAG  0x0F</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define ILI9340_INVOFF  0x20</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define ILI9340_INVON   0x21</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define ILI9340_GAMMASET 0x26</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define ILI9340_DISPOFF 0x28</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#define ILI9340_DISPON  0x29</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define ILI9340_CASET   0x2A</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define ILI9340_PASET   0x2B</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define ILI9340_RAMWR   0x2C</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define ILI9340_RAMRD   0x2E</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#define ILI9340_PTLAR   0x30</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL  0x36</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_MY  0x80</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_MX  0x40</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_MV  0x20</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_ML  0x10</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_RGB 0x00</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_BGR 0x08</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define ILI9340_MADCTL_MH  0x04</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define ILI9340_PIXFMT  0x3A</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define ILI9340_FRMCTR1 0xB1</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define ILI9340_FRMCTR2 0xB2</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define ILI9340_FRMCTR3 0xB3</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define ILI9340_INVCTR  0xB4</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define ILI9340_DFUNCTR 0xB6</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define ILI9340_PWCTR1  0xC0</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define ILI9340_PWCTR2  0xC1</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#define ILI9340_PWCTR3  0xC2</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define ILI9340_PWCTR4  0xC3</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#define ILI9340_PWCTR5  0xC4</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define ILI9340_VMCTR1  0xC5</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#define ILI9340_VMCTR2  0xC7</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#define ILI9340_RDID1   0xDA</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#define ILI9340_RDID2   0xDB</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#define ILI9340_RDID3   0xDC</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define ILI9340_RDID4   0xDD</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define ILI9340_GMCTRP1 0xE0</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define ILI9340_GMCTRN1 0xE1</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">#define ILI9340_PWCTR6  0xFC</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">// Color definitions</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define ILI9340_BLACK   0x0000</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#define ILI9340_BLUE    0x001F</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#define ILI9340_RED     0xF800</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#define ILI9340_GREEN   0x07E0</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#define ILI9340_CYAN    0x07FF</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#define ILI9340_MAGENTA 0xF81F</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#define ILI9340_YELLOW  0xFFE0</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#define ILI9340_WHITE   0xFFFF</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#ifndef PBCLK</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#define PBCLK 40000000 // peripheral bus clock</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#define SPI_freq    20000000</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#define tabspace 4 // number of spaces for a tab</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define dTime_ms PBCLK/2000</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#define dTime_us PBCLK/2000000</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keywordtype">void</span> tft_init_hw(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keywordtype">void</span> tft_spiwrite(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keywordtype">void</span> tft_spiwrite8(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keywordtype">void</span> tft_spiwrite16(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> c);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keywordtype">void</span> tft_writecommand(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="keywordtype">void</span> tft_writecommand16(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> c);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keywordtype">void</span> tft_writedata(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">void</span> tft_writedata16(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> c);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keywordtype">void</span> tft_commandList(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *addr);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keywordtype">void</span> tft_begin(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keywordtype">void</span> tft_setAddrWindow(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> x0, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> y0, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> x1, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> y1);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">void</span> tft_pushColor(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">void</span> tft_drawPixel(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keywordtype">void</span> tft_drawFastVLine(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> h, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keywordtype">void</span> tft_drawFastHLine(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> w, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">void</span> tft_fillScreen(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keywordtype">void</span> tft_fillRect(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> w, <span class="keywordtype">short</span> h, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> tft_Color565(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> r, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> g, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> b);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">void</span> tft_setRotation(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> tft_spiread(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> tft_readdata(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> tft_readcommand8(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _width, _height;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keywordtype">void</span> delay_ms(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">void</span> delay_us(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> _width, _height;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// Predefined colors (16 bits, 5-6-5 RGB)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define ILI9340_BLACK   0x0000</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#define ILI9340_BLUE    0x001F</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define ILI9340_RED     0xF800</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#define ILI9340_GREEN   0x07E0</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define ILI9340_CYAN    0x07FF</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define ILI9340_MAGENTA 0xF81F</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#define ILI9340_YELLOW  0xFFE0</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#define ILI9340_WHITE   0xFFFF</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#afecb0252c2649db8482c52ef9201471a">tft_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#a355ae44a0a3aa03b4147501bfe27ed53">tft_drawPixel</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#acdc9f920bfdfc30c96be2a528d6767a2">tft_drawFastVLine</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> h, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#a76c3a9bfd8cf7da98689bf9861ac1903">tft_drawFastHLine</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> w, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#ad271beefcd2efbcf024fd5cac2b87953">tft_fillScreen</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#a170bfc1eddd980ee8035018029a57970">tft_fillRect</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">short</span> w, <span class="keywordtype">short</span> h, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> color);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="tft__master_8h.html#a42fb43b50e7a601006d91f8e1b83e8f0">tft_Color565</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> r, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> g, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> b);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="tft__master_8h.html#a1ccd3e00b85662e923a4ffa3d076ff1e">tft_setRotation</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="tft__master_8h_html_a355ae44a0a3aa03b4147501bfe27ed53"><div class="ttname"><a href="tft__master_8h.html#a355ae44a0a3aa03b4147501bfe27ed53">tft_drawPixel</a></div><div class="ttdeci">void tft_drawPixel(short x, short y, unsigned short color)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00332">tft_master.c:332</a></div></div>
+<div class="ttc" id="tft__master_8h_html_a76c3a9bfd8cf7da98689bf9861ac1903"><div class="ttname"><a href="tft__master_8h.html#a76c3a9bfd8cf7da98689bf9861ac1903">tft_drawFastHLine</a></div><div class="ttdeci">void tft_drawFastHLine(short x, short y, short w, unsigned short color)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00413">tft_master.c:413</a></div></div>
+<div class="ttc" id="tft__master_8h_html_acdc9f920bfdfc30c96be2a528d6767a2"><div class="ttname"><a href="tft__master_8h.html#acdc9f920bfdfc30c96be2a528d6767a2">tft_drawFastVLine</a></div><div class="ttdeci">void tft_drawFastVLine(short x, short y, short h, unsigned short color)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00393">tft_master.c:393</a></div></div>
+<div class="ttc" id="tft__master_8h_html_a42fb43b50e7a601006d91f8e1b83e8f0"><div class="ttname"><a href="tft__master_8h.html#a42fb43b50e7a601006d91f8e1b83e8f0">tft_Color565</a></div><div class="ttdeci">unsigned short tft_Color565(unsigned char r, unsigned char g, unsigned char b)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00466">tft_master.c:466</a></div></div>
+<div class="ttc" id="tft__master_8h_html_a170bfc1eddd980ee8035018029a57970"><div class="ttname"><a href="tft__master_8h.html#a170bfc1eddd980ee8035018029a57970">tft_fillRect</a></div><div class="ttdeci">void tft_fillRect(short x, short y, short w, short h, unsigned short color)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00433">tft_master.c:433</a></div></div>
+<div class="ttc" id="tft__master_8h_html_ad271beefcd2efbcf024fd5cac2b87953"><div class="ttname"><a href="tft__master_8h.html#ad271beefcd2efbcf024fd5cac2b87953">tft_fillScreen</a></div><div class="ttdeci">void tft_fillScreen(unsigned short color)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00458">tft_master.c:458</a></div></div>
+<div class="ttc" id="tft__master_8h_html_afecb0252c2649db8482c52ef9201471a"><div class="ttname"><a href="tft__master_8h.html#afecb0252c2649db8482c52ef9201471a">tft_init</a></div><div class="ttdeci">void tft_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00109">tft_master.c:109</a></div></div>
+<div class="ttc" id="tft__master_8h_html_a1ccd3e00b85662e923a4ffa3d076ff1e"><div class="ttname"><a href="tft__master_8h.html#a1ccd3e00b85662e923a4ffa3d076ff1e">tft_setRotation</a></div><div class="ttdeci">void tft_setRotation(unsigned char m)</div><div class="ttdef"><b>Definition:</b> <a href="tft__master_8c_source.html#l00478">tft_master.c:478</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:48:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 16:07:03 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: tft_master.h File Reference</title>
+<title>WC PIC32Lib: peripherals/tft_master.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -67,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -76,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -86,197 +92,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">tft_master.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;plib.h&gt;</code><br />
-</div>
-<p><a href="tft__master_8h_source.html">Go to the source code of this file.</a></p>
+
+<p>A PIC32 library for the Adafruit 2.2" TFT liquid crystal display.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a0c5ad667ee8b3fc41e20f88fef4093d8">_SUPPRESS_PLIB_WARNING</a></td></tr>
-<tr class="separator:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e476b569a3714860cc40d57acaba880"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7e476b569a3714860cc40d57acaba880">_DISABLE_OPENADC10_CONFIGPORT_WARNING</a></td></tr>
-<tr class="separator:a7e476b569a3714860cc40d57acaba880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a420f506f991452ba06b77131db344fcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a420f506f991452ba06b77131db344fcf">_dc</a>&#160;&#160;&#160;LATBbits.LATB0</td></tr>
-<tr class="separator:a420f506f991452ba06b77131db344fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbee686e0f6c8d129dbc41373330f188"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#afbee686e0f6c8d129dbc41373330f188">TRIS_dc</a>&#160;&#160;&#160;TRISBbits.TRISB0</td></tr>
-<tr class="separator:afbee686e0f6c8d129dbc41373330f188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57af9ca513aa1cf1fac5cd96078c74b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a57af9ca513aa1cf1fac5cd96078c74b1">_dc_high</a>()&#160;&#160;&#160;{LATBSET = 1;}</td></tr>
-<tr class="separator:a57af9ca513aa1cf1fac5cd96078c74b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ef7670f36adc526d063d17533d8b71c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7ef7670f36adc526d063d17533d8b71c">_dc_low</a>()&#160;&#160;&#160;{LATBCLR = 1;}</td></tr>
-<tr class="separator:a7ef7670f36adc526d063d17533d8b71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb88d1028d4ba283c740eb38bfa1042f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#abb88d1028d4ba283c740eb38bfa1042f">_cs</a>&#160;&#160;&#160;LATBbits.LATB1</td></tr>
-<tr class="separator:abb88d1028d4ba283c740eb38bfa1042f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7463faaf3d391e6ec553f5847ee9215"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aa7463faaf3d391e6ec553f5847ee9215">TRIS_cs</a>&#160;&#160;&#160;TRISBbits.TRISB1</td></tr>
-<tr class="separator:aa7463faaf3d391e6ec553f5847ee9215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e3d07893c1519607ec3ea47d4ffff00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a2e3d07893c1519607ec3ea47d4ffff00">_cs_high</a>()&#160;&#160;&#160;{LATBSET = 2;}</td></tr>
-<tr class="separator:a2e3d07893c1519607ec3ea47d4ffff00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa98ea007cae1d40bff46c756a397645"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#afa98ea007cae1d40bff46c756a397645">_cs_low</a>()&#160;&#160;&#160;{LATBCLR = 2;}</td></tr>
-<tr class="separator:afa98ea007cae1d40bff46c756a397645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbb7e6f2900256e7994d1db0bdc3419f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#abbb7e6f2900256e7994d1db0bdc3419f">_rst</a>&#160;&#160;&#160;LATBbits.LATB2</td></tr>
-<tr class="separator:abbb7e6f2900256e7994d1db0bdc3419f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5acbede1d2235d780c6189cc15d226e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a5acbede1d2235d780c6189cc15d226e7">TRIS_rst</a>&#160;&#160;&#160;TRISBbits.TRISB2</td></tr>
-<tr class="separator:a5acbede1d2235d780c6189cc15d226e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68d868952c4b642393b72ffbae3dc319"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a68d868952c4b642393b72ffbae3dc319">_rst_high</a>()&#160;&#160;&#160;{LATBSET = 4;}</td></tr>
-<tr class="separator:a68d868952c4b642393b72ffbae3dc319"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a288629a9ef5b08a70439edd2905620b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a288629a9ef5b08a70439edd2905620b6">_rst_low</a>()&#160;&#160;&#160;{LATBCLR = 4;}</td></tr>
-<tr class="separator:a288629a9ef5b08a70439edd2905620b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0931419af5ccb4748234052971457cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ac0931419af5ccb4748234052971457cf">ILI9340_TFTWIDTH</a>&#160;&#160;&#160;240</td></tr>
-<tr class="separator:ac0931419af5ccb4748234052971457cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab64cf78791c33f3aa14bc146fa160f4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab64cf78791c33f3aa14bc146fa160f4a">ILI9340_TFTHEIGHT</a>&#160;&#160;&#160;320</td></tr>
-<tr class="separator:ab64cf78791c33f3aa14bc146fa160f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac863bb7a9be03831df0ba0364a8a97cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ac863bb7a9be03831df0ba0364a8a97cb">ILI9340_NOP</a>&#160;&#160;&#160;0x00</td></tr>
-<tr class="separator:ac863bb7a9be03831df0ba0364a8a97cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd920a75b15c558a3180ad4cd8bcbc35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#acd920a75b15c558a3180ad4cd8bcbc35">ILI9340_SWRESET</a>&#160;&#160;&#160;0x01</td></tr>
-<tr class="separator:acd920a75b15c558a3180ad4cd8bcbc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc48379fcf21e8dc32f7717c7e212dac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#adc48379fcf21e8dc32f7717c7e212dac">ILI9340_RDDID</a>&#160;&#160;&#160;0x04</td></tr>
-<tr class="separator:adc48379fcf21e8dc32f7717c7e212dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a687b3d6c603556727b8e67807577a884"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a687b3d6c603556727b8e67807577a884">ILI9340_RDDST</a>&#160;&#160;&#160;0x09</td></tr>
-<tr class="separator:a687b3d6c603556727b8e67807577a884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4fa63e6b0a3adf9820186d0648ef66d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#af4fa63e6b0a3adf9820186d0648ef66d">ILI9340_SLPIN</a>&#160;&#160;&#160;0x10</td></tr>
-<tr class="separator:af4fa63e6b0a3adf9820186d0648ef66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afba5653a52aa9cb8abf603e7acd99216"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#afba5653a52aa9cb8abf603e7acd99216">ILI9340_SLPOUT</a>&#160;&#160;&#160;0x11</td></tr>
-<tr class="separator:afba5653a52aa9cb8abf603e7acd99216"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d41c46ba7dba54b50b2059c5c2eac2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a81d41c46ba7dba54b50b2059c5c2eac2">ILI9340_PTLON</a>&#160;&#160;&#160;0x12</td></tr>
-<tr class="separator:a81d41c46ba7dba54b50b2059c5c2eac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b657a72fab6a9b1122bcebc7c5ca46f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7b657a72fab6a9b1122bcebc7c5ca46f">ILI9340_NORON</a>&#160;&#160;&#160;0x13</td></tr>
-<tr class="separator:a7b657a72fab6a9b1122bcebc7c5ca46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59d28df3c8094eb8bcf4c63680d40d45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a59d28df3c8094eb8bcf4c63680d40d45">ILI9340_RDMODE</a>&#160;&#160;&#160;0x0A</td></tr>
-<tr class="separator:a59d28df3c8094eb8bcf4c63680d40d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf7057f83e3f36598a70c091f2a665f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#adf7057f83e3f36598a70c091f2a665f1">ILI9340_RDMADCTL</a>&#160;&#160;&#160;0x0B</td></tr>
-<tr class="separator:adf7057f83e3f36598a70c091f2a665f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b526be011a212273066b5f03fbc4e9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a6b526be011a212273066b5f03fbc4e9e">ILI9340_RDPIXFMT</a>&#160;&#160;&#160;0x0C</td></tr>
-<tr class="separator:a6b526be011a212273066b5f03fbc4e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30fb24972f8086889590847db0fa7689"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a30fb24972f8086889590847db0fa7689">ILI9340_RDIMGFMT</a>&#160;&#160;&#160;0x0A</td></tr>
-<tr class="separator:a30fb24972f8086889590847db0fa7689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd93f3e56eef12013eaf7fc20fd253de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#abd93f3e56eef12013eaf7fc20fd253de">ILI9340_RDSELFDIAG</a>&#160;&#160;&#160;0x0F</td></tr>
-<tr class="separator:abd93f3e56eef12013eaf7fc20fd253de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fd82759b3481c1f4d605b7a3cd65e43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a5fd82759b3481c1f4d605b7a3cd65e43">ILI9340_INVOFF</a>&#160;&#160;&#160;0x20</td></tr>
-<tr class="separator:a5fd82759b3481c1f4d605b7a3cd65e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae11e37fadbd8ca4413d2be0520cde961"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ae11e37fadbd8ca4413d2be0520cde961">ILI9340_INVON</a>&#160;&#160;&#160;0x21</td></tr>
-<tr class="separator:ae11e37fadbd8ca4413d2be0520cde961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84e5917123048df18a15542ce1dec21b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a84e5917123048df18a15542ce1dec21b">ILI9340_GAMMASET</a>&#160;&#160;&#160;0x26</td></tr>
-<tr class="separator:a84e5917123048df18a15542ce1dec21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af564fc904e486548fb8a92353326afdf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#af564fc904e486548fb8a92353326afdf">ILI9340_DISPOFF</a>&#160;&#160;&#160;0x28</td></tr>
-<tr class="separator:af564fc904e486548fb8a92353326afdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0461c3f1846674dc80879c79a1c542d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a0461c3f1846674dc80879c79a1c542d9">ILI9340_DISPON</a>&#160;&#160;&#160;0x29</td></tr>
-<tr class="separator:a0461c3f1846674dc80879c79a1c542d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e01979dc3f61a415025bea24c0c5d9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7e01979dc3f61a415025bea24c0c5d9a">ILI9340_CASET</a>&#160;&#160;&#160;0x2A</td></tr>
-<tr class="separator:a7e01979dc3f61a415025bea24c0c5d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a010497b5439622794c360b62db4b29f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a010497b5439622794c360b62db4b29f9">ILI9340_PASET</a>&#160;&#160;&#160;0x2B</td></tr>
-<tr class="separator:a010497b5439622794c360b62db4b29f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ef7aa86b71d5a663e667717f3beaeab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a3ef7aa86b71d5a663e667717f3beaeab">ILI9340_RAMWR</a>&#160;&#160;&#160;0x2C</td></tr>
-<tr class="separator:a3ef7aa86b71d5a663e667717f3beaeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a044c3ab1f6e2c593aa9f80967d894f30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a044c3ab1f6e2c593aa9f80967d894f30">ILI9340_RAMRD</a>&#160;&#160;&#160;0x2E</td></tr>
-<tr class="separator:a044c3ab1f6e2c593aa9f80967d894f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27fccd63c330fa6b289ede56ab46b7f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a27fccd63c330fa6b289ede56ab46b7f2">ILI9340_PTLAR</a>&#160;&#160;&#160;0x30</td></tr>
-<tr class="separator:a27fccd63c330fa6b289ede56ab46b7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a465d71b1a9ae050a8355e9ec4d6286de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a465d71b1a9ae050a8355e9ec4d6286de">ILI9340_MADCTL</a>&#160;&#160;&#160;0x36</td></tr>
-<tr class="separator:a465d71b1a9ae050a8355e9ec4d6286de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a656246c6573d2579593130cd6a210b09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a656246c6573d2579593130cd6a210b09">ILI9340_MADCTL_MY</a>&#160;&#160;&#160;0x80</td></tr>
-<tr class="separator:a656246c6573d2579593130cd6a210b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a989f48040239c828279c9f1cf411a065"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a989f48040239c828279c9f1cf411a065">ILI9340_MADCTL_MX</a>&#160;&#160;&#160;0x40</td></tr>
-<tr class="separator:a989f48040239c828279c9f1cf411a065"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3eff0f3a3f7045e7ddb8532eda04ce3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ae3eff0f3a3f7045e7ddb8532eda04ce3">ILI9340_MADCTL_MV</a>&#160;&#160;&#160;0x20</td></tr>
-<tr class="separator:ae3eff0f3a3f7045e7ddb8532eda04ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78fca80f29d95431decfe0d795f79d45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a78fca80f29d95431decfe0d795f79d45">ILI9340_MADCTL_ML</a>&#160;&#160;&#160;0x10</td></tr>
-<tr class="separator:a78fca80f29d95431decfe0d795f79d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0329b4850af68a0566f799db82e34030"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a0329b4850af68a0566f799db82e34030">ILI9340_MADCTL_RGB</a>&#160;&#160;&#160;0x00</td></tr>
-<tr class="separator:a0329b4850af68a0566f799db82e34030"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9806a88e312f1697a38d17f1fbfabbf6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a9806a88e312f1697a38d17f1fbfabbf6">ILI9340_MADCTL_BGR</a>&#160;&#160;&#160;0x08</td></tr>
-<tr class="separator:a9806a88e312f1697a38d17f1fbfabbf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b4ea8577fc252cd7eee49760ba5817e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a2b4ea8577fc252cd7eee49760ba5817e">ILI9340_MADCTL_MH</a>&#160;&#160;&#160;0x04</td></tr>
-<tr class="separator:a2b4ea8577fc252cd7eee49760ba5817e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220263b9363732d33c135bfc4a55baf7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a220263b9363732d33c135bfc4a55baf7">ILI9340_PIXFMT</a>&#160;&#160;&#160;0x3A</td></tr>
-<tr class="separator:a220263b9363732d33c135bfc4a55baf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4ea2662d873f1f403fda4a70c81df29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab4ea2662d873f1f403fda4a70c81df29">ILI9340_FRMCTR1</a>&#160;&#160;&#160;0xB1</td></tr>
-<tr class="separator:ab4ea2662d873f1f403fda4a70c81df29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7daa808b5caa8523e2e8aa5c892011b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7daa808b5caa8523e2e8aa5c892011b4">ILI9340_FRMCTR2</a>&#160;&#160;&#160;0xB2</td></tr>
-<tr class="separator:a7daa808b5caa8523e2e8aa5c892011b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2681227751847acb8ad29d0840da7263"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a2681227751847acb8ad29d0840da7263">ILI9340_FRMCTR3</a>&#160;&#160;&#160;0xB3</td></tr>
-<tr class="separator:a2681227751847acb8ad29d0840da7263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4656cca1b86dff4f1a70be2025f6c515"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a4656cca1b86dff4f1a70be2025f6c515">ILI9340_INVCTR</a>&#160;&#160;&#160;0xB4</td></tr>
-<tr class="separator:a4656cca1b86dff4f1a70be2025f6c515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6bbc48afd3d0fcd03537dbc6a3b522"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aee6bbc48afd3d0fcd03537dbc6a3b522">ILI9340_DFUNCTR</a>&#160;&#160;&#160;0xB6</td></tr>
-<tr class="separator:aee6bbc48afd3d0fcd03537dbc6a3b522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fa2acfda84056463222b91e2da1bc1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a4fa2acfda84056463222b91e2da1bc1e">ILI9340_PWCTR1</a>&#160;&#160;&#160;0xC0</td></tr>
-<tr class="separator:a4fa2acfda84056463222b91e2da1bc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a120bb3d77527ee6d1aeb89d1f3be6bcc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a120bb3d77527ee6d1aeb89d1f3be6bcc">ILI9340_PWCTR2</a>&#160;&#160;&#160;0xC1</td></tr>
-<tr class="separator:a120bb3d77527ee6d1aeb89d1f3be6bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa957a28181c7f856828166d4dd31c3ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aa957a28181c7f856828166d4dd31c3ce">ILI9340_PWCTR3</a>&#160;&#160;&#160;0xC2</td></tr>
-<tr class="separator:aa957a28181c7f856828166d4dd31c3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f37f7fc6569a99e613dd172e55caa34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7f37f7fc6569a99e613dd172e55caa34">ILI9340_PWCTR4</a>&#160;&#160;&#160;0xC3</td></tr>
-<tr class="separator:a7f37f7fc6569a99e613dd172e55caa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d5d5bf854821495becb67c28aaf1e3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a2d5d5bf854821495becb67c28aaf1e3f">ILI9340_PWCTR5</a>&#160;&#160;&#160;0xC4</td></tr>
-<tr class="separator:a2d5d5bf854821495becb67c28aaf1e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80c62fcbcc92f2b93104f1f6d48655bc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a80c62fcbcc92f2b93104f1f6d48655bc">ILI9340_VMCTR1</a>&#160;&#160;&#160;0xC5</td></tr>
-<tr class="separator:a80c62fcbcc92f2b93104f1f6d48655bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2643d2b794fa125e2fadaeba203ff91e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a2643d2b794fa125e2fadaeba203ff91e">ILI9340_VMCTR2</a>&#160;&#160;&#160;0xC7</td></tr>
-<tr class="separator:a2643d2b794fa125e2fadaeba203ff91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9de893c84f6585b04300a2cd9e8f55eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a9de893c84f6585b04300a2cd9e8f55eb">ILI9340_RDID1</a>&#160;&#160;&#160;0xDA</td></tr>
-<tr class="separator:a9de893c84f6585b04300a2cd9e8f55eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f120c9c64236f3888aeb3c17ac50ef2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a5f120c9c64236f3888aeb3c17ac50ef2">ILI9340_RDID2</a>&#160;&#160;&#160;0xDB</td></tr>
-<tr class="separator:a5f120c9c64236f3888aeb3c17ac50ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa4fb02cc6f0db526ee4a6ac5761f800"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aaa4fb02cc6f0db526ee4a6ac5761f800">ILI9340_RDID3</a>&#160;&#160;&#160;0xDC</td></tr>
-<tr class="separator:aaa4fb02cc6f0db526ee4a6ac5761f800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdaf48a96ae82bf891791edad929186f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#abdaf48a96ae82bf891791edad929186f">ILI9340_RDID4</a>&#160;&#160;&#160;0xDD</td></tr>
-<tr class="separator:abdaf48a96ae82bf891791edad929186f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfd48cef63b67847fddbc8df4f3c9531"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#adfd48cef63b67847fddbc8df4f3c9531">ILI9340_GMCTRP1</a>&#160;&#160;&#160;0xE0</td></tr>
-<tr class="separator:adfd48cef63b67847fddbc8df4f3c9531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff44ad8ae1c1d6bdfde384a0dc720035"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aff44ad8ae1c1d6bdfde384a0dc720035">ILI9340_GMCTRN1</a>&#160;&#160;&#160;0xE1</td></tr>
-<tr class="separator:aff44ad8ae1c1d6bdfde384a0dc720035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79156b82f5f7f584a271acf3d3a4af2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a79156b82f5f7f584a271acf3d3a4af2d">ILI9340_BLACK</a>&#160;&#160;&#160;0x0000</td></tr>
+<tr class="memitem:a79156b82f5f7f584a271acf3d3a4af2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79156b82f5f7f584a271acf3d3a4af2d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_BLACK</b>&#160;&#160;&#160;0x0000</td></tr>
 <tr class="separator:a79156b82f5f7f584a271acf3d3a4af2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0cd3e4224c4a575430fb8a09122b156"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ad0cd3e4224c4a575430fb8a09122b156">ILI9340_BLUE</a>&#160;&#160;&#160;0x001F</td></tr>
+<tr class="memitem:ad0cd3e4224c4a575430fb8a09122b156"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0cd3e4224c4a575430fb8a09122b156"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_BLUE</b>&#160;&#160;&#160;0x001F</td></tr>
 <tr class="separator:ad0cd3e4224c4a575430fb8a09122b156"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeffcb3c81abccc7feb737690813cb5b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aeffcb3c81abccc7feb737690813cb5b7">ILI9340_RED</a>&#160;&#160;&#160;0xF800</td></tr>
+<tr class="memitem:aeffcb3c81abccc7feb737690813cb5b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeffcb3c81abccc7feb737690813cb5b7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_RED</b>&#160;&#160;&#160;0xF800</td></tr>
 <tr class="separator:aeffcb3c81abccc7feb737690813cb5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac266d2496876434765aefb69b2dca767"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ac266d2496876434765aefb69b2dca767">ILI9340_GREEN</a>&#160;&#160;&#160;0x07E0</td></tr>
+<tr class="memitem:ac266d2496876434765aefb69b2dca767"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac266d2496876434765aefb69b2dca767"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_GREEN</b>&#160;&#160;&#160;0x07E0</td></tr>
 <tr class="separator:ac266d2496876434765aefb69b2dca767"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac81e19c57bcbe5115fe6668667bf93e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ac81e19c57bcbe5115fe6668667bf93e4">ILI9340_CYAN</a>&#160;&#160;&#160;0x07FF</td></tr>
+<tr class="memitem:ac81e19c57bcbe5115fe6668667bf93e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac81e19c57bcbe5115fe6668667bf93e4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_CYAN</b>&#160;&#160;&#160;0x07FF</td></tr>
 <tr class="separator:ac81e19c57bcbe5115fe6668667bf93e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0243c9899a08e00caf6ae51b0c5950d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ad0243c9899a08e00caf6ae51b0c5950d">ILI9340_MAGENTA</a>&#160;&#160;&#160;0xF81F</td></tr>
+<tr class="memitem:ad0243c9899a08e00caf6ae51b0c5950d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0243c9899a08e00caf6ae51b0c5950d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_MAGENTA</b>&#160;&#160;&#160;0xF81F</td></tr>
 <tr class="separator:ad0243c9899a08e00caf6ae51b0c5950d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503e96e72ddb4c1631de35fdee887c3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a503e96e72ddb4c1631de35fdee887c3b">ILI9340_YELLOW</a>&#160;&#160;&#160;0xFFE0</td></tr>
+<tr class="memitem:a503e96e72ddb4c1631de35fdee887c3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a503e96e72ddb4c1631de35fdee887c3b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_YELLOW</b>&#160;&#160;&#160;0xFFE0</td></tr>
 <tr class="separator:a503e96e72ddb4c1631de35fdee887c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26abe18d3f9c8b13d8f5994f05e8e3dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a26abe18d3f9c8b13d8f5994f05e8e3dd">ILI9340_WHITE</a>&#160;&#160;&#160;0xFFFF</td></tr>
+<tr class="memitem:a26abe18d3f9c8b13d8f5994f05e8e3dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26abe18d3f9c8b13d8f5994f05e8e3dd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ILI9340_WHITE</b>&#160;&#160;&#160;0xFFFF</td></tr>
 <tr class="separator:a26abe18d3f9c8b13d8f5994f05e8e3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac23c0047c8aba00b8c269fc2a181959"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aac23c0047c8aba00b8c269fc2a181959">PBCLK</a>&#160;&#160;&#160;40000000</td></tr>
-<tr class="separator:aac23c0047c8aba00b8c269fc2a181959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93946138cb5268e08987a702fab3d63d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a93946138cb5268e08987a702fab3d63d">SPI_freq</a>&#160;&#160;&#160;20000000</td></tr>
-<tr class="separator:a93946138cb5268e08987a702fab3d63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9db37805d3641b614beb747146f7b31b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a9db37805d3641b614beb747146f7b31b">tabspace</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:a9db37805d3641b614beb747146f7b31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acee96af0727b51ea154fe8146064c707"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#acee96af0727b51ea154fe8146064c707">dTime_ms</a>&#160;&#160;&#160;<a class="el" href="tft__master_8h.html#aac23c0047c8aba00b8c269fc2a181959">PBCLK</a>/2000</td></tr>
-<tr class="separator:acee96af0727b51ea154fe8146064c707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcfb3dd971efcab3608ea0afe2973b62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#adcfb3dd971efcab3608ea0afe2973b62">dTime_us</a>&#160;&#160;&#160;<a class="el" href="tft__master_8h.html#aac23c0047c8aba00b8c269fc2a181959">PBCLK</a>/2000000</td></tr>
-<tr class="separator:adcfb3dd971efcab3608ea0afe2973b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b242fb64fe84ada33e16d40ed10a1ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a9b242fb64fe84ada33e16d40ed10a1ce">tft_init_hw</a> (void)</td></tr>
-<tr class="separator:a9b242fb64fe84ada33e16d40ed10a1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c0e7fec074eeede53a82f4379a4a55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a04c0e7fec074eeede53a82f4379a4a55">tft_spiwrite</a> (unsigned char c)</td></tr>
-<tr class="separator:a04c0e7fec074eeede53a82f4379a4a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3439bb636370fa9db5e33a05659c0be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab3439bb636370fa9db5e33a05659c0be">tft_spiwrite8</a> (unsigned char c)</td></tr>
-<tr class="separator:ab3439bb636370fa9db5e33a05659c0be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca61d573631f37e5ac6bfafbd6fb5d63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#aca61d573631f37e5ac6bfafbd6fb5d63">tft_spiwrite16</a> (unsigned short c)</td></tr>
-<tr class="separator:aca61d573631f37e5ac6bfafbd6fb5d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a527c7d8a263795a9aa789815fe1ccb83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a527c7d8a263795a9aa789815fe1ccb83">tft_writecommand</a> (unsigned char c)</td></tr>
-<tr class="separator:a527c7d8a263795a9aa789815fe1ccb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a327833988f53463bae2c9a429599ffe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a327833988f53463bae2c9a429599ffe1">tft_writecommand16</a> (unsigned short c)</td></tr>
-<tr class="separator:a327833988f53463bae2c9a429599ffe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a219371f00638e37fa6f83c64cd46641c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a219371f00638e37fa6f83c64cd46641c">tft_writedata</a> (unsigned char c)</td></tr>
-<tr class="separator:a219371f00638e37fa6f83c64cd46641c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a12e7e707ca882e202559b443206999"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a1a12e7e707ca882e202559b443206999">tft_writedata16</a> (unsigned short c)</td></tr>
-<tr class="separator:a1a12e7e707ca882e202559b443206999"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab689b27d6a7c99b2b00a821a4ba48fe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab689b27d6a7c99b2b00a821a4ba48fe1">tft_commandList</a> (unsigned char *addr)</td></tr>
-<tr class="separator:ab689b27d6a7c99b2b00a821a4ba48fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b3f44943fbe8aa01b890c9c8ed19286"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a3b3f44943fbe8aa01b890c9c8ed19286">tft_begin</a> (void)</td></tr>
-<tr class="separator:a3b3f44943fbe8aa01b890c9c8ed19286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e354bd0a3a539957235442fd904888f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a8e354bd0a3a539957235442fd904888f">tft_setAddrWindow</a> (unsigned short x0, unsigned short y0, unsigned short x1, unsigned short y1)</td></tr>
-<tr class="separator:a8e354bd0a3a539957235442fd904888f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a443d355f25d9c2b02b982446bb026235"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a443d355f25d9c2b02b982446bb026235">tft_pushColor</a> (unsigned short color)</td></tr>
-<tr class="separator:a443d355f25d9c2b02b982446bb026235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afecb0252c2649db8482c52ef9201471a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#afecb0252c2649db8482c52ef9201471a">tft_init</a> (void)</td></tr>
+<tr class="separator:afecb0252c2649db8482c52ef9201471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a355ae44a0a3aa03b4147501bfe27ed53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a355ae44a0a3aa03b4147501bfe27ed53">tft_drawPixel</a> (short x, short y, unsigned short color)</td></tr>
 <tr class="separator:a355ae44a0a3aa03b4147501bfe27ed53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdc9f920bfdfc30c96be2a528d6767a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#acdc9f920bfdfc30c96be2a528d6767a2">tft_drawFastVLine</a> (short x, short y, short h, unsigned short color)</td></tr>
@@ -291,1192 +141,30 @@ Functions</h2></td></tr>
 <tr class="separator:a42fb43b50e7a601006d91f8e1b83e8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ccd3e00b85662e923a4ffa3d076ff1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a1ccd3e00b85662e923a4ffa3d076ff1e">tft_setRotation</a> (unsigned char m)</td></tr>
 <tr class="separator:a1ccd3e00b85662e923a4ffa3d076ff1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835ab5a7831703f8421c38f2d2401623"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a835ab5a7831703f8421c38f2d2401623">tft_spiread</a> (void)</td></tr>
-<tr class="separator:a835ab5a7831703f8421c38f2d2401623"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f8c23473a38fa6ec49ad84a24d2aeb7"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a3f8c23473a38fa6ec49ad84a24d2aeb7">tft_readdata</a> (void)</td></tr>
-<tr class="separator:a3f8c23473a38fa6ec49ad84a24d2aeb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7c4dbf076eeb0ebe942d4e0708c6b97"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab7c4dbf076eeb0ebe942d4e0708c6b97">tft_readcommand8</a> (unsigned char c)</td></tr>
-<tr class="separator:ab7c4dbf076eeb0ebe942d4e0708c6b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7debcd23de53acc499ffd788e544b329"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#a7debcd23de53acc499ffd788e544b329">delay_ms</a> (unsigned long)</td></tr>
-<tr class="separator:a7debcd23de53acc499ffd788e544b329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad43a1a0b582321ff872dd103846c53a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ad43a1a0b582321ff872dd103846c53a9">delay_us</a> (unsigned long)</td></tr>
-<tr class="separator:ad43a1a0b582321ff872dd103846c53a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:abd4e512111f9729511405338ca8dd4b1"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#abd4e512111f9729511405338ca8dd4b1">_width</a></td></tr>
+<tr class="memitem:abd4e512111f9729511405338ca8dd4b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd4e512111f9729511405338ca8dd4b1"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>_width</b></td></tr>
 <tr class="separator:abd4e512111f9729511405338ca8dd4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab27205cb7272fc30625866490b176186"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tft__master_8h.html#ab27205cb7272fc30625866490b176186">_height</a></td></tr>
+<tr class="memitem:ab27205cb7272fc30625866490b176186"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab27205cb7272fc30625866490b176186"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>_height</b></td></tr>
 <tr class="separator:ab27205cb7272fc30625866490b176186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="abb88d1028d4ba283c740eb38bfa1042f"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A PIC32 library for the Adafruit 2.2" TFT liquid crystal display. </p>
+<p>Intended for use with the PIC32MX250F128B.</p>
+<p>Code rewritten from the Adafruit Arduino library for the TFT by Syed Tahmid Mahbub.</p>
+<p>The TFT is Adafruit product 1480.</p>
+<p>This file includes the text header from the original Adafruit library, followed by the code.</p>
+<dl class="section author"><dt>Authors</dt><dd>Syed Tahmid Mahbub, Jeff Lutgen (minor modifications) </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="afecb0252c2649db8482c52ef9201471a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _cs&#160;&#160;&#160;LATBbits.LATB1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00034">34</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2e3d07893c1519607ec3ea47d4ffff00"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _cs_high</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBSET = 2;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00036">36</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afa98ea007cae1d40bff46c756a397645"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _cs_low</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBCLR = 2;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00037">37</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a420f506f991452ba06b77131db344fcf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _dc&#160;&#160;&#160;LATBbits.LATB0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00029">29</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a57af9ca513aa1cf1fac5cd96078c74b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _dc_high</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBSET = 1;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00031">31</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7ef7670f36adc526d063d17533d8b71c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _dc_low</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBCLR = 1;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00032">32</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7e476b569a3714860cc40d57acaba880"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _DISABLE_OPENADC10_CONFIGPORT_WARNING</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00024">24</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abbb7e6f2900256e7994d1db0bdc3419f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _rst&#160;&#160;&#160;LATBbits.LATB2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00039">39</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a68d868952c4b642393b72ffbae3dc319"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _rst_high</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBSET = 4;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00041">41</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a288629a9ef5b08a70439edd2905620b6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _rst_low</td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;{LATBCLR = 4;}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00042">42</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0c5ad667ee8b3fc41e20f88fef4093d8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _SUPPRESS_PLIB_WARNING</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00023">23</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acee96af0727b51ea154fe8146064c707"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define dTime_ms&#160;&#160;&#160;<a class="el" href="tft__master_8h.html#aac23c0047c8aba00b8c269fc2a181959">PBCLK</a>/2000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00132">132</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adcfb3dd971efcab3608ea0afe2973b62"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define dTime_us&#160;&#160;&#160;<a class="el" href="tft__master_8h.html#aac23c0047c8aba00b8c269fc2a181959">PBCLK</a>/2000000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00133">133</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a79156b82f5f7f584a271acf3d3a4af2d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_BLACK&#160;&#160;&#160;0x0000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00115">115</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad0cd3e4224c4a575430fb8a09122b156"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_BLUE&#160;&#160;&#160;0x001F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00116">116</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7e01979dc3f61a415025bea24c0c5d9a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_CASET&#160;&#160;&#160;0x2A</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00069">69</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac81e19c57bcbe5115fe6668667bf93e4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_CYAN&#160;&#160;&#160;0x07FF</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00119">119</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aee6bbc48afd3d0fcd03537dbc6a3b522"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_DFUNCTR&#160;&#160;&#160;0xB6</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00092">92</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af564fc904e486548fb8a92353326afdf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_DISPOFF&#160;&#160;&#160;0x28</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00066">66</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0461c3f1846674dc80879c79a1c542d9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_DISPON&#160;&#160;&#160;0x29</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00067">67</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab4ea2662d873f1f403fda4a70c81df29"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_FRMCTR1&#160;&#160;&#160;0xB1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00088">88</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7daa808b5caa8523e2e8aa5c892011b4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_FRMCTR2&#160;&#160;&#160;0xB2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00089">89</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2681227751847acb8ad29d0840da7263"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_FRMCTR3&#160;&#160;&#160;0xB3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00090">90</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a84e5917123048df18a15542ce1dec21b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_GAMMASET&#160;&#160;&#160;0x26</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00065">65</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aff44ad8ae1c1d6bdfde384a0dc720035"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_GMCTRN1&#160;&#160;&#160;0xE1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00108">108</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adfd48cef63b67847fddbc8df4f3c9531"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_GMCTRP1&#160;&#160;&#160;0xE0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00107">107</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac266d2496876434765aefb69b2dca767"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_GREEN&#160;&#160;&#160;0x07E0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00118">118</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4656cca1b86dff4f1a70be2025f6c515"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_INVCTR&#160;&#160;&#160;0xB4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00091">91</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5fd82759b3481c1f4d605b7a3cd65e43"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_INVOFF&#160;&#160;&#160;0x20</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00063">63</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae11e37fadbd8ca4413d2be0520cde961"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_INVON&#160;&#160;&#160;0x21</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00064">64</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a465d71b1a9ae050a8355e9ec4d6286de"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL&#160;&#160;&#160;0x36</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00075">75</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9806a88e312f1697a38d17f1fbfabbf6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_BGR&#160;&#160;&#160;0x08</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00083">83</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2b4ea8577fc252cd7eee49760ba5817e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_MH&#160;&#160;&#160;0x04</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00084">84</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a78fca80f29d95431decfe0d795f79d45"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_ML&#160;&#160;&#160;0x10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00081">81</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae3eff0f3a3f7045e7ddb8532eda04ce3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_MV&#160;&#160;&#160;0x20</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00080">80</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a989f48040239c828279c9f1cf411a065"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_MX&#160;&#160;&#160;0x40</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00079">79</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a656246c6573d2579593130cd6a210b09"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_MY&#160;&#160;&#160;0x80</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00078">78</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0329b4850af68a0566f799db82e34030"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MADCTL_RGB&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00082">82</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad0243c9899a08e00caf6ae51b0c5950d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_MAGENTA&#160;&#160;&#160;0xF81F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00120">120</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac863bb7a9be03831df0ba0364a8a97cb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_NOP&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00047">47</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b657a72fab6a9b1122bcebc7c5ca46f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_NORON&#160;&#160;&#160;0x13</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00055">55</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a010497b5439622794c360b62db4b29f9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PASET&#160;&#160;&#160;0x2B</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00070">70</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a220263b9363732d33c135bfc4a55baf7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PIXFMT&#160;&#160;&#160;0x3A</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00086">86</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a27fccd63c330fa6b289ede56ab46b7f2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PTLAR&#160;&#160;&#160;0x30</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00074">74</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a81d41c46ba7dba54b50b2059c5c2eac2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PTLON&#160;&#160;&#160;0x12</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00054">54</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4fa2acfda84056463222b91e2da1bc1e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PWCTR1&#160;&#160;&#160;0xC0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00094">94</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a120bb3d77527ee6d1aeb89d1f3be6bcc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PWCTR2&#160;&#160;&#160;0xC1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00095">95</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa957a28181c7f856828166d4dd31c3ce"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PWCTR3&#160;&#160;&#160;0xC2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00096">96</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7f37f7fc6569a99e613dd172e55caa34"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PWCTR4&#160;&#160;&#160;0xC3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00097">97</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d5d5bf854821495becb67c28aaf1e3f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_PWCTR5&#160;&#160;&#160;0xC4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00098">98</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a044c3ab1f6e2c593aa9f80967d894f30"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RAMRD&#160;&#160;&#160;0x2E</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00072">72</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3ef7aa86b71d5a663e667717f3beaeab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RAMWR&#160;&#160;&#160;0x2C</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00071">71</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adc48379fcf21e8dc32f7717c7e212dac"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDDID&#160;&#160;&#160;0x04</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00049">49</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a687b3d6c603556727b8e67807577a884"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDDST&#160;&#160;&#160;0x09</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00050">50</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9de893c84f6585b04300a2cd9e8f55eb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDID1&#160;&#160;&#160;0xDA</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00102">102</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5f120c9c64236f3888aeb3c17ac50ef2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDID2&#160;&#160;&#160;0xDB</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00103">103</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aaa4fb02cc6f0db526ee4a6ac5761f800"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDID3&#160;&#160;&#160;0xDC</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00104">104</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abdaf48a96ae82bf891791edad929186f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDID4&#160;&#160;&#160;0xDD</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00105">105</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a30fb24972f8086889590847db0fa7689"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDIMGFMT&#160;&#160;&#160;0x0A</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00060">60</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adf7057f83e3f36598a70c091f2a665f1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDMADCTL&#160;&#160;&#160;0x0B</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00058">58</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a59d28df3c8094eb8bcf4c63680d40d45"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDMODE&#160;&#160;&#160;0x0A</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00057">57</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6b526be011a212273066b5f03fbc4e9e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDPIXFMT&#160;&#160;&#160;0x0C</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00059">59</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abd93f3e56eef12013eaf7fc20fd253de"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RDSELFDIAG&#160;&#160;&#160;0x0F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00061">61</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aeffcb3c81abccc7feb737690813cb5b7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_RED&#160;&#160;&#160;0xF800</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00117">117</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af4fa63e6b0a3adf9820186d0648ef66d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_SLPIN&#160;&#160;&#160;0x10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00052">52</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afba5653a52aa9cb8abf603e7acd99216"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_SLPOUT&#160;&#160;&#160;0x11</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00053">53</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acd920a75b15c558a3180ad4cd8bcbc35"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_SWRESET&#160;&#160;&#160;0x01</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00048">48</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab64cf78791c33f3aa14bc146fa160f4a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_TFTHEIGHT&#160;&#160;&#160;320</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00045">45</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac0931419af5ccb4748234052971457cf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_TFTWIDTH&#160;&#160;&#160;240</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00044">44</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a80c62fcbcc92f2b93104f1f6d48655bc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_VMCTR1&#160;&#160;&#160;0xC5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00099">99</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2643d2b794fa125e2fadaeba203ff91e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_VMCTR2&#160;&#160;&#160;0xC7</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00100">100</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a26abe18d3f9c8b13d8f5994f05e8e3dd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_WHITE&#160;&#160;&#160;0xFFFF</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00122">122</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a503e96e72ddb4c1631de35fdee887c3b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ILI9340_YELLOW&#160;&#160;&#160;0xFFE0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00121">121</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aac23c0047c8aba00b8c269fc2a181959"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PBCLK&#160;&#160;&#160;40000000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00125">125</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a93946138cb5268e08987a702fab3d63d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SPI_freq&#160;&#160;&#160;20000000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00128">128</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9db37805d3641b614beb747146f7b31b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define tabspace&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00130">130</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa7463faaf3d391e6ec553f5847ee9215"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TRIS_cs&#160;&#160;&#160;TRISBbits.TRISB1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00035">35</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afbee686e0f6c8d129dbc41373330f188"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TRIS_dc&#160;&#160;&#160;TRISBbits.TRISB0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00030">30</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5acbede1d2235d780c6189cc15d226e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TRIS_rst&#160;&#160;&#160;TRISBbits.TRISB2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00040">40</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a7debcd23de53acc499ffd788e544b329"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void delay_ms </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>long</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00540">540</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad43a1a0b582321ff872dd103846c53a9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void delay_us </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>long</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00555">555</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3b3f44943fbe8aa01b890c9c8ed19286"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_begin </td>
+          <td class="memname">void tft_init </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1484,75 +172,24 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00123">123</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a42fb43b50e7a601006d91f8e1b83e8f0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned short tft_Color565 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00499">499</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+<p>Initializes the TFT display and configures SPI1 module on PIC to communicate with TFT.</p>
+<p>Pins used: </p><pre class="fragment">TFT     PIC
+----    ---------------------
+MOSI    RB11 (pin 22) --&gt; SDO1
+SCK     RB14 (pin 25) --&gt; SCK1
+D/C     RB0  (pin 4)
+CS      RB1  (pin 5)
+RST     RB2  (pin 6)
+</pre><p>In addition, connect TFT's VIN to 3.3V supply and GND to ground; can leave BL (backlight power) disconnected, since TFT screen is bright enough without backlight. </p>
 
 </div>
 </div>
-<a class="anchor" id="ab689b27d6a7c99b2b00a821a4ba48fe1"></a>
+<a class="anchor" id="a355ae44a0a3aa03b4147501bfe27ed53"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tft_commandList </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>addr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a76c3a9bfd8cf7da98689bf9861ac1903"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_drawFastHLine </td>
+          <td class="memname">void tft_drawPixel </td>
           <td>(</td>
           <td class="paramtype">short&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -1562,12 +199,6 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype">short&#160;</td>
           <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1582,8 +213,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00428">428</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+<p>Draws a pixel at location (x,y) in the given color. </p>
 
 </div>
 </div>
@@ -1622,17 +252,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00397">397</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+<p>Draws a vertical line at from (x, y) to (x, y+h-1) in the given color. </p>
 
 </div>
 </div>
-<a class="anchor" id="a355ae44a0a3aa03b4147501bfe27ed53"></a>
+<a class="anchor" id="a76c3a9bfd8cf7da98689bf9861ac1903"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tft_drawPixel </td>
+          <td class="memname">void tft_drawFastHLine </td>
           <td>(</td>
           <td class="paramtype">short&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -1642,6 +271,12 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype">short&#160;</td>
           <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1656,8 +291,24 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Draws a horizontal line from (x, y) to (x+w-1, y) in the given color. </p>
 
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00286">286</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ad271beefcd2efbcf024fd5cac2b87953"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tft_fillScreen </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fills the entire screen with the given color. </p>
 
 </div>
 </div>
@@ -1702,124 +353,34 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00465">465</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+<p>Draws a filled rectangle with top-left vertex (x,y), width w, height h, in the given color. </p>
 
 </div>
 </div>
-<a class="anchor" id="ad271beefcd2efbcf024fd5cac2b87953"></a>
+<a class="anchor" id="a42fb43b50e7a601006d91f8e1b83e8f0"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void tft_fillScreen </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00455">455</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9b242fb64fe84ada33e16d40ed10a1ce"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_init_hw </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00039">39</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a443d355f25d9c2b02b982446bb026235"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_pushColor </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>color</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00272">272</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab7c4dbf076eeb0ebe942d4e0708c6b97"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char tft_readcommand8 </td>
+          <td class="memname">unsigned short tft_Color565 </td>
           <td>(</td>
           <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3f8c23473a38fa6ec49ad84a24d2aeb7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char tft_readdata </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8e354bd0a3a539957235442fd904888f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_setAddrWindow </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>x0</em>, </td>
+          <td class="paramname"><em>r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>y0</em>, </td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>x1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>y1</em>&#160;</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1827,9 +388,13 @@ Variables</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00258">258</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
+<p>Returns a 16-bit (5-6-5 packed RGB) color value approximating the given 24-bit color (r, g, b, 8 bits each). </p>
 
 </div>
 </div>
@@ -1846,186 +411,18 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00512">512</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a835ab5a7831703f8421c38f2d2401623"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char tft_spiread </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a04c0e7fec074eeede53a82f4379a4a55"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_spiwrite </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00048">48</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aca61d573631f37e5ac6bfafbd6fb5d63"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_spiwrite16 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00068">68</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab3439bb636370fa9db5e33a05659c0be"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_spiwrite8 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00054">54</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a527c7d8a263795a9aa789815fe1ccb83"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_writecommand </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00075">75</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a327833988f53463bae2c9a429599ffe1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_writecommand16 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00085">85</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a219371f00638e37fa6f83c64cd46641c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_writedata </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00096">96</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1a12e7e707ca882e202559b443206999"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void tft_writedata16 </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8c_source.html#l00106">106</a> of file <a class="el" href="tft__master_8c_source.html">tft_master.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="ab27205cb7272fc30625866490b176186"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned short _height</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00158">158</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abd4e512111f9729511405338ca8dd4b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned short _width</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="tft__master_8h_source.html#l00158">158</a> of file <a class="el" href="tft__master_8h_source.html">tft_master.h</a>.</p>
+<p>Sets the rotation of the display to the given value (0, 1, 2, or 3).</p>
+<p>0: portrait, pins at bottom(?) <br />
+ 1: landscape, pins at right <br />
+ 2: portrait, pins at top <br />
+ 3: landscape, pins at left </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:31:37 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

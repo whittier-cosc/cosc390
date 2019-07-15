@@ -1,4 +1,4 @@
-/*!
+/*
  *  @file   io_expander.c
  *
  *  @brief  A PIC32 library for interfacing with the MCP23S17 I/O expander
@@ -6,6 +6,10 @@
  *  @authors    Sean Carroll,
  *              Bruce Land,
  *              Jeff Lutgen
+ *
+ *  The ports on the MCP23S17 are named GPA0..GPA7 and GPB0..GPB7, but
+ *  we rename these to C0..C7 and D0..D7, respectively, to avoid confusion
+ *  with the PIC's I/O ports.
  */
 
 #define _SUPPRESS_PLIB_WARNING
@@ -16,34 +20,41 @@
 #include "io_expander.h"
 
 #define IOE_SPI_CHN     SPI_CHANNEL2
-#define IOE_SET_CS()    mPORTBSetBits(BIT_9)
-#define IOE_CLEAR_CS()  mPORTBClearBits(BIT_9)
+#define IOE_SET_CS()    (mPORTBSetBits(BIT_9))
+#define IOE_CLEAR_CS()  (mPORTBClearBits(BIT_9))
 
 // Change the SPI bit modes on the fly, mid-transaction if necessary
-static inline void SPI_Mode16(void){  // configure SPI2 for 16-bit mode
+static inline void SPI_Mode16(void) {  // configure SPI2 for 16-bit mode
     SPI2CONSET = 0x400;
     SPI2CONCLR = 0x800;
 }
 
-static inline void SPI_Mode8(void){   // configure SPI2 for 8-bit mode
+static inline void SPI_Mode8(void) {   // configure SPI2 for 8-bit mode
     SPI2CONCLR = 0x400;
     SPI2CONCLR = 0x800;
 }
 
-static inline void SPI_Mode32(void){  // configure SPI2 for 32-bit mode
+static inline void SPI_Mode32(void) {  // configure SPI2 for 32-bit mode
     SPI2CONCLR = 0x400;
     SPI2CONSET = 0x800;
 }
 
-/*!
- *  @brief  Initializes the MCP23S17 I/O expander and configures one of the
- *          PIC's SPI modules for communication with the I/O expander
+/**
+ *  Initializes the MCP23S17 I/O expander and configures one of the
+ *  PIC's SPI modules for communication with the I/O expander.
  *
- *          Pin mappings:
- *              RPB5 (pin 14) --> SDO2 (MOSI)
- *              RPA4 (pin 12) --> SDI2 (MISO)
+ *  Specifically, initializes and enables SPI2 in 8-bit mode, setting the
+ *  SPI clock divisor for PBCLK to 4, which gives an SPI clock rate of
+ *  10MHz SPI clock (the fastest possible for the MCP23S17).
  *
- *          Uses RB9 (pin 18) as the chip select (CS) line.
+ *  Pins used on PIC:
+ *
+ *      CS:  RB9           (Pin 18)
+ *      SCK: SCK2          (Pin 26)
+ *      SDI: RPB2 --> SDI2 (Pin  6)
+ *      SDO: RPB5 --> SDO2 (Pin 14)
+ *
+ *
  */
 void ioe_init() {
     mPORTBSetPinsDigitalOut(BIT_9); // use RPB9 (pin 18) as CS
@@ -90,136 +101,96 @@ static unsigned char readBits(unsigned char addr, unsigned char bitmask){
     }
 }
 
-/*!
- *  @brief Sets a given collection of Port C pins as outputs
- *
- *  @param bitmask
- *              the Port C pins to set as outputs
+/**
+ *  Sets the given Port C pins to be outputs
  */
 void ioe_PortCSetPinsOut(unsigned char bitmask){
-    clearBits(IODIRY, bitmask);
+    clearBits(IODIRC, bitmask);
 }
 
-/*!
- *  @brief Sets a given collection of Port D pins as outputs
- *
- *  @param bitmask
- *              the Port D pins to set as outputs
+/**
+ *  Sets the given Port D pins to be outputs
  */
 void ioe_PortDSetPinsOut(unsigned char bitmask){
-    clearBits(IODIRZ, bitmask);
+    clearBits(IODIRD, bitmask);
 }
 
-/*!
- *  @brief Sets a given collection of Port C pins as inputs
- *
- *  @param bitmask
- *              the Port C pins to set as inputs
+/**
+ *  Sets the given Port C pins to be inputs
  */
 void ioe_PortCSetPinsIn(unsigned char bitmask){
-    setBits(IODIRY, bitmask);
+    setBits(IODIRC, bitmask);
 }
 
-/*!
- *  @brief Sets a given collection of Port D pins as inputs
- *
- *  @param bitmask
- *              the Port D pins to set as inputs
+/**
+ *  Sets the given Port D pins to be inputs
  */
 void ioe_PortDSetPinsIn(unsigned char bitmask){
-    setBits(IODIRZ, bitmask);
+    setBits(IODIRD, bitmask);
 }
 
-/*!
- *  @brief Enables interrupts for a given collection of Port C pins
- *
- *  @param bitmask
- *              the Port C pins for which to enable interrupts
+/**
+ *  Enables interrupts for the given Port C pins
  */
 void ioe_PortCIntEnable(unsigned char bitmask){
-    setBits(GPINTENY, bitmask);
+    setBits(GPINTENC, bitmask);
 }
 
-/*!
- *  @brief Enables interrupts for a given collection of Port D pins
- *
- *  @param bitmask
- *              the Port D pins for which to enable interrupts
+/**
+ *  Enables interrupts the given Port D pins
  */
 void ioe_PortDIntEnable(unsigned char bitmask){
-    setBits(GPINTENZ, bitmask);
+    setBits(GPINTEND, bitmask);
 }
 
-/*!
- *  @brief Disables interrupts for a given collection of Port C pins
- *
- *  @param bitmask
- *              the Port C pins for which to disable interrupts
+/**
+ *  Disables interrupts for the given Port C pins
  */
 void ioe_PortCIntDisable(unsigned char bitmask){
-    clearBits(GPINTENY, bitmask);
+    clearBits(GPINTENC, bitmask);
 }
 
-/*!
- *  @brief Disables interrupts for a given collection of Port D pins
- *
- *  @param bitmask
- *              the Port D pins for which to disable interrupts
+/**
+ *  Disables interrupts for the given Port D pins
  */
 void ioe_PortDIntDisable(unsigned char bitmask){
-    clearBits(GPINTENZ, bitmask);
+    clearBits(GPINTEND, bitmask);
 }
 
-/*!
- *  @brief Enables the internal pull-up resistor on a given collection
- *         of Port C pins
- *
- *  @param bitmask
- *              the Port C pins on which to enable the internal pull-up resistor
+/**
+ *  Enables the internal pull-up resistor on the given Port C pins
  */
 void ioe_PortCEnablePullUp(unsigned char bitmask){
-    setBits(GPPUY, bitmask);
+    setBits(GPPUC, bitmask);
 }
 
-/*!
- *  @brief Enables the internal pull-up resistor on a given collection
- *         of Port D pins
- *
- *  @param bitmask
- *              the Port D pins on which to enable the internal pull-up resistor
+/**
+ *  Enables the internal pull-up resistor on the given Port D pins
  */
 void ioe_PortDEnablePullUp(unsigned char bitmask){
-    setBits(GPPUZ, bitmask);
+    setBits(GPPUD, bitmask);
 }
 
-/*!
- *  @brief Disables the internal pull-up resistor on a given collection
- *         of Port C pins
- *
- *  @param bitmask
- *              the Port C pins on which to disable the internal pull-up resistor
+/**
+ *  Disables the internal pull-up resistor on the given Port C pins
  */
 void ioe_PortCDisablePullUp(unsigned char bitmask){
-    clearBits(GPPUY, bitmask);
+    clearBits(GPPUC, bitmask);
 }
 
-/*!
- *  @brief Disables the internal pull-up resistor on a given collection
- *         of Port D pins
- *
- *  @param bitmask
- *              the Port D pins on which to disable the internal pull-up resistor
+/**
+ *  Disables the internal pull-up resistor on the given Port D pins
  */
 void ioe_PortDDisablePullUp(unsigned char bitmask){
-    clearBits(GPPUZ, bitmask);
+    clearBits(GPPUD, bitmask);
 }
 
-/*!
- * @brief Writes a byte of data to a register on the I/O expander
- * @param reg_addr
- *          the address of the target register
- * @param data
- *          the byte of data to be written
+/**
+ *  Writes a byte of data to a register on the I/O expander
+ *
+ *  Example:
+ *
+ *      ioe_write(OLATC, 0x42);
  */
 inline void ioe_write(unsigned char reg_addr, unsigned char data) {
 
@@ -250,11 +221,12 @@ inline void ioe_write(unsigned char reg_addr, unsigned char data) {
 
 }
 
-/*!
- * @brief Reads and returns the data byte from a register on the I/O expander
- * @param reg_addr
- *          the address of the target register
- * @return the byte of data that was read
+/**
+ *  Reads and returns a byte of data from a register on the I/O expander
+ *
+ *  Example:
+ *
+ *      unsigned char signal = ioe_read(GPIOD);
  */
 inline unsigned char ioe_read(unsigned char reg_addr) {
     unsigned char data;

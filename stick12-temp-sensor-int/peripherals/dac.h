@@ -1,15 +1,15 @@
-/*!
+#ifndef DAC_H
+#define DAC_H
+
+/**
  *  @file dac.h
  *
- *  @brief A PIC32 library for the MCP4822 dual 12-bit DAC
+ *  @brief A PIC32 library for the MCP4822 dual 12-bit DAC.
  *
  *      Intended for use with the PIC32MX250F128B.
  *
- *  @author Jeff Lutgen
+ *  @author Jeff Lutgen (based on code by Bruce R. Land)
  */
-
-#ifndef DAC_H
-#define DAC_H
 
 #include <stdint.h>
 
@@ -27,6 +27,7 @@
 #define DAC_SHUTDOWN    0x0000
 #define DAC_ACTIVE      0x1000
 
+void dac_init();
 inline void dac_write(uint16_t msg);
 
-#endif // DAC_H
+#endif

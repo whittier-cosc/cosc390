@@ -1,11 +1,22 @@
-/* Code rewritten from Adafruit Arduino library for the TFT
- *  by Syed Tahmid Mahbub
- * The TFT itself is Adafruit product 1480
- * Included below is the text header from the original Adafruit library
- *  followed by the code
+/*
+ *  @file   tft_master.c
  *
+ *  @brief  A PIC32 library for the Adafruit 2.2" TFT liquid crystal display.
+ *
+ *          Intended for use with the PIC32MX250F128B.
+ *
+ *          Code rewritten from the Adafruit Arduino library for the TFT
+ *          by Syed Tahmid Mahbub.
+ *
+ *          The TFT is Adafruit product 1480.
+ *
+ *          This file includes the text header from the original Adafruit library
+ *          followed by the code.
+ *
+ *  @authors Syed Tahmid Mahbub,
+ *           Jeff Lutgen (minor modifications)
  */
-// 
+
 /***************************************************
   This is an Arduino Library for the Adafruit 2.2" SPI display.
   This library works with the Adafruit 2.2" TFT Breakout w/SD card
@@ -25,33 +36,85 @@
 #define _SUPPRESS_PLIB_WARNING
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
-#include "tft_master.h"
 #include <xc.h>
+#include "../hwprofile.h"
+#include "tft_registers.h"
 
-inline void Mode16(void){  // configure SPI1 for 16-bit mode
+unsigned short _width, _height;
+
+static inline void Mode16(void){  // configure SPI1 for 16-bit mode
     SPI1CONSET = 0x400;
 }
 
-inline void Mode8(void){  // configure SPI1 for 8-bit mode
+static inline void Mode8(void){  // configure SPI1 for 8-bit mode
     SPI1CONCLR = 0x400;
 }
 
+static void tft_begin(void);
+static void tft_spiwrite8(unsigned char c);
+static void tft_spiwrite16(unsigned short c);
+static void tft_writecommand(unsigned char c);
+static void tft_writecommand16(unsigned short c);
+static void tft_writedata(unsigned char c);
+static void tft_writedata16(unsigned short c);
+static void tft_commandList(unsigned char *addr);
+static void tft_setAddrWindow(unsigned short x0, unsigned short y0,
+                              unsigned short x1, unsigned short y1);
+static void tft_pushColor(unsigned short color);
+static unsigned char tft_spiread(void);
+static unsigned char tft_readdata(void);
+static unsigned char tft_readcommand8(unsigned char c);
+
+static void delay_ms(unsigned long);
+static void delay_us(unsigned long);
+
+#define dTime_ms PBCLK/2000
+#define dTime_us PBCLK/2000000
+
+#define _dc         LATBbits.LATB0
+#define TRIS_dc     TRISBbits.TRISB0
+#define _dc_high()  {LATBSET = 1;}
+#define _dc_low()   {LATBCLR = 1;}
+
+#define _cs         LATBbits.LATB1
+#define TRIS_cs     TRISBbits.TRISB1
+#define _cs_high()  {LATBSET = 2;}
+#define _cs_low()   {LATBCLR = 2;}
+
+#define _rst        LATBbits.LATB2
+#define TRIS_rst    TRISBbits.TRISB2
+#define _rst_high() {LATBSET = 4;}
+#define _rst_low()  {LATBCLR = 4;}
+
+#define SPI_freq    20000000  // 20 MHz
+
+/**
+ *  Initializes the TFT display and configures SPI1 module on PIC to
+ *  communicate with TFT.
+ *
+ *  Pins used:
+ *
+ *      TFT     PIC
+ *      ----    ---------------------
+ *      MOSI    RB11 (pin 22) --> SDO1
+ *      SCK     RB14 (pin 25) --> SCK1
+ *      D/C     RB0  (pin 4)
+ *      CS      RB1  (pin 5)
+ *      RST     RB2  (pin 6)
+ *
+ *  In addition, connect TFT's VIN to 3.3V supply and GND to ground;
+ *  can leave BL (backlight power) disconnected, since TFT screen
+ *  is bright enough without backlight.
+ */
 void tft_init(void) {
     _width = ILI9340_TFTWIDTH;
     _height = ILI9340_TFTHEIGHT;
-    RPB11R = 3;              //SDO pin for SPI - goes to MOSI on TFT
-    //RPA1R = 3; // SDO pin for SPI - goes to MOSI on TFT
-    //PPSOutput(2, RPA1, SDO1);
-    //SDI1R = 0; // RA1       // I won't be reading from TFT
+    RPB11R = 3;  // Map RPB11 --> SDO1. Goes to MOSI on TFT.
+
+    tft_begin();
 }
 
-void tft_spiwrite(unsigned char c){ // Transfer to SPI
-    while (TxBufFullSPI1());
-    WriteSPI1(c);
-    while (SPI1STATbits.SPIBUSY); // wait for it to end of transaction
-}
-
-void tft_spiwrite8(unsigned char c) {   // Transfer one byte c to SPI
+static void tft_spiwrite8(unsigned char c) {   // Transfer one byte c to SPI
     /* The default mode for me is to transfer 16-bits at once
      * However, it is necessary sometimes to transfer only 8-bits at a time
      * But this is required less often than 16-bits at once
@@ -65,62 +128,43 @@ void tft_spiwrite8(unsigned char c) {   // Transfer one byte c to SPI
     Mode16(); // switch back to 16-bit mode
 }
 
-void tft_spiwrite16(unsigned short c){  // Transfer two bytes "c" to SPI
+static void tft_spiwrite16(unsigned short c){  // Transfer two bytes "c" to SPI
     while (TxBufFullSPI1());
     WriteSPI1(c);
     while (SPI1STATbits.SPIBUSY); // wait for it to end of transaction
 }
 
 
-void tft_writecommand(unsigned char c) {
+static void tft_writecommand(unsigned char c) {
     _dc_low();
     _cs_low();
-
     tft_spiwrite8(c);
-
     _cs_high();
-
 }
 
-void tft_writecommand16(unsigned short c) {
+static void tft_writecommand16(unsigned short c) {
     _dc_low();
     _cs_low();
-
     tft_spiwrite16(c);
-
     _cs_high();
-
 }
 
 
-void tft_writedata(unsigned char c) {
+static void tft_writedata(unsigned char c) {
     _dc_high();
     _cs_low();
-
     tft_spiwrite8(c);
-
     _cs_high();
-
 }
 
-void tft_writedata16(unsigned short c) {
+static void tft_writedata16(unsigned short c) {
     _dc_high();
     _cs_low();
-
     tft_spiwrite16(c);
-
     _cs_high();
-
 }
 
-// Rather than a bazillion writecommand() and writedata() calls, screen
-// initialization commands and arguments are organized in these tables
-// stored in PROGMEM.  The table may look bulky, but that's mostly the
-// formatting -- storage-wise this is hundreds of bytes more compact
-// than the equivalent code.  Companion function follows.
-#define DELAY 0x80
-
-void tft_begin(void) {
+static void tft_begin(void) {
 
     TRIS_rst = 0;
     _rst_low();
@@ -131,7 +175,7 @@ void tft_begin(void) {
     _cs_high();
 
     SpiChnOpen(1, SPI_OPEN_MSTEN | SPI_OPEN_MODE8 | SPI_OPEN_ON |
-            SPI_OPEN_DISSDI | SPI_OPEN_CKE_REV , 2); // PBCLK/SPI_freq);
+                  SPI_OPEN_DISSDI | SPI_OPEN_CKE_REV , PBCLK/SPI_freq);
 
     // Start with 8-bit mode for initialization - move to 16-bit mode once
     // that's done
@@ -255,7 +299,7 @@ void tft_begin(void) {
 }
 
 
-void tft_setAddrWindow(unsigned short x0, unsigned short y0, unsigned short x1, unsigned short y1) {
+static void tft_setAddrWindow(unsigned short x0, unsigned short y0, unsigned short x1, unsigned short y1) {
 
     tft_writecommand(ILI9340_CASET); // Column addr set
     tft_writedata16(x0);
@@ -269,143 +313,84 @@ void tft_setAddrWindow(unsigned short x0, unsigned short y0, unsigned short x1, 
 }
 
 
-void tft_pushColor(unsigned short color) {
+static void tft_pushColor(unsigned short color) {
     _dc_high();
     _cs_low();
-
     tft_spiwrite16(color);
-
     _cs_high();
 }
+
 #define NOP asm("nop");
 #define wait16 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 #define wait8 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 #define wait12 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 #define wait15 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 
+/**
+ * Draws a pixel at location (x,y) in the given color.
+ */
 void tft_drawPixel(short x, short y, unsigned short color) {
-    /* Draw a pixel at location (x,y) with given color
-     * Parameters:
-     *      x:  x-coordinate of pixel to draw; top left of screen is x=0
-     *              and x increases to the right
-     *      y:  y-coordinate of pixel to draw; top left of screen is y=0
-     *              and y increases to the bottom
-     *      color:  16-bit color value
-     * Returns:     Nothing
-     */
+    if((x < 0) ||(x >= _width) || (y < 0) || (y >= _height))
+        return;
 
-    if((x < 0) ||(x >= _width) || (y < 0) || (y >= _height)) return;
-    /*
-       tft_setAddrWindow(x,y,x+1,y+1);
-
-       _dc_high();
-       _cs_low();
-
-       tft_spiwrite16(color);
-
-       _cs_high();
-       }
-    */
-    //tft_writecommand(ILI9340_CASET); // Column addr set
     _dc_low();
     _cs_low();
-    //tft_spiwrite8(ILI9340_CASET);
     Mode8(); // switch to 8-bit mode
-    while (TxBufFullSPI1());
-    WriteSPI1(ILI9340_CASET);
-    //while (SPI1STATbits.SPIBUSY); // wait for it to end of transaction
+    while (TxBufFullSPI1()) { ; }
+    WriteSPI1(ILI9340_CASET); // column address set
     wait16;
     Mode16(); // switch back to 16-bit mode
     _cs_high();
 
-    //tft_writedata16(x);
     _dc_high();
     _cs_low();
-    //tft_spiwrite16(c);
-    // while (TxBufFullSPI1());
     WriteSPI1(x);
-    //while (SPI1STATbits.SPIBUSY);
     wait16;wait16;wait8;
     _cs_high();
 
-
-    //tft_writedata16(x+1);
-    // _dc_high();
     _cs_low();
-    //tft_spiwrite16(c);
-    //while (TxBufFullSPI1());
     WriteSPI1(x+1);
-    //while (SPI1STATbits.SPIBUSY);
     wait16;wait16;wait8;
     _cs_high();
 
-    //t_writecommand(ILI9340_PASET); // Row addr set
     _dc_low();
     _cs_low();
-    //tft_spiwrite8(ILI9340_PASET);
     Mode8(); // switch to 8-bit mode
-    //while (TxBufFullSPI1());
-    WriteSPI1(ILI9340_PASET);
-    //while (SPI1STATbits.SPIBUSY); // wait for it to end of transaction
+    WriteSPI1(ILI9340_PASET); // row address set
     wait16;wait8;
     Mode16(); // switch back to 16-bit mode
     _cs_high();
 
-    //tft_writedata16(y);
     _dc_high();
     _cs_low();
-    //tft_spiwrite16(c);
-    // while (TxBufFullSPI1());
     WriteSPI1(y);
-    // while (SPI1STATbits.SPIBUSY);
     wait16;wait16;wait8;
     _cs_high();
 
-
-    //tft_writedata16(y+1);
-    //_dc_high();
     _cs_low();
-    //tft_spiwrite16(c);
-    //while (TxBufFullSPI1());
     WriteSPI1(y+1);
-    //while (SPI1STATbits.SPIBUSY);
     wait16;wait16;wait8;
     _cs_high();
 
-    //tft_writecommand(ILI9340_RAMWR); // write to RAM
     _dc_low();
     _cs_low();
-    //tft_spiwrite8(ILI9340_RAMWR);
     Mode8(); // switch to 8-bit mode
-    // while (TxBufFullSPI1());
-    WriteSPI1(ILI9340_RAMWR);
-    // while (SPI1STATbits.SPIBUSY); // wait for it to end of transaction
+    WriteSPI1(ILI9340_RAMWR); // write to RAM
     wait16;wait8;
     Mode16(); // switch back to 16-bit mode
     _cs_high();
 
     _dc_high();
     _cs_low();
-    //tft_spiwrite16(color);
-    // while (TxBufFullSPI1());
     WriteSPI1(color);
-    //while (SPI1STATbits.SPIBUSY);
     wait16;wait16;wait8;
     _cs_high();
 }
 
+/**
+ *  Draws a vertical line at from (x, y) to (x, y+h-1) in the given color.
+ */
 void tft_drawFastVLine(short x, short y, short h, unsigned short color) {
-    /* Draw a vertical line at location from (x,y) to (x,y+h-1) with color
-     * Parameters:
-     *      x:  x-coordinate line to draw; top left of screen is x=0
-     *              and x increases to the right
-     *      y:  y-coordinate of starting point of line; top left of screen is y=0
-     *              and y increases to the bottom
-     *      h:  height of line to draw
-     *      color:  16-bit color value
-     * Returns:     Nothing
-     */
-
     // Rudimentary clipping
     if((x >= _width) || (y >= _height)) return;
 
@@ -416,26 +401,17 @@ void tft_drawFastVLine(short x, short y, short h, unsigned short color) {
 
     _dc_high();
     _cs_low();
-
     while (h--) {
         tft_spiwrite16(color);
     }
-
     _cs_high();
 }
 
-
+/**
+ *  Draws a horizontal line from (x, y) to (x+w-1, y) in the given color.
+ */
 void tft_drawFastHLine(short x, short y, short w, unsigned short color) {
-    /* Draw a horizontal line at location from (x,y) to (x+w-1,y) with color
-     * Parameters:
-     *      x:  x-coordinate starting point of line; top left of screen is x=0
-     *              and x increases to the right
-     *      y:  y-coordinate of starting point of line; top left of screen is y=0
-     *              and y increases to the bottom
-     *      w:  width of line to draw
-     *      color:  16-bit color value
-     * Returns:     Nothing
-     */
+
 
     // Rudimentary clipping
     if((x >= _width) || (y >= _height)) return;
@@ -444,71 +420,61 @@ void tft_drawFastHLine(short x, short y, short w, unsigned short color) {
 
     _dc_high();
     _cs_low();
-
     while (w--) {
         tft_spiwrite16(color);
     }
-
     _cs_high();
 }
 
-void tft_fillScreen(unsigned short color) {
-    /* Fill entire screen with given color
-     * Parameters:
-     *      color: 16-bit color value
-     * Returs:  Nothing
-     */
-    tft_fillRect(0, 0,  _width, _height, color);
-}
-
-// fill a rectangle
+/**
+ *  Draws a filled rectangle with top-left vertex (x,y),
+ *  width w, height h, in the given color.
+ */
 void tft_fillRect(short x, short y, short w, short h,
         unsigned short color) {
-    /* Draw a filled rectangle with starting top-left vertex (x,y),
-     *  width w and height h with given color
-     * Parameters:
-     *      x:  x-coordinate of top-left vertex; top left of screen is x=0
-     *              and x increases to the right
-     *      y:  y-coordinate of top-left vertex; top left of screen is y=0
-     *              and y increases to the bottom
-     *      w:  width of rectangle
-     *      h:  height of rectangle
-     *      color:  16-bit color value
-     * Returns:     Nothing
-     */
-
     // rudimentary clipping (drawChar w/big text requires this)
-    if((x >= _width) || (y >= _height)) return;
-    if((x + w - 1) >= _width)  w = _width  - x;
-    if((y + h - 1) >= _height) h = _height - y;
+    if ((x >= _width) || (y >= _height))
+        return;
+    if (x + w - 1 >= _width)
+        w = _width  - x;
+    if (y + h - 1 >= _height)
+        h = _height - y;
 
     tft_setAddrWindow(x, y, x+w-1, y+h-1);
 
     _dc_high();
     _cs_low();
-
-    for(y=h; y>0; y--) {
-        for(x=w; x>0; x--) {
+    for(y = h; y > 0; y--) {
+        for(x = w; x > 0; x--) {
             tft_spiwrite16(color);
         }
     }
-
     _cs_high();
 }
 
+/**
+ * Fills the entire screen with the given color.
+ */
+void tft_fillScreen(unsigned short color) {
+    tft_fillRect(0, 0, _width, _height, color);
+}
+
+/**
+ *  Returns a 16-bit (5-6-5 packed RGB) color value approximating the
+ *  given 24-bit color (r, g, b, 8 bits each).
+ */
 inline unsigned short tft_Color565(unsigned char r, unsigned char g, unsigned char b) {
-    /* Pass 8-bit (each) R,G,B, get back 16-bit packed color
-     * Parameters:
-     *      r:  8-bit R/red value from RGB
-     *      g:  8-bit g/green value from RGB
-     *      b:  8-bit b/blue value from RGB
-     * Returns:
-     *      16-bit packed color value for color info
-     */
     return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 }
 
-
+/**
+ *  Sets the rotation of the display to the given value (0, 1, 2, or 3).
+ *
+ *  0: portrait, pins at bottom(?) <br>
+ *  1: landscape, pins at right    <br>
+ *  2: portrait, pins at top       <br>
+ *  3: landscape, pins at left
+ */
 void tft_setRotation(unsigned char m) {
     unsigned char rotation;
     tft_writecommand(ILI9340_MADCTL);
@@ -537,7 +503,7 @@ void tft_setRotation(unsigned char m) {
     }
 }
 
-void delay_ms(unsigned long i){
+static void delay_ms(unsigned long i){
     /* Create a software delay about i ms long
      * Parameters:
      *      i:  equal to number of milliseconds for delay
@@ -552,7 +518,7 @@ void delay_ms(unsigned long i){
     while (ReadCoreTimer() < j);
 }
 
-void delay_us(unsigned long i){
+static void delay_us(unsigned long i){
     /* Create a software delay about i us long
      * Parameters:
      *      i:  equal to number of microseconds for delay

@@ -12,23 +12,10 @@
 #include "config.h"
 #include "dac.h"
 #include "tft.h"
+#include "tft_printline.h"
 #include "io_expander.h"
 
-
 char msg[80];
-
-void printLine(int line_number, int char_size, char *print_buffer) {
-    // line number 0 to 30
-    // char_size 1 to 5
-    // print_buffer the string to print
-    int v_pos;
-    v_pos = line_number * 10 ;
-    tft_fillRoundRect(0, v_pos, 319, 21, 1, ILI9340_BLACK);// x,y,w,h,radius,color
-    tft_setCursor(0, v_pos);
-    tft_setTextColor(ILI9340_YELLOW);
-    tft_setTextSize(char_size);
-    tft_writeString(print_buffer);
-}
 
 // DAC constants
 #define DAC_CONFIG_A    (DAC_A | DAC_GAIN1X | DAC_ACTIVE)
@@ -80,15 +67,15 @@ void __ISR(_TIMER_4_VECTOR, IPL1SOFT) Timer4Handler(void) {
     LATAINV = 0x0001; // toggle LED
 
     INTEnable(INT_T2, 0);
-    ioe_write(OLATY, out_value);
+    ioe_write(OLATC, out_value);
     INTEnable(INT_T2, 1);
 
     INTEnable(INT_T2, 0);
-    ioe_write(OLATZ, ~out_value);
+    ioe_write(OLATD, ~out_value);
     INTEnable(INT_T2, 1);
 
     sprintf(msg, "out_value = 0x%02x", out_value & 0x00ff);
-    printLine(1, 3, msg);
+    tft_printLine(1, 3, msg);
 
     out_value = ~out_value;
 }
@@ -100,7 +87,6 @@ int main(void) {
     osc_tune(56);
 
     tft_init();
-    tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 
@@ -135,8 +121,8 @@ int main(void) {
     ConfigIntTimer4(T4_INT_ON | T4_INT_PRIOR_1);
     mT4ClearIntFlag(); // and clear the interrupt flag
     ioe_init(); // initialize I/O expander
-    ioe_PortCSetPinsOut(0xff); // set all port Y (GPA) pins as outputs
-    ioe_PortDSetPinsOut(0xff); // set all port Z (GPB) pins as outputs
+    ioe_PortCSetPinsOut(0xff); // set all port C (GPA) pins as outputs
+    ioe_PortDSetPinsOut(0xff); // set all port D (GPB) pins as outputs
 
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
                             // bit 0 to zero, for output.  Others are inputs.

@@ -1,22 +1,16 @@
-/*!
+/*
  *  @file amp.c
  *
- *  @brief A PIC32 library for the TPA2016D2 Class D Amplifier.
+ *  @brief A PIC32 library for the TPA2016D2 class D stereo amplifier
  *
- *      Intended for use with the PIC32MX250F128B.
- *      Ported from Adafruit's Arduino library.
+ *      Intended for use with the PIC32MX250F128B
+ *
+ *      Ported from Adafruit's Arduino library
  *
  *  @author Jeff Lutgen
  */
 
-#include "amp.h"
-#include "../hwprofile.h"
-#include "uart.h"
-
-#define DEBUG   // comment this out to disable serial debug output
-
 // Portions of this code adapted from Adafruit's Arduino library:
-
 /*
  *  @file Adafruit_TPA2016.cpp
  *
@@ -39,27 +33,36 @@
  *  BSD license, all text above must be included in any redistribution
  */
 
+#include "amp.h"
+#include "../hwprofile.h"
+#include "uart.h"
+
+#define DEBUG   // If DEGUG is defined, UART1 will be configured and used for
+                // debug and error message output.
+
 #define I2C_CLOCK_FREQ 100000  // standard 10 KHz I2C clock speed
 
 // utility functions
-void write8(uint8_t address, uint8_t data);
-uint8_t read8(uint8_t address);
-bool start_transfer(bool restart);
-void stop_transfer();
-bool transmit_byte(uint8_t data);
-void debug_log(const char *string);
+static void write8(uint8_t address, uint8_t data);
+static uint8_t read8(uint8_t address);
+static bool start_transfer(bool restart);
+static void stop_transfer();
+static bool transmit_byte(uint8_t data);
+static void debug_log(const char *string);
 static void delay();
 
-/*!
- * @brief Configures and enables an I2C module for communicating with the TPA2016.
+/**
+ *  Configures and enables an I2C module for communicating with the TPA2016.
  *
- * @remark
- *      amp_init() sets up I2C on channel 1:
- *          SCL1 pin 17 (B8)
- *          SDA1 pin 18 (B9)
- *      and UART on channel 1 (for debugging) with these pin mappings:
- *          U1RX pin 9  (RPA2)
- *          U1TX pin 7  (RPB3)
+ *  Sets up I2C1:
+ *
+ *          SCL1: pin 17 (RB8)
+ *          SDA1: pin 18 (RB9)
+ *
+ *  and UART1 (for debug and error output):
+ *
+ *          U1RX: pin 9  (RPA2)
+ *          U1TX: pin 7  (RPB3)
  */
 void amp_init() {
 
@@ -82,14 +85,8 @@ void amp_init() {
     I2CEnable(TPA2016_I2C_BUS, true);
 }
 
-/*!
- *    @brief  Turns on/off right and left channels by writing to
- * TPA2016_SETUP.
- *    @param  r
- *            right channel
- *    @param  l
- *            left channel
- *
+/**
+ *  Turns on/off right and left channels.
  */
 void amp_enableChannel(bool r, bool l) {
     uint8_t setup = read8(TPA2016_SETUP);
@@ -105,14 +102,13 @@ void amp_enableChannel(bool r, bool l) {
     write8(TPA2016_SETUP, setup);
 }
 
-/*!
- *    @brief  Sets gain in dB by writing to TPA2016_GAIN.
- *    @param  g
- *            value in dB (clamped to be in range -28..+30)
+/**
+ *  Sets gain in dB to the given value `g` (clamped to be in range -28..+30)
  *
- *    From the datasheet: "These bits are used to select the fixed gain of the amplifier.
- *    If the Compression is enabled, fixed gain is adjustable from –28dB to 30dB. If the
- *    Compression is disabled, fixed gain is adjustable from 0dB to 30dB."
+ *  According to the datasheet, "[t]hese bits are used to select the
+ *  fixed gain of the amplifier. If the Compression is enabled, fixed gain is
+ *  adjustable from –28dB to 30dB. If the Compression is disabled, fixed gain
+ *  is adjustable from 0dB to 30dB."
  */
 void amp_setGain(int8_t g) {
     if (g > 30)
@@ -125,9 +121,8 @@ void amp_setGain(int8_t g) {
     write8(TPA2016_GAIN, g);
 }
 
-/*!
- *    @brief  Gets the gain value by reading from TPA2016_GAIN.
- *    @return Returns gain value in dB
+/**
+ *  Returns the current gain setting in dB.
  */
 int8_t amp_getGain() {
     int8_t gain = (int8_t) read8(TPA2016_GAIN);
@@ -139,10 +134,10 @@ int8_t amp_getGain() {
     return gain;
 }
 
-/*!
- *    @brief  Sets AGC Release time by writing to TPA2016_REL.
- *    @param  release
- *            release value (only 6 bits)
+/**
+ *  Sets the AGC release time.
+ *
+ * `release` should be a 6-bit value (1..63); see the datasheet for details.
  */
 void amp_setReleaseControl(uint8_t release) {
     if (release > 0x3F)
@@ -151,10 +146,10 @@ void amp_setReleaseControl(uint8_t release) {
     write8(TPA2016_REL, release);
 }
 
-/*!
- *    @brief  Sets AGC Attack time by writing to TPA2016_ATK.
- *    @param  attack
- *            attack value (only 6 bits)
+/**
+ *  Sets the AGC Attack time.
+ *
+ * `attack` should be a 6-bit value (1..63); see the datasheet for details.
  */
 void amp_setAttackControl(uint8_t attack) {
     if (attack > 0x3F)
@@ -163,10 +158,10 @@ void amp_setAttackControl(uint8_t attack) {
      write8(TPA2016_ATK, attack);
 }
 
-/*!
- *    @brief  Sets AGC Hold time by writing to TPA2016_HOLD.
- *    @param  hold
- *            hold time value (only 6 bits)
+/**
+ *  Sets the AGC hold time.
+ *
+ * `hold` should be a 6-bit value (0..63); see the datasheet for details.
  */
 void amp_setHoldControl(uint8_t hold) {
     if (hold > 0x3F)
@@ -175,8 +170,8 @@ void amp_setHoldControl(uint8_t hold) {
     write8(TPA2016_HOLD, hold);
 }
 
-/*!
- *    @brief  Turns Power limiter on by writing to TPA2016_AGCLIMIT.
+/**
+ *  Turns the power limiter on.
  */
 void amp_setLimitLevelOn() {
     uint8_t agc = read8(TPA2016_AGCLIMIT);
@@ -184,8 +179,8 @@ void amp_setLimitLevelOn() {
     write8(TPA2016_AGCLIMIT, agc);
 }
 
-/*!
- *    @brief  Turns Power limiter off by writing to TPA2016_AGCLIMIT.
+/**
+ *  Turns the power limiter off.
  */
 void amp_setLimitLevelOff() {
     uint8_t agc = read8(TPA2016_AGCLIMIT);
@@ -193,10 +188,10 @@ void amp_setLimitLevelOff() {
     write8(TPA2016_AGCLIMIT, agc);
 }
 
-/*!
- *    @brief  Sets limit level by writing to TPA2016_AGCLIMIT.
- *    @param  limit
- *            value (max 31)
+/**
+ *  Sets the limit level for the power limiter.
+ *
+ *  `limit` should be a 5-bit value (0..31); see the datasheet for details.
  */
 void amp_setLimitLevel(uint8_t limit) {
     if (limit > 31)
@@ -210,12 +205,14 @@ void amp_setLimitLevel(uint8_t limit) {
     write8(TPA2016_AGCLIMIT, agc);
 }
 
-/*!
- *    @brief  Sets AGC Compression by writing to TPA2016_AGC
- *    @param  x
- *            TPA2016_AGC_2 1:2
- *            TPA2016_AGC_4 1:4
- *            TPA2016_AGC_8 1:8
+/**
+ *  Sets the AGC compression ratio to the value specified by `x`, which must be
+ *  one of the following:
+ *
+ *      TPA2016_AGC_OFF  --> 1:1 ratio (compression off)
+ *      TPA2016_AGC_2    --> 1:2
+ *      TPA2016_AGC_4    --> 1:4
+ *      TPA2016_AGC_8    --> 1:8
  */
 void amp_setAGCCompression(uint8_t x) {
     if (x > 3)
@@ -227,10 +224,15 @@ void amp_setAGCCompression(uint8_t x) {
     write8(TPA2016_AGC, agc);
 }
 
-/*!
- *    @brief  Sets max gain by writing to TPA2016_AGC.
- *    @param  x
- *            value (max 12)
+/**
+ *  Sets the AGC's maximum gain, specifed by `x` (0..12) as follows:
+ *
+ *       x    max gain
+ *      --------------
+ *       0      18 dB
+ *       1      19 dB
+ *      ...     ...    (gain increases by 1 dB with every step)
+ *      12      30 dB
  */
 void amp_setAGCMaxGain(uint8_t x) {
     if (x > 12)
@@ -242,13 +244,13 @@ void amp_setAGCMaxGain(uint8_t x) {
     write8(TPA2016_AGC, agc);
 }
 
-/*!
+/*
  * @brief   read one byte from a TPA2016 register
  * @param   address
  *          the address of the register from which to read
  * @return  the byte that was read
  */
-uint8_t read8(uint8_t address) {
+static uint8_t read8(uint8_t address) {
     bool success;
     uint8_t data;
     I2C_7_BIT_ADDRESS SlaveAddress;
@@ -306,14 +308,14 @@ uint8_t read8(uint8_t address) {
     return data;
 }
 
-/*!
+/*
  * @brief   Writes a byte to a TPA2016 register
  * @param   address
  *          the address of the register to which to write
  * @param   data
  *          the byte to be written
  */
-void write8(uint8_t address, uint8_t data) {
+static void write8(uint8_t address, uint8_t data) {
     bool success;
     I2C_7_BIT_ADDRESS SlaveAddress;
     I2C_FORMAT_7_BIT_ADDRESS(SlaveAddress, TPA2016_I2CADDR, I2C_WRITE);
@@ -344,7 +346,7 @@ void write8(uint8_t address, uint8_t data) {
     stop_transfer();
 }
 
-/*!
+/*
  * @brief   Starts (or restarts) a transfer to/from the TPA2016
  *
  *          This routine starts (or restarts) a transfer to/from the TPA2016,
@@ -361,7 +363,7 @@ void write8(uint8_t address, uint8_t data) {
  * @return  true if successful, false if a collision occured during Start
  *          signaling
  */
-bool start_transfer( bool restart ) {
+static bool start_transfer( bool restart ) {
     I2C_STATUS  status;
 
     // Send the Start (or Restart) signal
@@ -388,10 +390,10 @@ bool start_transfer( bool restart ) {
     return true;
 }
 
-/*!
+/*
  * \brief Stops a transfer to or from the TPA2016
  */
-void stop_transfer() {
+static void stop_transfer() {
     I2C_STATUS  status;
 
     // Send the Stop signal
@@ -405,14 +407,14 @@ void stop_transfer() {
 //    debug_log("stop_transfer: got status == STOP\n");
 }
 
-/*!
+/*
  * \brief   Transmit a byte via I2C to the TPA2016
  * \param   data
  *              the byte to be transmitted
  * \return  true if successful
  *          false if unsuccessful
  */
-bool transmit_byte(uint8_t data) {
+static bool transmit_byte(uint8_t data) {
     // Wait for the transmitter to be ready
 //    debug_log("transmit_byte: wait for transmitter ready\n");
     while(!I2CTransmitterIsReady(TPA2016_I2C_BUS)) { ; }
@@ -436,7 +438,7 @@ bool transmit_byte(uint8_t data) {
     return true;
 }
 
-void debug_log(const char *string) {
+static void debug_log(const char *string) {
 #ifdef DEBUG
     uart_write(string);
 #endif

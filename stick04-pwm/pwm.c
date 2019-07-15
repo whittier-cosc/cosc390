@@ -1,7 +1,8 @@
 #include "config.h"
 #include "uart.h"
 
-char msg[80];
+#define BUFSZ 80
+char msg[BUFSZ];
 
 void pwm_config(void) {
     // PWM on OC4. Default is 16-bit timer, Timer2.
@@ -35,7 +36,7 @@ int main(void) {
     uart_write(msg);
     unsigned int duty_cycle;
     while(1) {
-        uart_read(msg, BUFLEN - 1); // Block until we receive a string
+        uart_read(msg, BUFSZ - 1); // Block until we receive a string
         duty_cycle = atoi(msg); // 0..100 percent
         OC4RS = duty_cycle * 0x10000 / 100; // Update duty cycle
         LATAINV = 0x0001;      // Toggle LED

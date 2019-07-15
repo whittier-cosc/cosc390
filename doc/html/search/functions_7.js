@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['read8',['read8',['../amp_8c.html#a59c2c3b2fff6b5e5f82a990235d120b7',1,'amp.c']]],
-  ['readbits',['readBits',['../io__expander_8c.html#a4f6f984fdeb203e0a396f109f4068241',1,'io_expander.c']]]
+  ['uart_5finit',['uart_init',['../uart_8c.html#a01f5996cfbcef121abc486e732b208c7',1,'uart.c']]],
+  ['uart_5fread',['uart_read',['../uart_8c.html#a16501cc979a05771be83680ff01387b4',1,'uart.c']]],
+  ['uart_5fwrite',['uart_write',['../uart_8c.html#ad5cf47a799ebafbea3243721f3b84a14',1,'uart.c']]]
 ];

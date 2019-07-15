@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['olaty',['OLATY',['../io__expander_8h.html#aa0a70d98df6467103ca87efc11bbb16a',1,'io_expander.h']]],
-  ['olatz',['OLATZ',['../io__expander_8h.html#a677aaf1ef5aaf6be0e514b11eeeb7816',1,'io_expander.h']]],
-  ['out_5fvalue',['out_value',['../audio__dac_8c.html#af2ebf511561190e89b6a84369924b9a0',1,'audio_dac.c']]],
-  ['output_5ffreq_5f1',['output_freq_1',['../audio__dac_8c.html#a2783365fdb623cfad9686b54a23b5fde',1,'audio_dac.c']]],
-  ['output_5ffreq_5f2',['output_freq_2',['../audio__dac_8c.html#ab4fa0e8ae005089de9a16294215c4a6c',1,'audio_dac.c']]]
+  ['uart_2ec',['uart.c',['../uart_8c.html',1,'']]],
+  ['uart_5finit',['uart_init',['../uart_8c.html#a01f5996cfbcef121abc486e732b208c7',1,'uart.c']]],
+  ['uart_5fread',['uart_read',['../uart_8c.html#a16501cc979a05771be83680ff01387b4',1,'uart.c']]],
+  ['uart_5fwrite',['uart_write',['../uart_8c.html#ad5cf47a799ebafbea3243721f3b84a14',1,'uart.c']]],
+  ['util_2ec',['util.c',['../util_8c.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write8',['write8',['../amp_8c.html#a7b95a5cd5a063da9acee567cf0fb92d4',1,'amp.c']]]
+  ['pbclk',['PBCLK',['../hwprofile_8h.html#aac23c0047c8aba00b8c269fc2a181959',1,'hwprofile.h']]]
 ];

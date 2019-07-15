@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: config.h File Reference</title>
+<title>WC PIC32Lib: config.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -67,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,24 +87,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Initialize system configuration registers for the PIC32MX250F128B.  
+<p>Initializes some system configuration registers on the PIC32MX250F128B.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;xc.h&gt;</code><br />
 <code>#include &lt;sys/attribs.h&gt;</code><br />
 <code>#include &lt;plib.h&gt;</code><br />
-</div>
-<p><a href="config_8h_source.html">Go to the source code of this file.</a></p>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Initialize system configuration registers for the PIC32MX250F128B. </p>
-<p>Because this file contains "#pragma config" lines, you must ensure that this file is included in <b>at most one</b> .c file in your project. Otherwise, compilation will generate more than one object (.o) file containing .configX sections. The linker will try to cram these together in the executable, and you will get "will not fit" linker errors.</p>
-<p>This is mentioned in the xc32 user's guide, section 7.5 (Configuration Bit Access): "Configuration settings should be specified in only a single translation unit (a C/C++ file with all of its include files after preprocessing)."</p>
+<code>#include &quot;<a class="el" href="hwprofile_8h.html">hwprofile.h</a>&quot;</code><br />
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Initializes some system configuration registers on the PIC32MX250F128B. </p>
+<p>Because this file specifies configuration settings for the PIC, you must ensure that this file is included in <b>at most one</b> .c file in your project. Otherwise, compilation will generate more than one object (.o) file containing .configX sections, and the linker will try to cram these into a single such section in the executable, producing cryptic "will not fit" linker errors.</p>
+<p>Such trouble is alluded to in the XC32 User's Guide, Section 7.5 (Configuration Bit Access): "Configuration settings should be specified in only a single translation unit (a C/C++ file with all of its include files after preprocessing)."</p>
 <dl class="section author"><dt>Author</dt><dd>Jeff Lutgen </dd></dl>
-
-<p>Definition in file <a class="el" href="config_8h_source.html">config.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:48:10 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

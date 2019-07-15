@@ -13,6 +13,7 @@
 
 #include "config.h"
 #include "tft.h"
+#include "tft_printline.h"
 #include "io_expander.h"
 
 // some precise, fixed, short delays
@@ -25,31 +26,19 @@
 #define wait40 wait20;wait20;
 
 // pullup/down macros for keypad
-// PORT B
-#define EnablePullDownB(bits) CNPUBCLR=bits; CNPDBSET=bits;
-#define DisablePullDownB(bits) CNPDBCLR=bits;
-#define EnablePullUpB(bits) CNPDBCLR=bits; CNPUBSET=bits;
-#define DisablePullUpB(bits) CNPUBCLR=bits;
+
 //PORT A
-#define EnablePullDownA(bits) CNPUACLR=bits; CNPDASET=bits;
-#define DisablePullDownA(bits) CNPDACLR=bits;
-#define EnablePullUpA(bits) CNPDACLR=bits; CNPUASET=bits;
-#define DisablePullUpA(bits) CNPUACLR=bits;
+#define EnablePullDownA(bits)   CNPUACLR=bits; CNPDASET=bits;
+#define DisablePullDownA(bits)  CNPDACLR=bits;
+#define EnablePullUpA(bits)     CNPDACLR=bits; CNPUASET=bits;
+#define DisablePullUpA(bits)    CNPUACLR=bits;
+// PORT B
+#define EnablePullDownB(bits)   CNPUBCLR=bits; CNPDBSET=bits;
+#define DisablePullDownB(bits)  CNPDBCLR=bits;
+#define EnablePullUpB(bits)     CNPDBCLR=bits; CNPUBSET=bits;
+#define DisablePullUpB(bits)    CNPUBCLR=bits;
 
 char buffer[80];
-
-void printLine(int line_number, int char_size, char *print_buffer) {
-    // line number 0 to 30
-    // char_size 1 to 5
-    // print_buffer the string to print
-    int v_pos;
-    v_pos = line_number * 10 ;
-    tft_fillRoundRect(0, v_pos, 319, 21, 1, ILI9340_BLACK);// x,y,w,h,radius,color
-    tft_setCursor(0, v_pos);
-    tft_setTextColor(ILI9340_YELLOW);
-    tft_setTextSize(char_size);
-    tft_writeString(print_buffer);
-}
 
 int main(void) {
     // Configure the device for maximum performance
@@ -58,7 +47,6 @@ int main(void) {
     osc_tune(56);
 
     tft_init();
-    tft_begin();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left
 
@@ -119,7 +107,7 @@ int main(void) {
         //tft_writeString(buffer);
         if (buffer[0] != curr_char) {
             curr_char = buffer[0];
-            printLine(2, 3, buffer);
+            tft_printLine(2, 3, buffer);
         }
     }
     return 0;

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>Pikky: io_expander.h File Reference</title>
+<title>WC PIC32Lib: peripherals/io_expander.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-JL.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,8 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Pikky
+   <div id="projectname">WC PIC32Lib
    </div>
+   <div id="projectbrief">Libraries for the PIC32MX250xxxx and peripherals</div>
   </td>
  </tr>
  </tbody>
@@ -67,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -76,717 +78,202 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">io_expander.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;plib.h&gt;</code><br />
-</div>
-<p><a href="io__expander_8h_source.html">Go to the source code of this file.</a></p>
+
+<p>A PIC32 library for the MCP23S17 I/O expander.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a0c5ad667ee8b3fc41e20f88fef4093d8">_SUPPRESS_PLIB_WARNING</a></td></tr>
-<tr class="separator:a0c5ad667ee8b3fc41e20f88fef4093d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e476b569a3714860cc40d57acaba880"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7e476b569a3714860cc40d57acaba880">_DISABLE_OPENADC10_CONFIGPORT_WARNING</a></td></tr>
-<tr class="separator:a7e476b569a3714860cc40d57acaba880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab026d2fe8e5b998101c278e6083b8261"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ab026d2fe8e5b998101c278e6083b8261">IOE_OPCODE_HEADER</a>&#160;&#160;&#160;0b01000000</td></tr>
+<tr class="memitem:ab026d2fe8e5b998101c278e6083b8261"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab026d2fe8e5b998101c278e6083b8261"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_OPCODE_HEADER</b>&#160;&#160;&#160;0b01000000</td></tr>
 <tr class="separator:ab026d2fe8e5b998101c278e6083b8261"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbbd5a3cbae8013e732921b5328eed36"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#adbbd5a3cbae8013e732921b5328eed36">IOE_READ</a>&#160;&#160;&#160;0b00000001</td></tr>
+<tr class="memitem:adbbd5a3cbae8013e732921b5328eed36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbbd5a3cbae8013e732921b5328eed36"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_READ</b>&#160;&#160;&#160;0b00000001</td></tr>
 <tr class="separator:adbbd5a3cbae8013e732921b5328eed36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace59375a6a88291fef0ce3cfcd3347b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ace59375a6a88291fef0ce3cfcd3347b0">IOE_WRITE</a>&#160;&#160;&#160;0b00000000</td></tr>
+<tr class="memitem:ace59375a6a88291fef0ce3cfcd3347b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace59375a6a88291fef0ce3cfcd3347b0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IOE_WRITE</b>&#160;&#160;&#160;0b00000000</td></tr>
 <tr class="separator:ace59375a6a88291fef0ce3cfcd3347b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4b2dfb23daea71f3bd5c42ab523b459"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac4b2dfb23daea71f3bd5c42ab523b459">SET_BANK</a>&#160;&#160;&#160;0x80</td></tr>
+<tr class="memitem:ac4b2dfb23daea71f3bd5c42ab523b459"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4b2dfb23daea71f3bd5c42ab523b459"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_BANK</b>&#160;&#160;&#160;0x80</td></tr>
 <tr class="separator:ac4b2dfb23daea71f3bd5c42ab523b459"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fefaa4559a16690110671a594acaa35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a6fefaa4559a16690110671a594acaa35">CLEAR_BANK</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a6fefaa4559a16690110671a594acaa35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6fefaa4559a16690110671a594acaa35"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_BANK</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:a6fefaa4559a16690110671a594acaa35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c07aa2dcd6dec9793a4aa36e559a9c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a9c07aa2dcd6dec9793a4aa36e559a9c5">SET_MIRROR</a>&#160;&#160;&#160;0x40</td></tr>
+<tr class="memitem:a9c07aa2dcd6dec9793a4aa36e559a9c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c07aa2dcd6dec9793a4aa36e559a9c5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_MIRROR</b>&#160;&#160;&#160;0x40</td></tr>
 <tr class="separator:a9c07aa2dcd6dec9793a4aa36e559a9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4105f3adba2449a70a07e82c3d669f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#aa4105f3adba2449a70a07e82c3d669f3">CLEAR_MIRROR</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:aa4105f3adba2449a70a07e82c3d669f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4105f3adba2449a70a07e82c3d669f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_MIRROR</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:aa4105f3adba2449a70a07e82c3d669f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f3c4ae12e59a42ee5356312a7cd42d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a8f3c4ae12e59a42ee5356312a7cd42d0">SET_SEQOP</a>&#160;&#160;&#160;0x20</td></tr>
+<tr class="memitem:a8f3c4ae12e59a42ee5356312a7cd42d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f3c4ae12e59a42ee5356312a7cd42d0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_SEQOP</b>&#160;&#160;&#160;0x20</td></tr>
 <tr class="separator:a8f3c4ae12e59a42ee5356312a7cd42d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4b769c245917039e18eff5ab9706de4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac4b769c245917039e18eff5ab9706de4">CLEAR_SEQOP</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:ac4b769c245917039e18eff5ab9706de4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4b769c245917039e18eff5ab9706de4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_SEQOP</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:ac4b769c245917039e18eff5ab9706de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a027f1e863328257d15c005f39ce7a711"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a027f1e863328257d15c005f39ce7a711">SET_DISSLW</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memitem:a027f1e863328257d15c005f39ce7a711"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a027f1e863328257d15c005f39ce7a711"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_DISSLW</b>&#160;&#160;&#160;0x10</td></tr>
 <tr class="separator:a027f1e863328257d15c005f39ce7a711"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d426428a14f4a70dfb3bd867337d13f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a9d426428a14f4a70dfb3bd867337d13f">CLEAR_DISSLW</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a9d426428a14f4a70dfb3bd867337d13f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d426428a14f4a70dfb3bd867337d13f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_DISSLW</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:a9d426428a14f4a70dfb3bd867337d13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac909e4edc1e4818edf9120835a0dc9aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac909e4edc1e4818edf9120835a0dc9aa">SET_HAEN</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memitem:ac909e4edc1e4818edf9120835a0dc9aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac909e4edc1e4818edf9120835a0dc9aa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_HAEN</b>&#160;&#160;&#160;0x08</td></tr>
 <tr class="separator:ac909e4edc1e4818edf9120835a0dc9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93d87e4c006c08cf4fe8d5eb56ae7241"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a93d87e4c006c08cf4fe8d5eb56ae7241">CLEAR_HAEN</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a93d87e4c006c08cf4fe8d5eb56ae7241"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93d87e4c006c08cf4fe8d5eb56ae7241"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_HAEN</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:a93d87e4c006c08cf4fe8d5eb56ae7241"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adedb91a508cf91a11668337105d78cbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#adedb91a508cf91a11668337105d78cbe">SET_ODR</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memitem:adedb91a508cf91a11668337105d78cbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adedb91a508cf91a11668337105d78cbe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_ODR</b>&#160;&#160;&#160;0x04</td></tr>
 <tr class="separator:adedb91a508cf91a11668337105d78cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6815fa54daae14c5b623039b2422e52f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a6815fa54daae14c5b623039b2422e52f">CLEAR_ODR</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a6815fa54daae14c5b623039b2422e52f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6815fa54daae14c5b623039b2422e52f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_ODR</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:a6815fa54daae14c5b623039b2422e52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a012eecbb98e4b790e4618f6287447c7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a012eecbb98e4b790e4618f6287447c7c">SET_INTPOL</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memitem:a012eecbb98e4b790e4618f6287447c7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a012eecbb98e4b790e4618f6287447c7c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_INTPOL</b>&#160;&#160;&#160;0x02</td></tr>
 <tr class="separator:a012eecbb98e4b790e4618f6287447c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bb04e7fa6375ee481af632053341f8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a8bb04e7fa6375ee481af632053341f8a">CLEAR_INTPOL</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memitem:a8bb04e7fa6375ee481af632053341f8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bb04e7fa6375ee481af632053341f8a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLEAR_INTPOL</b>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:a8bb04e7fa6375ee481af632053341f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2eeddf5475bf5d75a63ff1b096d72ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ae2eeddf5475bf5d75a63ff1b096d72ca">IODIRY</a>&#160;&#160;&#160;0x00</td></tr>
-<tr class="separator:ae2eeddf5475bf5d75a63ff1b096d72ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9adc002bad6ab5ba6c363d49bf69b15"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac9adc002bad6ab5ba6c363d49bf69b15">IODIRZ</a>&#160;&#160;&#160;0x01</td></tr>
-<tr class="separator:ac9adc002bad6ab5ba6c363d49bf69b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f80cd4ba6e2e781d88d6d02dec4443b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7f80cd4ba6e2e781d88d6d02dec4443b">IPOLY</a>&#160;&#160;&#160;0x02</td></tr>
-<tr class="separator:a7f80cd4ba6e2e781d88d6d02dec4443b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3b68e34b80935c0fb72fb3ba08d5b63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#af3b68e34b80935c0fb72fb3ba08d5b63">IPOLZ</a>&#160;&#160;&#160;0x03</td></tr>
-<tr class="separator:af3b68e34b80935c0fb72fb3ba08d5b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a261f54b354ab27adfc9de61994df8428"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a261f54b354ab27adfc9de61994df8428">GPINTENY</a>&#160;&#160;&#160;0x04</td></tr>
-<tr class="separator:a261f54b354ab27adfc9de61994df8428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a653dde635fcda1dd9e01d0d63d687ba9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a653dde635fcda1dd9e01d0d63d687ba9">GPINTENZ</a>&#160;&#160;&#160;0x05</td></tr>
-<tr class="separator:a653dde635fcda1dd9e01d0d63d687ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9b9cb69d5397423493544d612bf5cdb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ad9b9cb69d5397423493544d612bf5cdb">DEFVALY</a>&#160;&#160;&#160;0x06</td></tr>
-<tr class="separator:ad9b9cb69d5397423493544d612bf5cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad053d307e7528acf8217e3ee0e0cb59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#aad053d307e7528acf8217e3ee0e0cb59">DEFVALZ</a>&#160;&#160;&#160;0x07</td></tr>
-<tr class="separator:aad053d307e7528acf8217e3ee0e0cb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d0ab0382724f3ff167059794f391237"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a4d0ab0382724f3ff167059794f391237">INTCONY</a>&#160;&#160;&#160;0x08</td></tr>
-<tr class="separator:a4d0ab0382724f3ff167059794f391237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a705b9131f6b8f0fbda3acc878c7f216b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a705b9131f6b8f0fbda3acc878c7f216b">INTCONZ</a>&#160;&#160;&#160;0x09</td></tr>
-<tr class="separator:a705b9131f6b8f0fbda3acc878c7f216b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb7b41beb2b7038bbb1ff94c0b43905"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7cb7b41beb2b7038bbb1ff94c0b43905">IOCON</a>&#160;&#160;&#160;0x0A</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Register Addresses (BANK = 0)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Note: Renamed all PortA to PortC, PortB to PortD to avoid confusion with PIC </p>
+</div></td></tr>
+<tr class="memitem:a5b74eaa60b40365a9b87f30e3b39daf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b74eaa60b40365a9b87f30e3b39daf0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a5b74eaa60b40365a9b87f30e3b39daf0">IODIRC</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a5b74eaa60b40365a9b87f30e3b39daf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O direction. <br /></td></tr>
+<tr class="separator:a5b74eaa60b40365a9b87f30e3b39daf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485fb959af22e21997b2d1a7f6c4f959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a485fb959af22e21997b2d1a7f6c4f959"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a485fb959af22e21997b2d1a7f6c4f959">IODIRD</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="memdesc:a485fb959af22e21997b2d1a7f6c4f959"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O direction. <br /></td></tr>
+<tr class="separator:a485fb959af22e21997b2d1a7f6c4f959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9a5bec87d6b8ab0abbeb96e72db094"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc9a5bec87d6b8ab0abbeb96e72db094"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#adc9a5bec87d6b8ab0abbeb96e72db094">IPOLC</a>&#160;&#160;&#160;0x02</td></tr>
+<tr class="memdesc:adc9a5bec87d6b8ab0abbeb96e72db094"><td class="mdescLeft">&#160;</td><td class="mdescRight">input polarity <br /></td></tr>
+<tr class="separator:adc9a5bec87d6b8ab0abbeb96e72db094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0d0ba6e72d67d3414a254959302a5ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0d0ba6e72d67d3414a254959302a5ab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac0d0ba6e72d67d3414a254959302a5ab">IPOLD</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="memdesc:ac0d0ba6e72d67d3414a254959302a5ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">input polarity <br /></td></tr>
+<tr class="separator:ac0d0ba6e72d67d3414a254959302a5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b8a87b55b7cdbb2582f9632df87bf9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7b8a87b55b7cdbb2582f9632df87bf9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ab7b8a87b55b7cdbb2582f9632df87bf9">GPINTENC</a>&#160;&#160;&#160;0x04</td></tr>
+<tr class="memdesc:ab7b8a87b55b7cdbb2582f9632df87bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt-on-change enable <br /></td></tr>
+<tr class="separator:ab7b8a87b55b7cdbb2582f9632df87bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab922886856b71c1d41294aaf5d60f097"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab922886856b71c1d41294aaf5d60f097"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ab922886856b71c1d41294aaf5d60f097">GPINTEND</a>&#160;&#160;&#160;0x05</td></tr>
+<tr class="memdesc:ab922886856b71c1d41294aaf5d60f097"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt-on-change enable <br /></td></tr>
+<tr class="separator:ab922886856b71c1d41294aaf5d60f097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab649807efca8f31cee5283362c61204e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab649807efca8f31cee5283362c61204e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ab649807efca8f31cee5283362c61204e">DEFVALC</a>&#160;&#160;&#160;0x06</td></tr>
+<tr class="memdesc:ab649807efca8f31cee5283362c61204e"><td class="mdescLeft">&#160;</td><td class="mdescRight">default comparison value <br /></td></tr>
+<tr class="separator:ab649807efca8f31cee5283362c61204e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b859c7752f70f30c17bd615455db34d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b859c7752f70f30c17bd615455db34d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a3b859c7752f70f30c17bd615455db34d">DEFVALD</a>&#160;&#160;&#160;0x07</td></tr>
+<tr class="memdesc:a3b859c7752f70f30c17bd615455db34d"><td class="mdescLeft">&#160;</td><td class="mdescRight">default comparison value <br /></td></tr>
+<tr class="separator:a3b859c7752f70f30c17bd615455db34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9bb951635527621ec2199e834fb755a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9bb951635527621ec2199e834fb755a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac9bb951635527621ec2199e834fb755a">INTCONC</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="memdesc:ac9bb951635527621ec2199e834fb755a"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt-on-change control <br /></td></tr>
+<tr class="separator:ac9bb951635527621ec2199e834fb755a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8761772e470a76b41f2d98d3117500a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8761772e470a76b41f2d98d3117500a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a8761772e470a76b41f2d98d3117500a8">INTCOND</a>&#160;&#160;&#160;0x09</td></tr>
+<tr class="memdesc:a8761772e470a76b41f2d98d3117500a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt-on-change control <br /></td></tr>
+<tr class="separator:a8761772e470a76b41f2d98d3117500a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb7b41beb2b7038bbb1ff94c0b43905"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cb7b41beb2b7038bbb1ff94c0b43905"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7cb7b41beb2b7038bbb1ff94c0b43905">IOCON</a>&#160;&#160;&#160;0x0A</td></tr>
+<tr class="memdesc:a7cb7b41beb2b7038bbb1ff94c0b43905"><td class="mdescLeft">&#160;</td><td class="mdescRight">I/O expander configuration. <br /></td></tr>
 <tr class="separator:a7cb7b41beb2b7038bbb1ff94c0b43905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e0b97deb3747ab6bc5bdab3362b36ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a6e0b97deb3747ab6bc5bdab3362b36ed">GPPUY</a>&#160;&#160;&#160;0x0C</td></tr>
-<tr class="separator:a6e0b97deb3747ab6bc5bdab3362b36ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ddecf44f5cdda2c6cdc3ab9e7e88b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a49ddecf44f5cdda2c6cdc3ab9e7e88b4">GPPUZ</a>&#160;&#160;&#160;0x0D</td></tr>
-<tr class="separator:a49ddecf44f5cdda2c6cdc3ab9e7e88b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d5cb407183d630e23f3d2b6dffe8f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ad5d5cb407183d630e23f3d2b6dffe8f8">INTFY</a>&#160;&#160;&#160;0x0E</td></tr>
-<tr class="separator:ad5d5cb407183d630e23f3d2b6dffe8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17da99aba631a5cfc9c67dc6475d9bec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a17da99aba631a5cfc9c67dc6475d9bec">INTFZ</a>&#160;&#160;&#160;0x0F</td></tr>
-<tr class="separator:a17da99aba631a5cfc9c67dc6475d9bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41d6943ca4e777b27753c1cdce1c770a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a41d6943ca4e777b27753c1cdce1c770a">INTCAPY</a>&#160;&#160;&#160;0x10</td></tr>
-<tr class="separator:a41d6943ca4e777b27753c1cdce1c770a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c8fc2634e74e1e1dceb9ab753a56117"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a8c8fc2634e74e1e1dceb9ab753a56117">INTCAPZ</a>&#160;&#160;&#160;0x11</td></tr>
-<tr class="separator:a8c8fc2634e74e1e1dceb9ab753a56117"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7d4ad01cbc32252ed83175445e1659a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac7d4ad01cbc32252ed83175445e1659a">GPIOY</a>&#160;&#160;&#160;0x12</td></tr>
-<tr class="separator:ac7d4ad01cbc32252ed83175445e1659a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a359998f3c1c42fc612dc9bbe494ccb95"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a359998f3c1c42fc612dc9bbe494ccb95">GPIOZ</a>&#160;&#160;&#160;0x13</td></tr>
-<tr class="separator:a359998f3c1c42fc612dc9bbe494ccb95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0a70d98df6467103ca87efc11bbb16a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#aa0a70d98df6467103ca87efc11bbb16a">OLATY</a>&#160;&#160;&#160;0x14</td></tr>
-<tr class="separator:aa0a70d98df6467103ca87efc11bbb16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a677aaf1ef5aaf6be0e514b11eeeb7816"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a677aaf1ef5aaf6be0e514b11eeeb7816">OLATZ</a>&#160;&#160;&#160;0x15</td></tr>
-<tr class="separator:a677aaf1ef5aaf6be0e514b11eeeb7816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b601179bef7f9e7b7dcd487d4616069"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b601179bef7f9e7b7dcd487d4616069"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a2b601179bef7f9e7b7dcd487d4616069">GPPUC</a>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="memdesc:a2b601179bef7f9e7b7dcd487d4616069"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pull-up resistor configuration. <br /></td></tr>
+<tr class="separator:a2b601179bef7f9e7b7dcd487d4616069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6578485ff4c894df669c72582e855d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6578485ff4c894df669c72582e855d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac6578485ff4c894df669c72582e855d3">GPPUD</a>&#160;&#160;&#160;0x0D</td></tr>
+<tr class="memdesc:ac6578485ff4c894df669c72582e855d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO pull-up resistor configuration. <br /></td></tr>
+<tr class="separator:ac6578485ff4c894df669c72582e855d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaef85c2c2c555e498bc6909ff9b35cb9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaef85c2c2c555e498bc6909ff9b35cb9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#aaef85c2c2c555e498bc6909ff9b35cb9">INTFC</a>&#160;&#160;&#160;0x0E</td></tr>
+<tr class="memdesc:aaef85c2c2c555e498bc6909ff9b35cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt flag <br /></td></tr>
+<tr class="separator:aaef85c2c2c555e498bc6909ff9b35cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7114bfaf8f1b7686ccaf35a7079228c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7114bfaf8f1b7686ccaf35a7079228c6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7114bfaf8f1b7686ccaf35a7079228c6">INTFD</a>&#160;&#160;&#160;0x0F</td></tr>
+<tr class="memdesc:a7114bfaf8f1b7686ccaf35a7079228c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt flag <br /></td></tr>
+<tr class="separator:a7114bfaf8f1b7686ccaf35a7079228c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822a862d51b19fa4a9495c156649a37b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a822a862d51b19fa4a9495c156649a37b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a822a862d51b19fa4a9495c156649a37b">INTCAPC</a>&#160;&#160;&#160;0x10</td></tr>
+<tr class="memdesc:a822a862d51b19fa4a9495c156649a37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt captured <br /></td></tr>
+<tr class="separator:a822a862d51b19fa4a9495c156649a37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9c048c9455c1f1bacaca7fdd32afe9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f9c048c9455c1f1bacaca7fdd32afe9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7f9c048c9455c1f1bacaca7fdd32afe9">INTCAPD</a>&#160;&#160;&#160;0x11</td></tr>
+<tr class="memdesc:a7f9c048c9455c1f1bacaca7fdd32afe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">interrupt captured <br /></td></tr>
+<tr class="separator:a7f9c048c9455c1f1bacaca7fdd32afe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dca03332d620196ba943bc2346eaa08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dca03332d620196ba943bc2346eaa08"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a2dca03332d620196ba943bc2346eaa08">GPIOC</a>&#160;&#160;&#160;0x12</td></tr>
+<tr class="memdesc:a2dca03332d620196ba943bc2346eaa08"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO port C. <br /></td></tr>
+<tr class="separator:a2dca03332d620196ba943bc2346eaa08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7580b1a929ea9df59725ba9c18eba6ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7580b1a929ea9df59725ba9c18eba6ac"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a7580b1a929ea9df59725ba9c18eba6ac">GPIOD</a>&#160;&#160;&#160;0x13</td></tr>
+<tr class="memdesc:a7580b1a929ea9df59725ba9c18eba6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO port D. <br /></td></tr>
+<tr class="separator:a7580b1a929ea9df59725ba9c18eba6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2419430a19a3769398263e926188f48d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2419430a19a3769398263e926188f48d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a2419430a19a3769398263e926188f48d">OLATC</a>&#160;&#160;&#160;0x14</td></tr>
+<tr class="memdesc:a2419430a19a3769398263e926188f48d"><td class="mdescLeft">&#160;</td><td class="mdescRight">output latch <br /></td></tr>
+<tr class="separator:a2419430a19a3769398263e926188f48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cac244dc92b0a6450b7fd31d48cf2d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cac244dc92b0a6450b7fd31d48cf2d8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a8cac244dc92b0a6450b7fd31d48cf2d8">OLATD</a>&#160;&#160;&#160;0x15</td></tr>
+<tr class="memdesc:a8cac244dc92b0a6450b7fd31d48cf2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">output latch <br /></td></tr>
+<tr class="separator:a8cac244dc92b0a6450b7fd31d48cf2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a49dd7fa773dd422fb420be8392a48abc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a49dd7fa773dd422fb420be8392a48abc">ioe_init</a> ()</td></tr>
 <tr class="separator:a49dd7fa773dd422fb420be8392a48abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d8e6f16406d5cd7887e18cd582b6b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a5d8e6f16406d5cd7887e18cd582b6b03">ioe_PortCSetPinsOut</a> (unsigned char)</td></tr>
-<tr class="memdesc:a5d8e6f16406d5cd7887e18cd582b6b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a given collection of Port C pins as outputs.  <a href="#a5d8e6f16406d5cd7887e18cd582b6b03">More...</a><br /></td></tr>
 <tr class="separator:a5d8e6f16406d5cd7887e18cd582b6b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73b42c917b6ea5e06594b739db22b1ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a73b42c917b6ea5e06594b739db22b1ee">ioe_PortDSetPinsOut</a> (unsigned char)</td></tr>
-<tr class="memdesc:a73b42c917b6ea5e06594b739db22b1ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a given collection of Port D pins as outputs.  <a href="#a73b42c917b6ea5e06594b739db22b1ee">More...</a><br /></td></tr>
 <tr class="separator:a73b42c917b6ea5e06594b739db22b1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac02168a738e87b1366ff47b89dcb67c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ac02168a738e87b1366ff47b89dcb67c4">ioe_PortCSetPinsIn</a> (unsigned char)</td></tr>
-<tr class="memdesc:ac02168a738e87b1366ff47b89dcb67c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a given collection of Port C pins as inputs.  <a href="#ac02168a738e87b1366ff47b89dcb67c4">More...</a><br /></td></tr>
 <tr class="separator:ac02168a738e87b1366ff47b89dcb67c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74f54972aa8b46f5471d8c4a04104085"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a74f54972aa8b46f5471d8c4a04104085">ioe_PortDSetPinsIn</a> (unsigned char)</td></tr>
-<tr class="memdesc:a74f54972aa8b46f5471d8c4a04104085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a given collection of Port D pins as inputs.  <a href="#a74f54972aa8b46f5471d8c4a04104085">More...</a><br /></td></tr>
 <tr class="separator:a74f54972aa8b46f5471d8c4a04104085"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfb83661c01aa3bd80521db3f1c68437"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#acfb83661c01aa3bd80521db3f1c68437">ioe_PortCIntEnable</a> (unsigned char)</td></tr>
-<tr class="memdesc:acfb83661c01aa3bd80521db3f1c68437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables interrupts for a given collection of Port C pins.  <a href="#acfb83661c01aa3bd80521db3f1c68437">More...</a><br /></td></tr>
 <tr class="separator:acfb83661c01aa3bd80521db3f1c68437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca142607ab995ea804c9787faf39e47d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#aca142607ab995ea804c9787faf39e47d">ioe_PortCIntDisable</a> (unsigned char)</td></tr>
-<tr class="memdesc:aca142607ab995ea804c9787faf39e47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables interrupts for a given collection of Port C pins.  <a href="#aca142607ab995ea804c9787faf39e47d">More...</a><br /></td></tr>
 <tr class="separator:aca142607ab995ea804c9787faf39e47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4655e273f9cefc7320b49a4d6c01347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#af4655e273f9cefc7320b49a4d6c01347">ioe_PortDIntEnable</a> (unsigned char)</td></tr>
-<tr class="memdesc:af4655e273f9cefc7320b49a4d6c01347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables interrupts for a given collection of Port D pins.  <a href="#af4655e273f9cefc7320b49a4d6c01347">More...</a><br /></td></tr>
 <tr class="separator:af4655e273f9cefc7320b49a4d6c01347"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a980dbf5e80bc619292dc7a2987edcb9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a980dbf5e80bc619292dc7a2987edcb9e">ioe_PortDIntDisable</a> (unsigned char)</td></tr>
-<tr class="memdesc:a980dbf5e80bc619292dc7a2987edcb9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables interrupts for a given collection of Port D pins.  <a href="#a980dbf5e80bc619292dc7a2987edcb9e">More...</a><br /></td></tr>
 <tr class="separator:a980dbf5e80bc619292dc7a2987edcb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6cafe0b797beb1f5fc5ff5a8572143c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#ae6cafe0b797beb1f5fc5ff5a8572143c">ioe_PortCEnablePullUp</a> (unsigned char)</td></tr>
-<tr class="memdesc:ae6cafe0b797beb1f5fc5ff5a8572143c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the internal pull-up resistor on a given collection of Port C pins.  <a href="#ae6cafe0b797beb1f5fc5ff5a8572143c">More...</a><br /></td></tr>
 <tr class="separator:ae6cafe0b797beb1f5fc5ff5a8572143c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a262f82ff14624f77c6e2246f3661f092"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a262f82ff14624f77c6e2246f3661f092">ioe_PortDEnablePullUp</a> (unsigned char)</td></tr>
-<tr class="memdesc:a262f82ff14624f77c6e2246f3661f092"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the internal pull-up resistor on a given collection of Port D pins.  <a href="#a262f82ff14624f77c6e2246f3661f092">More...</a><br /></td></tr>
 <tr class="separator:a262f82ff14624f77c6e2246f3661f092"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53a8e6058d4ed283c800d17a407f2668"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a53a8e6058d4ed283c800d17a407f2668">ioe_PortCDisablePullUp</a> (unsigned char)</td></tr>
-<tr class="memdesc:a53a8e6058d4ed283c800d17a407f2668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the internal pull-up resistor on a given collection of Port C pins.  <a href="#a53a8e6058d4ed283c800d17a407f2668">More...</a><br /></td></tr>
 <tr class="separator:a53a8e6058d4ed283c800d17a407f2668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a772f81178a17d6150329d2c82864afa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a772f81178a17d6150329d2c82864afa0">ioe_PortDDisablePullUp</a> (unsigned char)</td></tr>
-<tr class="memdesc:a772f81178a17d6150329d2c82864afa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the internal pull-up resistor on a given collection of Port D pins.  <a href="#a772f81178a17d6150329d2c82864afa0">More...</a><br /></td></tr>
 <tr class="separator:a772f81178a17d6150329d2c82864afa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a3a97ee4e136b9fbd9c0b91ea19b3a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a0a3a97ee4e136b9fbd9c0b91ea19b3a6">ioe_write</a> (unsigned char, unsigned char)</td></tr>
-<tr class="memdesc:a0a3a97ee4e136b9fbd9c0b91ea19b3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte of data to a register on the I/O expander.  <a href="#a0a3a97ee4e136b9fbd9c0b91ea19b3a6">More...</a><br /></td></tr>
 <tr class="separator:a0a3a97ee4e136b9fbd9c0b91ea19b3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a848bb361f98af710b6c9620e3ed91f"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a6a848bb361f98af710b6c9620e3ed91f">ioe_read</a> (unsigned char)</td></tr>
-<tr class="memdesc:a6a848bb361f98af710b6c9620e3ed91f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and returns the data byte from a register on the I/O expander.  <a href="#a6a848bb361f98af710b6c9620e3ed91f">More...</a><br /></td></tr>
 <tr class="separator:a6a848bb361f98af710b6c9620e3ed91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a668bc2f591ec521b40d707d01e53ccbd"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__expander_8h.html#a668bc2f591ec521b40d707d01e53ccbd">spi2_lock</a></td></tr>
-<tr class="separator:a668bc2f591ec521b40d707d01e53ccbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a7e476b569a3714860cc40d57acaba880"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _DISABLE_OPENADC10_CONFIGPORT_WARNING</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00011">11</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0c5ad667ee8b3fc41e20f88fef4093d8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _SUPPRESS_PLIB_WARNING</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00010">10</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6fefaa4559a16690110671a594acaa35"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_BANK&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00020">20</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9d426428a14f4a70dfb3bd867337d13f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_DISSLW&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00026">26</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a93d87e4c006c08cf4fe8d5eb56ae7241"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_HAEN&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00028">28</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8bb04e7fa6375ee481af632053341f8a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_INTPOL&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00032">32</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa4105f3adba2449a70a07e82c3d669f3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_MIRROR&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00022">22</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6815fa54daae14c5b623039b2422e52f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_ODR&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00030">30</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac4b769c245917039e18eff5ab9706de4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLEAR_SEQOP&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00024">24</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad9b9cb69d5397423493544d612bf5cdb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DEFVALY&#160;&#160;&#160;0x06</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00043">43</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aad053d307e7528acf8217e3ee0e0cb59"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DEFVALZ&#160;&#160;&#160;0x07</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00044">44</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a261f54b354ab27adfc9de61994df8428"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPINTENY&#160;&#160;&#160;0x04</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00041">41</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a653dde635fcda1dd9e01d0d63d687ba9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPINTENZ&#160;&#160;&#160;0x05</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00042">42</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac7d4ad01cbc32252ed83175445e1659a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPIOY&#160;&#160;&#160;0x12</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00055">55</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a359998f3c1c42fc612dc9bbe494ccb95"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPIOZ&#160;&#160;&#160;0x13</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00056">56</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6e0b97deb3747ab6bc5bdab3362b36ed"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPPUY&#160;&#160;&#160;0x0C</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00049">49</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a49ddecf44f5cdda2c6cdc3ab9e7e88b4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define GPPUZ&#160;&#160;&#160;0x0D</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00050">50</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a41d6943ca4e777b27753c1cdce1c770a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTCAPY&#160;&#160;&#160;0x10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00053">53</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8c8fc2634e74e1e1dceb9ab753a56117"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTCAPZ&#160;&#160;&#160;0x11</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00054">54</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4d0ab0382724f3ff167059794f391237"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTCONY&#160;&#160;&#160;0x08</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00045">45</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a705b9131f6b8f0fbda3acc878c7f216b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTCONZ&#160;&#160;&#160;0x09</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00046">46</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad5d5cb407183d630e23f3d2b6dffe8f8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTFY&#160;&#160;&#160;0x0E</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00051">51</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a17da99aba631a5cfc9c67dc6475d9bec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INTFZ&#160;&#160;&#160;0x0F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00052">52</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7cb7b41beb2b7038bbb1ff94c0b43905"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IOCON&#160;&#160;&#160;0x0A</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00047">47</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae2eeddf5475bf5d75a63ff1b096d72ca"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IODIRY&#160;&#160;&#160;0x00</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00037">37</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac9adc002bad6ab5ba6c363d49bf69b15"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IODIRZ&#160;&#160;&#160;0x01</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00038">38</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab026d2fe8e5b998101c278e6083b8261"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IOE_OPCODE_HEADER&#160;&#160;&#160;0b01000000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00014">14</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adbbd5a3cbae8013e732921b5328eed36"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IOE_READ&#160;&#160;&#160;0b00000001</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00015">15</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ace59375a6a88291fef0ce3cfcd3347b0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IOE_WRITE&#160;&#160;&#160;0b00000000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00016">16</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7f80cd4ba6e2e781d88d6d02dec4443b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IPOLY&#160;&#160;&#160;0x02</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00039">39</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af3b68e34b80935c0fb72fb3ba08d5b63"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IPOLZ&#160;&#160;&#160;0x03</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00040">40</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa0a70d98df6467103ca87efc11bbb16a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define OLATY&#160;&#160;&#160;0x14</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00057">57</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a677aaf1ef5aaf6be0e514b11eeeb7816"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define OLATZ&#160;&#160;&#160;0x15</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00058">58</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac4b2dfb23daea71f3bd5c42ab523b459"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_BANK&#160;&#160;&#160;0x80</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00019">19</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a027f1e863328257d15c005f39ce7a711"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_DISSLW&#160;&#160;&#160;0x10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00025">25</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac909e4edc1e4818edf9120835a0dc9aa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_HAEN&#160;&#160;&#160;0x08</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00027">27</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a012eecbb98e4b790e4618f6287447c7c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_INTPOL&#160;&#160;&#160;0x02</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00031">31</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9c07aa2dcd6dec9793a4aa36e559a9c5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_MIRROR&#160;&#160;&#160;0x40</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00021">21</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adedb91a508cf91a11668337105d78cbe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_ODR&#160;&#160;&#160;0x04</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00029">29</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8f3c4ae12e59a42ee5356312a7cd42d0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SET_SEQOP&#160;&#160;&#160;0x20</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8h_source.html#l00023">23</a> of file <a class="el" href="io__expander_8h_source.html">io_expander.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A PIC32 library for the MCP23S17 I/O expander. </p>
+<p>The ports on the MCP23S17 are named GPA0..GPA7 and GPB0..GPB7, but we rename these to C0..C7 and D0..D7, respectively, to avoid confusion with the PIC's I/O ports.</p>
+<dl class="section author"><dt>Authors</dt><dd>Sean Carroll and Bruce Land (Cornell University), Jeff Lutgen </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a49dd7fa773dd422fb420be8392a48abc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -799,139 +286,12 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00035">35</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a53a8e6058d4ed283c800d17a407f2668"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortCDisablePullUp </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disables the internal pull-up resistor on a given collection of Port C pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins on which to disable the internal pull-up resistor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00188">188</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae6cafe0b797beb1f5fc5ff5a8572143c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortCEnablePullUp </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables the internal pull-up resistor on a given collection of Port C pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins on which to enable the internal pull-up resistor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00166">166</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aca142607ab995ea804c9787faf39e47d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortCIntDisable </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disables interrupts for a given collection of Port C pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins for which to disable interrupts </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00145">145</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acfb83661c01aa3bd80521db3f1c68437"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortCIntEnable </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables interrupts for a given collection of Port C pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins for which to enable interrupts </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00125">125</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac02168a738e87b1366ff47b89dcb67c4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortCSetPinsIn </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets a given collection of Port C pins as inputs. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins to set as inputs </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00105">105</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
+<p>Initializes the MCP23S17 I/O expander and configures one of the PIC's SPI modules for communication with the I/O expander.</p>
+<p>Specifically, initializes and enables SPI2 in 8-bit mode, setting the SPI clock divisor for PBCLK to 4, which gives an SPI clock rate of 10MHz SPI clock (the fastest possible for the MCP23S17).</p>
+<p>Pins used on PIC: </p><pre class="fragment">CS:  RB9           (Pin 18)
+SCK: SCK2          (Pin 26)
+SDI: RPB2 --&gt; SDI2 (Pin  6)
+SDO: RPB5 --&gt; SDO2 (Pin 14)</pre> 
 </div>
 </div>
 <a class="anchor" id="a5d8e6f16406d5cd7887e18cd582b6b03"></a>
@@ -947,146 +307,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets a given collection of Port C pins as outputs. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port C pins to set as outputs </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00085">85</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a772f81178a17d6150329d2c82864afa0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortDDisablePullUp </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disables the internal pull-up resistor on a given collection of Port D pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins on which to disable the internal pull-up resistor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00199">199</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a262f82ff14624f77c6e2246f3661f092"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortDEnablePullUp </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables the internal pull-up resistor on a given collection of Port D pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins on which to enable the internal pull-up resistor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00177">177</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a980dbf5e80bc619292dc7a2987edcb9e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortDIntDisable </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disables interrupts for a given collection of Port D pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins for which to disable interrupts </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00155">155</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af4655e273f9cefc7320b49a4d6c01347"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortDIntEnable </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables interrupts for a given collection of Port D pins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins for which to enable interrupts </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00135">135</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a74f54972aa8b46f5471d8c4a04104085"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ioe_PortDSetPinsIn </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>bitmask</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets a given collection of Port D pins as inputs. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins to set as inputs </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00115">115</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
+<p>Sets the given Port C pins to be outputs </p>
 
 </div>
 </div>
@@ -1103,51 +324,177 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets a given collection of Port D pins as outputs. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bitmask</td><td>the Port D pins to set as outputs </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00095">95</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
+<p>Sets the given Port D pins to be outputs </p>
 
 </div>
 </div>
-<a class="anchor" id="a6a848bb361f98af710b6c9620e3ed91f"></a>
+<a class="anchor" id="ac02168a738e87b1366ff47b89dcb67c4"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned char ioe_read </td>
+          <td class="memname">void ioe_PortCSetPinsIn </td>
           <td>(</td>
           <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>reg_addr</em></td><td>)</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Sets the given Port C pins to be inputs </p>
 
-<p>Reads and returns the data byte from a register on the I/O expander. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reg_addr</td><td>the address of the target register </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the byte of data that was read </dd></dl>
+</div>
+</div>
+<a class="anchor" id="a74f54972aa8b46f5471d8c4a04104085"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortDSetPinsIn </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the given Port D pins to be inputs </p>
 
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00245">245</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
+</div>
+</div>
+<a class="anchor" id="acfb83661c01aa3bd80521db3f1c68437"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortCIntEnable </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enables interrupts for the given Port C pins </p>
+
+</div>
+</div>
+<a class="anchor" id="aca142607ab995ea804c9787faf39e47d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortCIntDisable </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables interrupts for the given Port C pins </p>
+
+</div>
+</div>
+<a class="anchor" id="af4655e273f9cefc7320b49a4d6c01347"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortDIntEnable </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enables interrupts the given Port D pins </p>
+
+</div>
+</div>
+<a class="anchor" id="a980dbf5e80bc619292dc7a2987edcb9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortDIntDisable </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables interrupts for the given Port D pins </p>
+
+</div>
+</div>
+<a class="anchor" id="ae6cafe0b797beb1f5fc5ff5a8572143c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortCEnablePullUp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enables the internal pull-up resistor on the given Port C pins </p>
+
+</div>
+</div>
+<a class="anchor" id="a262f82ff14624f77c6e2246f3661f092"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortDEnablePullUp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enables the internal pull-up resistor on the given Port D pins </p>
+
+</div>
+</div>
+<a class="anchor" id="a53a8e6058d4ed283c800d17a407f2668"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortCDisablePullUp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables the internal pull-up resistor on the given Port C pins </p>
+
+</div>
+</div>
+<a class="anchor" id="a772f81178a17d6150329d2c82864afa0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioe_PortDDisablePullUp </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>bitmask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables the internal pull-up resistor on the given Port D pins </p>
 
 </div>
 </div>
@@ -1182,37 +529,39 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Writes a byte of data to a register on the I/O expander. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reg_addr</td><td>the address of the target register </td></tr>
-    <tr><td class="paramname">data</td><td>the byte of data to be written </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="io__expander_8c_source.html#l00210">210</a> of file <a class="el" href="io__expander_8c_source.html">io_expander.c</a>.</p>
-
+<p>Writes a byte of data to a register on the I/O expander</p>
+<p>Example: </p><pre class="fragment">ioe_write(OLATC, 0x42);</pre> 
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a668bc2f591ec521b40d707d01e53ccbd"></a>
+<a class="anchor" id="a6a848bb361f98af710b6c9620e3ed91f"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile int spi2_lock</td>
+          <td class="memname">unsigned char ioe_read </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>reg_addr</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
+<p>Reads and returns a byte of data from a register on the I/O expander</p>
+<p>Example: </p><pre class="fragment">unsigned char signal = ioe_read(GPIOD);</pre> 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 10 2019 22:31:37 for Pikky by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

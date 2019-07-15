@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['amp_2ec',['amp.c',['../amp_8c.html',1,'']]]
+  ['amp_2eh',['amp.h',['../amp_8h.html',1,'']]]
 ];

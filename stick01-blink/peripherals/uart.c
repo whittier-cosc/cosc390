@@ -1,4 +1,4 @@
-/*!
+/*
  *  @file   uart.c
  *
  *  @brief  A PIC32 library for serial communication using the UART1 module.
@@ -12,16 +12,21 @@
  */
 
 #include <xc.h>
+#include <stdarg.h>
 #include "../hwprofile.h"
 #include "uart.h"
 
-/*!
- * \brief Initializes the UART1 module for 9600 baud serial communication
- *        (but rate can be changed by redifining BAUDRATE in uart.h),
- *        with 8 data bits, no parity bit, one stop bit ("8N1"),
- *        mapping pins as follows:
- *              RPA2 (pin 9) --> U1RX
- *              RPB3 (pin 7) --> U1TX
+#define BAUDRATE 9600
+
+/**
+ *  Initializes the UART1 module for 9600 baud serial communication
+ *  (rate can be changed by redefining BAUDRATE in this file),
+ *  with 8 data bits, no parity bit, and one stop bit ("8N1").
+ *
+ *  Pins used:
+ *
+ *      RPA2 (pin 9) --> U1RX
+ *      RPB3 (pin 7) --> U1TX
  */
 void uart_init() {
     CFGCONbits.IOLOCK = 0;
@@ -48,14 +53,19 @@ void uart_init() {
     U1MODEbits.ON = 1;
 }
 
-/*!
- * \brief Reads a string from UART1. Blocks until an '\r' or '\n' is seen.
- * \param message
- *              char array in which to store the received string
- * \param maxLength
- *              number of elements in the array
+/**
+ *  Reads a string from UART1. Blocks until an `\r` or `\n` is seen.
+ *
+ *  The received string is stored in `message`, which should have at least
+ *  `maxLength` elements. If there are more than `maxLength` elements in
+ *  the received string, wraparound occurs.
+ *
+ *  Example:
+ *
+ *      char msg[80];
+ *      uart_read(msg, 80);
  */
-void uart_read(char * message, int maxLength) {
+void uart_read(char *message, int maxLength) {
     char data = 0;
     int complete = 0, num_bytes = 0;
     // loop until you get a '\r' or '\n'
@@ -78,12 +88,10 @@ void uart_read(char * message, int maxLength) {
     message[num_bytes] = '\0';
 }
 
-/*!
- * \brief Write a null-terminated string to UART1
- * \param string
- *              char array containing the string
+/**
+ *  Writes a null-terminated string to UART1.
  */
-void uart_write(const char * string) {
+void uart_write(const char *string) {
     while (*string != '\0') {
         while (U1STAbits.UTXBF) {
             ; // wait until TX buffer isn't full
@@ -91,4 +99,25 @@ void uart_write(const char * string) {
         U1TXREG = *string;
         ++string;
     }
+}
+
+/**
+ *  Like printf(), but for UART1!
+ *
+ *  Truncates strings of length > 80.
+ *
+ *  Example:
+ *
+ *      uart_printf("TRISA = 0x%04x\n", TRISA);
+ */
+void uart_printf(const char *fmt, ...)
+{
+    char buf[80];
+
+    va_list arg;
+    va_start(arg, fmt);
+    vsnprintf(buf, 80, fmt, arg);
+    va_end(arg);
+
+    uart_write(buf);
 }
