@@ -73,6 +73,7 @@ void amp_init() {
     char msg[80];
     uint32_t actual_clock;
 
+    debug_log("amp_init\n");
     // Set the I2C baudrate
     actual_clock = I2CSetFrequency(TPA2016_I2C_BUS, PBCLK, I2C_CLOCK_FREQ);
     if (abs(actual_clock - I2C_CLOCK_FREQ) > I2C_CLOCK_FREQ/10) {
@@ -196,7 +197,7 @@ void amp_setLimitLevelOff() {
 void amp_setLimitLevel(uint8_t limit) {
     if (limit > 31)
         return;
-
+    debug_log("amp_setLimitLevel\n");
     uint8_t agc = read8(TPA2016_AGCLIMIT);
 
     agc &= ~(0x1F); // mask off bottom 5 bits
@@ -215,6 +216,7 @@ void amp_setLimitLevel(uint8_t limit) {
  *      TPA2016_AGC_8    --> 1:8
  */
 void amp_setAGCCompression(uint8_t x) {
+    debug_log("amp_setAGCCompression\n");
     if (x > 3)
         return; // only 2 bits!
 
@@ -343,6 +345,7 @@ static void write8(uint8_t address, uint8_t data) {
         while(1) { ; }
     }
 
+    delay(); // kludge -- the following stop_transfer() hangs otherwise
     stop_transfer();
 }
 
@@ -400,11 +403,11 @@ static void stop_transfer() {
     I2CStop(TPA2016_I2C_BUS);
 
     // Wait for the signal to complete
-//    debug_log("stop_transfer: wait for status == STOP\n");
+    debug_log("stop_transfer: wait for status == STOP\n");
     do {
         status = I2CGetStatus(TPA2016_I2C_BUS);
     } while (!(status & I2C_STOP));
-//    debug_log("stop_transfer: got status == STOP\n");
+    debug_log("stop_transfer: got status == STOP\n");
 }
 
 /*
@@ -446,6 +449,6 @@ static void debug_log(const char *string) {
 
 static void delay() {
     volatile int j;
-    for (j = 0; j < 10; j++) {
+    for (j = 0; j < 100; j++) {
     }
 }

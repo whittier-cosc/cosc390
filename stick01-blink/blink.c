@@ -10,7 +10,7 @@ int main(void) {
     LATAbits.LATA0 = 0;     // Turn LED off.
 
     while(1) {
-        delay(8);
+        delay(500);
         LATAINV = 0x0001;   // toggle LED
     }
     return 0;

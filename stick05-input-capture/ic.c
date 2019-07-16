@@ -69,12 +69,10 @@ int main(void) {
     INTCONbits.MVEC = 0x1;
 
     // peripheral pin select
-    CFGCONbits.IOLOCK = 0;
     U1RXR = 0; // map RPA2 (pin 9) to U1RX
     RPB3R = 1; // map RPB3 (pin 7) to U1TX
     RPB2R = 5; // map RPB2 (pin 6) to OC4 (PWM)
     IC1R = 2;  // map RPA4 (pin 12) to IC1
-    CFGCONbits.IOLOCK = 1;
 
     uart_init();
     pwm_config();

@@ -13,9 +13,7 @@ int main(void) {
     // seems OK.
 
     // Comparator
-    CFGCONbits.IOLOCK = 0;
     RPB9R = 7; // Map C1OUT to RPB9 (pin 18)
-    CFGCONbits.IOLOCK = 1;
     // We'll compare C1INB (pin 6) to internal voltage reference
     // configured above.
     CM1CONbits.COE = 1; // Enable output on C1OUT

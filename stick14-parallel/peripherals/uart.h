@@ -14,8 +14,8 @@
  *  @author Jeff Lutgen
  */
 
+void uart_init();
 void uart_read(char *message, int maxLength);
 void uart_write(const char *string);
-void uart_printf(const char *fmt, ...);
 
 #endif

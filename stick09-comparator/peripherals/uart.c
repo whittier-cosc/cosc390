@@ -29,10 +29,8 @@
  *      RPB3 (pin 7) --> U1TX
  */
 void uart_init() {
-    CFGCONbits.IOLOCK = 0;
     U1RXR = 0; // Map RPA2 (pin 9) to U1RX
     RPB3R = 1; // Map RPB3 (pin 7) to U1TX
-    CFGCONbits.IOLOCK = 1;
 
     // Set baud to BAUDRATE
     U1MODEbits.BRGH = 0;  // High-speed mode disabled
@@ -56,9 +54,9 @@ void uart_init() {
 /**
  *  Reads a string from UART1. Blocks until an `\r` or `\n` is seen.
  *
- *  The received string is stored in `message`, which should have at least
- *  `maxLength` elements. If there are more than `maxLength` elements in
- *  the received string, wraparound occurs.
+ *  The received string (not including the `\r` or `\n') is stored in `message`,
+ *  which should have at least `maxLength` elements. If there are more than `maxLength`
+ *  elements in the received string, wraparound occurs.
  *
  *  Example:
  *
@@ -101,23 +99,15 @@ void uart_write(const char *string) {
     }
 }
 
-/**
- *  Like printf(), but for UART1!
+/*
+ *  This is a replacement for the standard library version of _mon_putc().
  *
- *  Truncates strings of length > 80.
- *
- *  Example:
- *
- *      uart_printf("TRISA = 0x%04x\n", TRISA);
+ *  The standard version writes to UART2, but this one writes to UART1, which
+ *  means that printf() will write to UART1.
  */
-void uart_printf(const char *fmt, ...)
-{
-    char buf[80];
-
-    va_list arg;
-    va_start(arg, fmt);
-    vsnprintf(buf, 80, fmt, arg);
-    va_end(arg);
-
-    uart_write(buf);
+void _mon_putc(char c) {
+        while (U1STAbits.UTXBF) {
+            ; // wait until TX buffer isn't full
+        }
+        U1TXREG = c;
 }
