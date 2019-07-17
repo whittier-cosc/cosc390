@@ -20,8 +20,8 @@
 #include "io_expander.h"
 
 #define IOE_SPI_CHN     SPI_CHANNEL2
-#define IOE_SET_CS()    (mPORTBSetBits(BIT_9))
-#define IOE_CLEAR_CS()  (mPORTBClearBits(BIT_9))
+#define IOE_SET_CS()    (mPORTBSetBits(BIT_7))
+#define IOE_CLEAR_CS()  (mPORTBClearBits(BIT_7))
 
 // Change the SPI bit modes on the fly, mid-transaction if necessary
 static inline void SPI_Mode16(void) {  // configure SPI2 for 16-bit mode
@@ -49,15 +49,15 @@ static inline void SPI_Mode32(void) {  // configure SPI2 for 32-bit mode
  *
  *  Pins used on PIC:
  *
- *      CS:  RB9           (Pin 18)
+ *      CS:  RB7           (Pin 16)
  *      SCK: SCK2          (Pin 26)
- *      SDI: RPB2 --> SDI2 (Pin  6)
+ *      SDI: RPA4 --> SDI2 (Pin 12)
  *      SDO: RPB5 --> SDO2 (Pin 14)
  *
  *
  */
 void ioe_init() {
-    mPORTBSetPinsDigitalOut(BIT_9); // use RPB9 (pin 18) as CS
+    mPORTBSetPinsDigitalOut(BIT_7); // use RPB9 (pin 18) as CS
     IOE_SET_CS(); // CS high initially
 
     // These pin mappings assume that IOE_SPI_CHN is SPI_CHANNEL2!

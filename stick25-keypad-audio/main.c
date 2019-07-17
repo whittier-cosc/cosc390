@@ -12,6 +12,7 @@
 // D3 -- row 4 -- thru 300 ohm resistor
 
 #include <math.h>
+#include <stdio.h>
 #include "config.h"
 #include "dac.h"
 #include "tft.h"
@@ -20,7 +21,8 @@
 #include "util.h"
 #include "amp.h"
 #include "uart.h"
-#include <stdio.h>
+
+#define AMP 1  // whether to use amplifier
 
 // some precise, fixed, short delays
 // to use for extending pulse durations on the keypad
@@ -38,35 +40,32 @@ int keytable[12] = {0x82,                           //    0
                                0x41, 0x42, 0x44,    // 7, 8, 9
                                0x81, 0x84};         // *,    #
 
-// DAC constants
+//// DAC constants
 #define DAC_CONFIG_A    (DAC_A | DAC_GAIN1X | DAC_ACTIVE)
 #define DAC_CONFIG_B    (DAC_B | DAC_GAIN1X | DAC_ACTIVE)
 
-// DDS constants
+//// DDS parameters
 #define two32           4294967296.0 // 2^32
-#define samples_per_sec 1000
+#define samples_per_sec 30000
 #define timer2period    (PBCLK / samples_per_sec)
 #define output_freq_1   440 // 440 Hz
-#define output_freq_2   660
+int output_freq_2 = 660;
 
-// Globals for Timer2 interrupt handler
+//// Globals for Timer2 interrupt handler
 volatile unsigned int dac_data_1, dac_data_2 ;// output value
 
-// DDS units:
+//// DDS units:
 volatile unsigned int phase_accum_main_1, phase_accum_main_2;
 volatile unsigned int phase_incr_main_1 = output_freq_1*two32/samples_per_sec;
-volatile unsigned int phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
+volatile unsigned int phase_incr_main_2;
 
-// DDS waveform tables
+//// DDS waveform tables
 #define table_size 256
 int sin_table[table_size];
 int saw_table[table_size];
 
-// Globals for Timer2 interrupt handler
-char out_value = 0x55;
-
-// Timer2 Interrupt handler.
-// Compute DDS phase, update both DAC channels.
+//// Timer2 Interrupt handler.
+//// Compute DDS phase, update both DAC channels.
 void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
 {
     mT2ClearIntFlag();
@@ -86,9 +85,11 @@ void display_message(char *message) {
 
 int main(void) {
     int i;
-    int keypad, pattern;
-    int pressed = 0,
-        cleared = 1;
+    int keypad;
+    int pattern;
+    int pressed = 0;
+    int cleared = 1;
+    int gain;
 
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
@@ -96,7 +97,8 @@ int main(void) {
 
     INTCONbits.MVEC = 1;   // multi-vector mode on
 
-    ANSELA = 0; ANSELB = 0;
+    ANSELA = 0;
+    ANSELB = 0;
 
     // set up DAC
     // timer interrupt //////////////////////////
@@ -117,7 +119,7 @@ int main(void) {
         sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
         saw_table[i] = 4095*i/table_size;
     }
-
+    phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
     dac_init();
 
     tft_init();
@@ -128,19 +130,22 @@ int main(void) {
     tft_setTextSize(5);
     tft_setTextWrap(1);
 
-    amp_init();
+    if (AMP) {
+        amp_init();
 
-    display_message("compression 2:1");
-    amp_setAGCCompression(TPA2016_AGC_2);
-    delay(150);
+        display_message("compression 2:1");
+        //amp_setAGCCompression(TPA2016_AGC_2);
+        delay(150);
 
-    display_message("limiter 0.67 Vpp");
-    amp_setLimitLevel(0);
-    delay(150);
+    //    display_message("limiter 0.67 Vpp");
+    //    amp_setLimitLevel(0);
+    //    delay(150);
 
-    // Set gain to reasonable level
-    display_message("Setting gain to -28");
-    amp_setGain(-28);
+        // Set gain to reasonable level
+        display_message("Setting gain to -28");
+        //amp_setGain(-28);
+        gain = -28;
+    }
 
     ioe_init();
     // init the keypad pins D0-D3 and C0-C2
@@ -151,22 +156,38 @@ int main(void) {
     // and turn on pull-up resistors on inputs
     ioe_PortCEnablePullUp(BIT_0 | BIT_1 | BIT_2);
 
-    __builtin_enable_interrupts();
+    display_message("ready");
 
+    uart_init();
+    printf("ready\n");
+    uart_write("ready\n");
     TRISA = 0xFFFE; // for heartbeat LED
     LATAbits.LATA0 = 1; // LED on initially
 
+    __builtin_enable_interrupts();  // start DAC output
+
     while(1) {
         LATAINV = 0x0001;   // toggle LED
-        printf("toggled");
+        //printf("tick ");
+        //tft_writeString("tick ");
+        //uart_write("tick\n");
         delay(100);
         pattern = 1;
         for (i = 0; i < 4; i++) {
-            printf("%d\n", i);
+            //printf("%d", i+1);
+
+            INTEnable(INT_T2, 0);
             ioe_write(OLATD, ~pattern); // pull row i low
+            INTEnable(INT_T2, 1);
+
             wait20;
+
+            INTEnable(INT_T2, 0);
             keypad = ~ioe_read(GPIOC) & 0x7; // read the three columns
+            INTEnable(INT_T2, 1);
+
             if (keypad != 0) {
+                //printf("0x%02x ", keypad);
                 keypad |= (pattern << 4);
                 break;
             }
@@ -189,15 +210,39 @@ int main(void) {
 
         if (cleared && pressed) { // valid key, but not just previous one still being held down
             cleared = 0;
-            if (i < 10)
-                //tft_write('0' + i);
-                display_message("X");
-            else if (i == 10)
+            if (i < 10) {
+                tft_write('0' + i);
+                //printf("%c", '0' + i);
+                if (i == 1) {
+                    output_freq_2 += 40;
+                    phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
+                } else if (i == 3) {
+                    output_freq_2 -= 40;
+                    phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
+                }
+
+            }
+            else if (i == 10) {
                 tft_write('*');
-            else    // i == 11
+                //printf("*");
+                if (AMP) {
+                    display_message("gain -28 dB");
+                    amp_setGain(-28);
+                    gain = -28;
+                }
+            }
+            else {   // i == 11
                 tft_write('#');
+                //printf("#");
+                if (AMP) {
+                    gain += 4;
+                    sprintf(buffer, "gain %d dB", gain);
+                    display_message(buffer);
+                    amp_setGain(gain);
+                }
+            }
             // brain-dead debounce algorithm, but works fine:
-            delay(50);
+            delay(25);
         }
     }
     return 0;
