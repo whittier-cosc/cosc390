@@ -10,6 +10,7 @@
 
 #include <math.h>
 #include "config.h"
+#include "util.h"
 #include "dac.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -22,9 +23,9 @@ char msg[80];
 #define DAC_CONFIG_B    (DAC_B | DAC_GAIN1X | DAC_ACTIVE)
 
 // DDS constants
-#define two32 		4294967296.0 // 2^32
-#define samples_per_sec 100000
-#define timer2period 	(PBCLK/samples_per_sec)
+#define TWO_32 		4294967296.0 // 2^32
+#define SAMPLE_FREQ 100000
+#define TIMER2PERIOD 	(PBCLK/SAMPLE_FREQ)
 #define output_freq 	440 // 440 Hz
 
 // Globals for Timer2 interrupt handler
@@ -33,12 +34,12 @@ volatile int spiClkDiv = 4 ; // 10 MHz max speed for port expander
 
 // DDS units:
 volatile unsigned int phase_accum_main;
-volatile unsigned int phase_incr_main = output_freq*two32/samples_per_sec;
+volatile unsigned int phase_incr_main = output_freq*TWO_32/SAMPLE_FREQ;
 
 // DDS waveform tables
-#define table_size 256
-int sin_table[table_size];
-int saw_table[table_size];
+#define TABLE_SIZE 256
+int sin_table[TABLE_SIZE];
+int saw_table[TABLE_SIZE];
 
 // Globals for Timer2 interrupt handler
 char out_value = 0x55;
@@ -60,8 +61,6 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
 // Timer4 Interrupt handler.
 // Toggle all I/O expander GPIO pins.
 void __ISR(_TIMER_4_VECTOR, IPL1SOFT) Timer4Handler(void) {
-    static volatile int t = 33;
-
     mT4ClearIntFlag();
 
     LATAINV = 0x0001; // toggle LED
@@ -100,7 +99,7 @@ int main(void) {
     // At 40 MHz PB clock 40 counts is one microsecond
     // 400 counts is 100 ksamples/sec (10 microseconds between samples)
     // 2000 counts is 20 ksamples/sec
-    OpenTimer2(T2_ON | T2_SOURCE_INT | T2_PS_1_1, timer2period);
+    OpenTimer2(T2_ON | T2_SOURCE_INT | T2_PS_1_1, TIMER2PERIOD);
 
     // set up the timer interrupt with a priority of 2
     ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_2);
@@ -109,9 +108,9 @@ int main(void) {
     // Build the lookup tables
     // Scaled to produce values between 0 and 4095
     int i;
-    for (i = 0; i < table_size; i++) {
-        sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
-        saw_table[i] = 4095*i/table_size;
+    for (i = 0; i < TABLE_SIZE; i++) {
+        sin_table[i] = 2048 + 2047*sin(i*6.2831853/TABLE_SIZE);
+        saw_table[i] = 4095*i/TABLE_SIZE;
     }
 
     dac_init();

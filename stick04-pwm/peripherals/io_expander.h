@@ -66,6 +66,10 @@
 
 void ioe_init();
 
+void ioe_clearBits(unsigned char addr, unsigned char bitmask);
+void ioe_setBits(unsigned char addr, unsigned char bitmask);
+void ioe_toggleBits(unsigned char addr, unsigned char bitmask);
+
 void ioe_PortCSetPinsOut(unsigned char);
 void ioe_PortDSetPinsOut(unsigned char);
 void ioe_PortCSetPinsIn(unsigned char);
@@ -79,12 +83,7 @@ void ioe_PortDEnablePullUp(unsigned char);
 void ioe_PortCDisablePullUp(unsigned char);
 void ioe_PortDDisablePullUp(unsigned char);
 
-/* Takes a register address on I/O expander and a data byte, and writes the 
- * data to the target register. */
 inline void ioe_write(unsigned char, unsigned char);
-
-/* Takes a register address on I/O expander and returns the data byte from that
- * target register. */
 inline unsigned char ioe_read(unsigned char);
 
 #endif

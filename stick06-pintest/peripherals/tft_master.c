@@ -54,19 +54,16 @@ static void tft_begin(void);
 static void tft_spiwrite8(unsigned char c);
 static void tft_spiwrite16(unsigned short c);
 static void tft_writecommand(unsigned char c);
-static void tft_writecommand16(unsigned short c);
+//static void tft_writecommand16(unsigned short c);
 static void tft_writedata(unsigned char c);
 static void tft_writedata16(unsigned short c);
-static void tft_commandList(unsigned char *addr);
 static void tft_setAddrWindow(unsigned short x0, unsigned short y0,
                               unsigned short x1, unsigned short y1);
-static void tft_pushColor(unsigned short color);
-static unsigned char tft_spiread(void);
-static unsigned char tft_readdata(void);
-static unsigned char tft_readcommand8(unsigned char c);
+//static void tft_pushColor(unsigned short color);
+//static unsigned char tft_readcommand8(unsigned char c);
 
 static void delay_ms(unsigned long);
-static void delay_us(unsigned long);
+//static void delay_us(unsigned long);
 
 #define dTime_ms PBCLK/2000
 #define dTime_us PBCLK/2000000
@@ -142,12 +139,12 @@ static void tft_writecommand(unsigned char c) {
     _cs_high();
 }
 
-static void tft_writecommand16(unsigned short c) {
-    _dc_low();
-    _cs_low();
-    tft_spiwrite16(c);
-    _cs_high();
-}
+//static void tft_writecommand16(unsigned short c) {
+//    _dc_low();
+//    _cs_low();
+//    tft_spiwrite16(c);
+//    _cs_high();
+//}
 
 
 static void tft_writedata(unsigned char c) {
@@ -313,12 +310,12 @@ static void tft_setAddrWindow(unsigned short x0, unsigned short y0, unsigned sho
 }
 
 
-static void tft_pushColor(unsigned short color) {
-    _dc_high();
-    _cs_low();
-    tft_spiwrite16(color);
-    _cs_high();
-}
+//static void tft_pushColor(unsigned short color) {
+//    _dc_high();
+//    _cs_low();
+//    tft_spiwrite16(color);
+//    _cs_high();
+//}
 
 #define NOP asm("nop");
 #define wait16 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
@@ -518,20 +515,20 @@ static void delay_ms(unsigned long i){
     while (ReadCoreTimer() < j);
 }
 
-static void delay_us(unsigned long i){
-    /* Create a software delay about i us long
-     * Parameters:
-     *      i:  equal to number of microseconds for delay
-     * Returns: Nothing
-     * Note: Uses Core Timer. Core Timer is cleared at the initialiazion of
-     *      this function. So, applications sensitive to the Core Timer are going
-     *      to be affected
-     */
-    unsigned int j;
-    j = dTime_us * i;
-    WriteCoreTimer(0);
-    while (ReadCoreTimer() < j);
-}
+//static void delay_us(unsigned long i){
+//    /* Create a software delay about i us long
+//     * Parameters:
+//     *      i:  equal to number of microseconds for delay
+//     * Returns: Nothing
+//     * Note: Uses Core Timer. Core Timer is cleared at the initialiazion of
+//     *      this function. So, applications sensitive to the Core Timer are going
+//     *      to be affected
+//     */
+//    unsigned int j;
+//    j = dTime_us * i;
+//    WriteCoreTimer(0);
+//    while (ReadCoreTimer() < j);
+//}
 
 //void tft_invertDisplay(boolean i) {
 //  writecommand(i ? ILI9340_INVON : ILI9340_INVOFF);

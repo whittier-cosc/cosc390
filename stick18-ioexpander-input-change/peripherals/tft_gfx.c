@@ -50,6 +50,7 @@
    POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <stdlib.h>
 #include "tft_gfx.h"
 #include "glcdfont.c"
 #include "tft_master.h"

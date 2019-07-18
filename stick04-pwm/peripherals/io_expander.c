@@ -73,116 +73,88 @@ void ioe_init() {
               CLEAR_INTPOL);
 }
 
-static void clearBits(unsigned char addr, unsigned char bitmask){
-    if (addr <= 0x15){
-        unsigned char cur_val = ioe_read(addr);
-        ioe_write(addr, cur_val & ~bitmask);
-    }
-}
-
-static void setBits(unsigned char addr, unsigned char bitmask){
-    if (addr <= 0x15){
-        unsigned char cur_val = ioe_read(addr);
-        ioe_write(addr, cur_val | bitmask);
-    }
-}
-
-static void toggleBits(unsigned char addr, unsigned char bitmask){
-    if (addr <= 0x15){
-        unsigned char cur_val = ioe_read(addr);
-        ioe_write(addr, cur_val ^ bitmask);
-    }
-}
-
-static unsigned char readBits(unsigned char addr, unsigned char bitmask){
-    if (addr <= 0x15){
-        unsigned char cur_val = ioe_read(addr) & bitmask ;
-        return cur_val ;
-    }
-}
-
 /**
  *  Sets the given Port C pins to be outputs
  */
 void ioe_PortCSetPinsOut(unsigned char bitmask){
-    clearBits(IODIRC, bitmask);
+    ioe_clearBits(IODIRC, bitmask);
 }
 
 /**
  *  Sets the given Port D pins to be outputs
  */
 void ioe_PortDSetPinsOut(unsigned char bitmask){
-    clearBits(IODIRD, bitmask);
+    ioe_clearBits(IODIRD, bitmask);
 }
 
 /**
  *  Sets the given Port C pins to be inputs
  */
 void ioe_PortCSetPinsIn(unsigned char bitmask){
-    setBits(IODIRC, bitmask);
+    ioe_setBits(IODIRC, bitmask);
 }
 
 /**
  *  Sets the given Port D pins to be inputs
  */
 void ioe_PortDSetPinsIn(unsigned char bitmask){
-    setBits(IODIRD, bitmask);
+    ioe_setBits(IODIRD, bitmask);
 }
 
 /**
  *  Enables interrupts for the given Port C pins
  */
 void ioe_PortCIntEnable(unsigned char bitmask){
-    setBits(GPINTENC, bitmask);
+    ioe_setBits(GPINTENC, bitmask);
 }
 
 /**
  *  Enables interrupts the given Port D pins
  */
 void ioe_PortDIntEnable(unsigned char bitmask){
-    setBits(GPINTEND, bitmask);
+    ioe_setBits(GPINTEND, bitmask);
 }
 
 /**
  *  Disables interrupts for the given Port C pins
  */
 void ioe_PortCIntDisable(unsigned char bitmask){
-    clearBits(GPINTENC, bitmask);
+    ioe_clearBits(GPINTENC, bitmask);
 }
 
 /**
  *  Disables interrupts for the given Port D pins
  */
 void ioe_PortDIntDisable(unsigned char bitmask){
-    clearBits(GPINTEND, bitmask);
+    ioe_clearBits(GPINTEND, bitmask);
 }
 
 /**
  *  Enables the internal pull-up resistor on the given Port C pins
  */
 void ioe_PortCEnablePullUp(unsigned char bitmask){
-    setBits(GPPUC, bitmask);
+    ioe_setBits(GPPUC, bitmask);
 }
 
 /**
  *  Enables the internal pull-up resistor on the given Port D pins
  */
 void ioe_PortDEnablePullUp(unsigned char bitmask){
-    setBits(GPPUD, bitmask);
+    ioe_setBits(GPPUD, bitmask);
 }
 
 /**
  *  Disables the internal pull-up resistor on the given Port C pins
  */
 void ioe_PortCDisablePullUp(unsigned char bitmask){
-    clearBits(GPPUC, bitmask);
+    ioe_clearBits(GPPUC, bitmask);
 }
 
 /**
  *  Disables the internal pull-up resistor on the given Port D pins
  */
 void ioe_PortDDisablePullUp(unsigned char bitmask){
-    clearBits(GPPUD, bitmask);
+    ioe_clearBits(GPPUD, bitmask);
 }
 
 /**
@@ -258,3 +230,43 @@ inline unsigned char ioe_read(unsigned char reg_addr) {
 
     return data;
 }
+
+/**
+ *  Clears the bits set in `bitmask` in the given register on the
+ *  I/O expander. Does not modify other bits in that register.
+ */
+void ioe_clearBits(unsigned char addr, unsigned char bitmask){
+    if (addr <= 0x15){
+        unsigned char cur_val = ioe_read(addr);
+        ioe_write(addr, cur_val & ~bitmask);
+    }
+}
+
+/**
+ *  Sets the bits specified by `bitmask` in the given register on the
+ *  I/O expander. Does not modify other bits in that register.
+ */
+void ioe_setBits(unsigned char addr, unsigned char bitmask){
+    if (addr <= 0x15){
+        unsigned char cur_val = ioe_read(addr);
+        ioe_write(addr, cur_val | bitmask);
+    }
+}
+
+/**
+ *  Toggles the bits specified by `bitmask` in the given register on the
+ *  I/O expander. Does not modify other bits in that register.
+ */
+void ioe_toggleBits(unsigned char addr, unsigned char bitmask){
+    if (addr <= 0x15){
+        unsigned char cur_val = ioe_read(addr);
+        ioe_write(addr, cur_val ^ bitmask);
+    }
+}
+
+//static unsigned char readBits(unsigned char addr, unsigned char bitmask){
+//    if (addr <= 0x15){
+//        unsigned char cur_val = ioe_read(addr) & bitmask ;
+//        return cur_val ;
+//    }
+//}

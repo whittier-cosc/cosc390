@@ -25,10 +25,10 @@ void display_message(char *message) {
 #define DAC_CONFIG_B    (DAC_B | DAC_GAIN1X | DAC_ACTIVE)
 
 // DDS constants
-#define two32           4294967296.0 // 2^32
-#define samples_per_sec 100000
-#define timer2period    (PBCLK / samples_per_sec)
-#define output_freq_1   440 // 440 Hz
+#define TWO_32           4294967296.0 // 2^32
+#define SAMPLE_FREQ 100000
+#define TIMER2PERIOD    (PBCLK / SAMPLE_FREQ)
+#define OUT_FREQ_1   440 // 440 Hz
 #define output_freq_2   660
 
 // Globals for Timer2 interrupt handler
@@ -36,13 +36,13 @@ volatile unsigned int dac_data_1, dac_data_2 ;// output value
 
 // DDS units:
 volatile unsigned int phase_accum_main_1, phase_accum_main_2;
-volatile unsigned int phase_incr_main_1 = output_freq_1*two32/samples_per_sec;
-volatile unsigned int phase_incr_main_2 = output_freq_2*two32/samples_per_sec;
+volatile unsigned int phase_incr_main_1 = OUT_FREQ_1*TWO_32/SAMPLE_FREQ;
+volatile unsigned int phase_incr_main_2 = output_freq_2*TWO_32/SAMPLE_FREQ;
 
 // DDS waveform tables
-#define table_size 256
-int sin_table[table_size];
-int saw_table[table_size];
+#define TABLE_SIZE 256
+int sin_table[TABLE_SIZE];
+int saw_table[TABLE_SIZE];
 
 // Globals for Timer2 interrupt handler
 char out_value = 0x55;
@@ -76,7 +76,7 @@ int main(void) {
     // At 40 MHz PB clock 40 counts is one microsecond
     // 400 counts is 100 ksamples/sec (10 microseconds between samples)
     // 2000 counts is 20 ksamples/sec
-    OpenTimer2(T2_ON | T2_SOURCE_INT | T2_PS_1_1, timer2period);
+    OpenTimer2(T2_ON | T2_SOURCE_INT | T2_PS_1_1, TIMER2PERIOD);
 
     // set up the timer interrupt with a priority of 2
     ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_2);
@@ -85,9 +85,9 @@ int main(void) {
     // Build the lookup tables
     // Scaled to generate values between 0 and 4095 for 12-bit DAC
     int i;
-    for (i = 0; i < table_size; i++) {
-        sin_table[i] = 2048 + 2047*sin(i*6.2831853/table_size);
-        saw_table[i] = 4095*i/table_size;
+    for (i = 0; i < TABLE_SIZE; i++) {
+        sin_table[i] = 2048 + 2047*sin(i*6.2831853/TABLE_SIZE);
+        saw_table[i] = 4095*i/TABLE_SIZE;
     }
 
     dac_init();

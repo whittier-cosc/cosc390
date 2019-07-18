@@ -4,6 +4,7 @@
  */
 
 #include "config.h"
+#include "util.h"
 #include "tft.h"
 #include "tft_printline.h"
 #include "io_expander.h"

@@ -91,7 +91,7 @@ OBJS := $(patsubst %.c, %.o, $(wildcard *.c)) \
 HDRS := $(wildcard *.h) \
         $(wildcard peripherals/*.h)
 PROCESSOR = 32MX250F128B
-CFLAGS = -g -O1 -x c
+CFLAGS = -g -O1 -x c -Wall
 
 # if on Windows (but not MinGW), use a different RM
 ifdef OS

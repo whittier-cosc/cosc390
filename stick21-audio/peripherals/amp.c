@@ -81,8 +81,10 @@ void amp_init() {
                 (unsigned) actual_clock);
         debug_log(msg);
     }
-
+    sprintf(msg, "I2C1 clock freq = %u\n", (unsigned) actual_clock);
+    debug_log(msg);
     // Enable the I2C bus
+    I2C1CONbits.DISSLW = 1; // workaround for silicon error #9 (see PIC32MX errata sheet DS80000531J)
     I2CEnable(TPA2016_I2C_BUS, true);
 }
 

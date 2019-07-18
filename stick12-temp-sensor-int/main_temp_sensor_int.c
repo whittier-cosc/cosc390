@@ -103,9 +103,9 @@ void __ISR(_ADC_VECTOR, IPL2SOFT) adc_isr(void) {
     // Interrupt frequency is very low, so just do everything in this ISR
     tempC =  -50 + (adc_reading * 325) / (float) 1023; // Vdd = 3.25 V
     tempF =  (9 * tempC) / 5 + 32;
-    sprintf(msg, "%3.1f C", tempC);
+    sprintf(msg, "%3.1f C", (double) tempC);
     tft_printLine(4, 4, msg);
-    sprintf(msg, "%3.1f F", tempF);
+    sprintf(msg, "%3.1f F", (double) tempF);
     tft_printLine(10, 4, msg);
 
     IFS0bits.AD1IF = 0; // Persistent interrupt, so clearing flag has no effect

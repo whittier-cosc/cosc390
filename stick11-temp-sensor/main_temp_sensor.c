@@ -90,9 +90,9 @@ int main(void) {
         delay(250);
         tempC =  -50 + (ADC1BUF0 * 325) / (float) 1023; // Vdd = 3.25 V
         tempF =  (9 * tempC) / 5 + 32;
-        sprintf(msg, "%3.1f C", tempC);
+        sprintf(msg, "%3.1f C", (double) tempC);
         tft_printLine(4, 4, msg);
-        sprintf(msg, "%3.1f F", tempF);
+        sprintf(msg, "%3.1f F", (double) tempF);
         tft_printLine(10, 4, msg);
     }
     return 0;
