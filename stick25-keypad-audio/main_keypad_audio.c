@@ -57,6 +57,7 @@ int saw_table[TABLE_SIZE];
 
 // Amplifier globals
 int gain;
+bool enable = true;
 
 void display_message(char *message) {
     tft_printLine(1, 2, message);
@@ -127,7 +128,12 @@ void __ISR(_TIMER_3_VECTOR, IPL2SOFT) Timer3Handler(void) {
         if (i < 10) {
             tft_write('0' + i);
             //printf("%c", '0' + i);
-            if (i == 1) {
+            if (i == 0) {
+                enable = !enable;
+                amp_enableChannel(enable, enable);
+                display_message("toggle enable channels");
+            }
+            else if (i == 1) {
                 output_freq_2 += 40;
                 sprintf(buffer, "%d Hz", output_freq_2);
                 display_message(buffer);
