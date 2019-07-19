@@ -16,7 +16,7 @@
 #include "../hwprofile.h"
 #include "uart.h"
 
-#define BAUDRATE 9600
+#define BAUDRATE 115200
 
 /**
  *  Initializes the UART1 module for 9600 baud serial communication

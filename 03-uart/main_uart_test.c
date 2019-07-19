@@ -17,7 +17,7 @@ int main(void) {// Configure the device for maximum performance.
 //    sprintf(msg, "U1BRG = %d\n", U1BRG);
 //    uart_write(msg);
 
-    printf("U1BRG = %d", U1BRG);  // more convenient?
+    printf("U1BRG = %d\n", U1BRG);  // more convenient?
 
 //    sprintf(msg, "IOL1WAY = %d\n", DEVCFG3bits.IOL1WAY);
 //    uart_write(msg);

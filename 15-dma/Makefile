@@ -144,6 +144,10 @@ clean:
 write: $(TARGET).hex $(TARGET).dis
 	$(WRITE) -F$(TARGETDIR)$(TARGET).hex 
 
+.PHONY: termite
+termite:
+	"/c/Program Files (x86)/Termite/Termite.exe" &
+
 .PHONY: putty
 putty:
 	"$(TERMEMU)" -serial -sercfg 230400,R "$(PORT)"
