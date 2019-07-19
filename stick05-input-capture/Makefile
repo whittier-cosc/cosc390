@@ -14,8 +14,7 @@
 #	3. convert the .elf into a .hex
 #	4. write the .hex file to the PIC
 # The following may need to be edited by you so that
-# make knows where to find the compiler tools (xc32)
-# and the Harmony library.
+# make knows where to find the compiler tools (xc32).
 #
 # XC32PATH is the path to the xc32 bin directory. This directory contains
 # tools such as the compiler (xc32-gcc) and hex converter 
@@ -24,12 +23,6 @@
 # XC32PATH=C:/Program Files (x86)/Microchip/xc32/v1.40/bin
 # Mac example:
 # XC32PATH =/Applications/microchip/xc32/v1.40/bin
-#
-# HARMONYPATH is the path to the Harmony framework directory
-# Windows example:
-# HARMONYPATH=C:/Program Files (x86)/Microchip/harmony/v1_06
-# Mac example:
-# HARMONYPATH=/Users/jlutgen/harmony/v1_06
 #
 # PORT is the COM port used by the PIC32
 # Windows Example:
@@ -47,10 +40,10 @@
 #TOOL=PKOB   # microstickII pickit on board
 TOOL=PK4     # pickit 4
 
-# Compiler flags for include directories other than the current directory
+# Compiler flags for additional include directories
 INCLUDES = -Iperipherals
 
-# How to call mplab's ipecmd
+# How to call MPLab's ipecmd
 ifdef OS     # Windows
 	IPECMD=ipecmd.exe
 else         # MacOS
@@ -60,10 +53,10 @@ endif
 # the C compiler
 CC=xc32-gcc
 
-# the hexfile maker
+# the hexfile creator
 HX=xc32-bin2hex
 
-# object dumper
+# the object dumper
 OBJDMP=xc32-objdump
 
 # the download utility
@@ -81,7 +74,7 @@ endif
 # additional linker flags
 LINKFLAGS=-Map=$(TARGET).map
 
-# if we have specified a linker script add it
+# if we have specified a linker script, add it
 ifdef LINKSCRIPT
 	LINKFLAGS:=$(LINKFLAGS)
 endif
@@ -108,7 +101,7 @@ $(TARGET).hex: $(TARGET).elf
 	@echo Creating hex file
 	$(HX) $(TARGET).elf
 
-# Perform disassembly
+# Perform disassembly.
 $(TARGET).dis: $(TARGET).elf
 	$(OBJDMP) -S $< > $@
 

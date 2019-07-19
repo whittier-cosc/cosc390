@@ -37,7 +37,7 @@ int keytable[12] = {0x82,                           //    0
 
 // DDS parameters
 #define TWO_32           4294967296.0 // 2^32
-#define SAMPLE_FREQ 30000
+#define SAMPLE_FREQ 100000
 #define TIMER2PERIOD    (PBCLK / SAMPLE_FREQ)
 #define OUT_FREQ_1   440 // 440 Hz
 int output_freq_2 = 440;
@@ -165,7 +165,7 @@ void __ISR(_TIMER_3_VECTOR, IPL2SOFT) Timer3Handler(void) {
             }
         }
         // brain-dead debounce algorithm, but works fine:
-        delay(25);
+        //delay(25);
     }
 }
 

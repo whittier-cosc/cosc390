@@ -9,7 +9,7 @@
  */
 
 #include <xc.h>
-#include "../hwprofile.h"
+#include "hwprofile.h"
 #include "tft.h"
 
 /**
