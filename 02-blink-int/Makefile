@@ -10,9 +10,8 @@
 
 # This file contains rules to do the following:
 #	1. compile .c files into .o files
-#   2. link the .o files in ./peripherals into a static library
-#	3. link the .o files in this directory (and any library code they use) into a .elf binary
-#	4. convert the .elf into a .hex
+#	2. link the .o files in this directory (and any library code they use) into a .elf binary
+#	3. convert the .elf into a .hex
 #	4. write the .hex file to the PIC
 #
 # The following may need to be edited by you so that
@@ -52,9 +51,6 @@ endif
 # The C compiler
 CC=xc32-gcc
 
-# The archiver
-AR=xc32-ar
-
 # The hexfile creator
 HX=xc32-bin2hex
 
@@ -71,7 +67,7 @@ TARGET=out
 LIB=wcpic32
 
 # Location of source files for static library.
-LIBDIR=peripherals
+LIBDIR=../wcpic32lib
 
 ifdef OS        # Windows
 	TARGETDIR=
@@ -90,11 +86,8 @@ endif
 # List of object files needed to produce target.
 OBJS := $(patsubst %.c, %.o, $(wildcard *.c))
 
-# List of object files from which to create static library.
-LIB_OBJS := $(patsubst %.c, %.o, $(wildcard $(LIBDIR)/*.c))
+HDRS := $(wildcard *.h)
 
-HDRS := $(wildcard *.h) \
-        $(wildcard $(LIBDIR)/*.h)
 PROCESSOR = 32MX250F128B
 CFLAGS = -g -O1 -x c -Wall
 
@@ -110,28 +103,28 @@ endif
 all : $(TARGET).hex $(TARGET).dis
 # Turn the elf file into a hex file.
 $(TARGET).hex: $(TARGET).elf
-	@echo Creating hex file
+	@echo Creating hex file $@
 	$(HX) $(TARGET).elf
 
 # Generate disassembly file.
 $(TARGET).dis: $(TARGET).elf
+	@echo Creating disassembly file $@
 	$(OBJDMP) -S $< > $@
 
 # Link all the object files and any local library code used by them into an elf file.
-$(TARGET).elf: $(OBJS) lib$(LIB).a
-	@echo Linking elf file
+$(TARGET).elf: $(OBJS) $(LIBDIR)/lib$(LIB).a
+	@echo Linking elf file $@
 	$(CC) -mprocessor=$(PROCESSOR) -o $(TARGET).elf $(OBJS) -Wl,$(LINKFLAGS) \
-	-L. -l$(LIB)
-
-# Create static library.
-lib$(LIB).a: $(LIB_OBJS)
-	@echo Creating static peripherals library
-	$(AR) -rcs lib$(LIB).a $(LIB_OBJS)
+	-L$(LIBDIR) -l$(LIB)
 
 # Create an object file for each C file. Force recompile if *any* header has changed.
 %.o: %.c $(HDRS)
 	@echo Creating object file $@
 	$(CC) $(CFLAGS) -I$(LIBDIR) -c -mprocessor=$(PROCESSOR) -o $@ $<
+
+# How to build the static library
+$(LIBDIR)/lib$(LIB).a:
+	make -C $(LIBDIR)
 
 .PHONY: clean
 # Delete all hex, map, object, library, and elf files, and other assorted crud

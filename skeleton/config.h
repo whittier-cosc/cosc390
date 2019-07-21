@@ -1,3 +1,6 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
 /**
  *  @file   config.h
  *
@@ -19,13 +22,10 @@
  *  @author Jeff Lutgen
  */
 
-#ifndef CONFIG_H
-#define CONFIG_H
-
-//===========================================================================
+//==============================================================================
 /*
- * Remember to change SYSCLK and/or PBCLK as necessary in hwprofile.h if you
- * change the configuration here!
+ * Remember to change the definitions of SYSCLK and/or PBCLK as necessary if you
+ * change the oscillator configuration here!
  */
 #pragma config FNOSC = FRCPLL   // Fast internal RC oscillator (8 MHz) with PLL.
 
@@ -34,7 +34,10 @@
 #pragma config FPLLODIV = DIV_2 // then divide by 2 to get SYSCLK = 40 MHz.
 
 #pragma config FPBDIV = DIV_1   // Peripheral Bus Clock: Divide SYSCLK by 1
-//===========================================================================
+
+#define SYSCLK 40000000 ///< 40 MHz system clock
+#define PBCLK  SYSCLK   ///< 40 MHz peripheral bus clock
+//==============================================================================
 
 #pragma config FWDTEN = OFF     // Watchdog timer off
 #pragma config FSOSCEN = OFF    // Free up pins 11 and 12 (secondary oscillator)
@@ -46,6 +49,6 @@
 #define _SUPPRESS_PLIB_WARNING 
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
-#include "hwprofile.h"          // For definitions of SYSCLK and PBCLK
+#include "init.h"
 
 #endif
