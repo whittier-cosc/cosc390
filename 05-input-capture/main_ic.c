@@ -60,7 +60,7 @@ void ic_config(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    osc_tune(56);
+    wclib_init(SYSCLK, PBCLK);    osc_tune(56);
 
     __builtin_disable_interrupts();
 

@@ -21,7 +21,7 @@ void __ISR(_EXTERNAL_1_VECTOR, IPL2SOFT) pe_isr(void) {
 int main(void) {
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     osc_tune(56);
 
     tft_init();

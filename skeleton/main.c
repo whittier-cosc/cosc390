@@ -7,7 +7,7 @@ int main(void) {
     wclib_init(SYSCLK, PBCLK);
 
     while(1) {
-        ;
+
     }
 
     return 0;

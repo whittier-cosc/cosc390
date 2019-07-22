@@ -7,7 +7,7 @@ char msg[BUFSZ];
 
 int main(void) {// Configure the device for maximum performance.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     uart_init();
 
     TRISA = 0xFFFE;     // Pin 0 of Port A is LED. Clear

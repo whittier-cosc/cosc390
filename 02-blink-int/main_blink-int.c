@@ -25,7 +25,7 @@ void __ISR(_CORE_TIMER_VECTOR, IPL6SOFT) CoreTimerISR(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    __builtin_disable_interrupts();
+    wclib_init(SYSCLK, PBCLK);    __builtin_disable_interrupts();
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
                             // bit 0 to zero, for output.  Others are inputs.
     LATAbits.LATA0 = 0;     // Turn LED off.

@@ -40,7 +40,7 @@ void __ISR(_CORE_TIMER_VECTOR, IPL6SOFT) CoreTimerISR(void) {
 int main(void) {
     // Configure the device for maximum performance for the given system clock.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     osc_tune(56);
 
     tft_init();

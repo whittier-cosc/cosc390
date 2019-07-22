@@ -25,7 +25,7 @@ void __ISR_SINGLE__ ExtIntISR(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     // External interrupt 0 is on pin 16 (fixed)
 
     INT1R = 0; // Map external interrupt 1 to pin 10 (RPA3)

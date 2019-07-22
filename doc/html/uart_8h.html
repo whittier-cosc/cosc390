@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>WC PIC32Lib: peripherals/uart.h File Reference</title>
+<title>WC PIC32Lib: uart.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,10 +78,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -96,12 +92,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a01f5996cfbcef121abc486e732b208c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#a01f5996cfbcef121abc486e732b208c7">uart_init</a> ()</td></tr>
+<tr class="separator:a01f5996cfbcef121abc486e732b208c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16501cc979a05771be83680ff01387b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#a16501cc979a05771be83680ff01387b4">uart_read</a> (char *message, int maxLength)</td></tr>
 <tr class="separator:a16501cc979a05771be83680ff01387b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5cf47a799ebafbea3243721f3b84a14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#ad5cf47a799ebafbea3243721f3b84a14">uart_write</a> (const char *string)</td></tr>
 <tr class="separator:ad5cf47a799ebafbea3243721f3b84a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd6e353d39a7ced9a87517a68bd13768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8h.html#abd6e353d39a7ced9a87517a68bd13768">uart_printf</a> (const char *fmt,...)</td></tr>
-<tr class="separator:abd6e353d39a7ced9a87517a68bd13768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A PIC32 library for serial communication using the UART1 module. </p>
@@ -109,6 +105,23 @@ Functions</h2></td></tr>
 <p>Portions based on the Northwestern University NU32 package by Nick Marchuk, et al.</p>
 <dl class="section author"><dt>Author</dt><dd>Jeff Lutgen </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a01f5996cfbcef121abc486e732b208c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initializes the UART1 module for 9600 baud serial communication (rate can be changed by redefining BAUDRATE in this file), with 8 data bits, no parity bit, and one stop bit ("8N1").</p>
+<p>Pins used: </p><pre class="fragment">RPA2 (pin 9) --&gt; U1RX
+RPB3 (pin 7) --&gt; U1TX</pre> 
+</div>
+</div>
 <a class="anchor" id="a16501cc979a05771be83680ff01387b4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +146,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Reads a string from UART1. Blocks until an <code>\r</code> or <code>\n</code> is seen.</p>
-<p>The received string is stored in <code>message</code>, which should have at least <code>maxLength</code> elements. If there are more than <code>maxLength</code> elements in the received string, wraparound occurs.</p>
+<p>The received string (not including the <code>\r</code> or `<br />
+') is stored in <code>message</code>, which should have at least <code>maxLength</code> elements. If there are more than <code>maxLength</code> elements in the received string, wraparound occurs.</p>
 <p>Example: </p><pre class="fragment">char msg[80];
 uart_read(msg, 80);</pre> 
 </div>
@@ -155,38 +169,10 @@ uart_read(msg, 80);</pre>
 
 </div>
 </div>
-<a class="anchor" id="abd6e353d39a7ced9a87517a68bd13768"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uart_printf </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>fmt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Like printf(), but for UART1!</p>
-<p>Truncates strings of length &gt; 80.</p>
-<p>Example: </p><pre class="fragment">uart_printf("TRISA = 0x%04x\n", TRISA);</pre> 
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 21 2019 18:26:30 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

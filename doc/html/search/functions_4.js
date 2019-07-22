@@ -17,7 +17,7 @@ var searchData=
   ['tft_5ffillscreen',['tft_fillScreen',['../tft__master_8h.html#ad271beefcd2efbcf024fd5cac2b87953',1,'tft_master.c']]],
   ['tft_5ffilltriangle',['tft_fillTriangle',['../tft__gfx_8h.html#aca34e811cbe3dd4d985af4acdb7d64ff',1,'tft_gfx.c']]],
   ['tft_5fheight',['tft_height',['../tft__gfx_8h.html#a4140398b0e07615e3dd8e8d06bb8b8ef',1,'tft_gfx.c']]],
-  ['tft_5finit',['tft_init',['../tft__master_8h.html#afecb0252c2649db8482c52ef9201471a',1,'tft_master.c']]],
+  ['tft_5finit',['tft_init',['../tft__master_8h.html#a275d4e6a311923a646349a23b0463d65',1,'tft_master.c']]],
   ['tft_5fprintline',['tft_printLine',['../tft__printline_8h.html#a38b48965c983dc6c5c4a3c0a47397c31',1,'tft_printline.c']]],
   ['tft_5fsetcursor',['tft_setCursor',['../tft__gfx_8h.html#a503e72a24a6c9ad0432ba5b05de4ca18',1,'tft_gfx.c']]],
   ['tft_5fsetrotation',['tft_setRotation',['../tft__master_8h.html#a1ccd3e00b85662e923a4ffa3d076ff1e',1,'tft_master.c']]],

@@ -13,11 +13,11 @@
 #include "private/clocks.h"
 
 /**
- *  Delay for a given number of milliseconds.
+ *  Delays for a given number of milliseconds.
  *
  *  Uses a crude implementation, but good enough for many use cases. Accuracy
  *  of this routine will suffer if significant time is being spent in interrupt
- *  service routines. See delay_ms() in peripherals/tft_master.c for a better
+ *  service routines. See `delay_ms()` in tft_master.c for a better
  *  implementation that uses the core timer.
  *
  *  Calibrated on a PIC32MX250F128B.

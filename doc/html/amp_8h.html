@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>WC PIC32Lib: peripherals/amp.h File Reference</title>
+<title>WC PIC32Lib: amp.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,10 +78,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_2df1e86e29aa9f9374c90ba96092d4a1.html">peripherals</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -176,6 +172,8 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ab546b2d070b024381b6a78b9c08e46f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amp_8h.html#ab546b2d070b024381b6a78b9c08e46f9">amp_init</a> ()</td></tr>
 <tr class="separator:ab546b2d070b024381b6a78b9c08e46f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93cae0c1b9c6abd30cff6bb85ace24ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amp_8h.html#a93cae0c1b9c6abd30cff6bb85ace24ba">amp_sleep</a> (bool sleep)</td></tr>
+<tr class="separator:a93cae0c1b9c6abd30cff6bb85ace24ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0b1cff2c6231205f1f1d555f853bf49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amp_8h.html#af0b1cff2c6231205f1f1d555f853bf49">amp_enableChannel</a> (bool r, bool l)</td></tr>
 <tr class="separator:af0b1cff2c6231205f1f1d555f853bf49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a060dbd3071438435cbffdfbb16856d3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amp_8h.html#a060dbd3071438435cbffdfbb16856d3a">amp_setGain</a> (int8_t g)</td></tr>
@@ -221,7 +219,25 @@ Functions</h2></td></tr>
 <p>Sets up I2C1: </p><pre class="fragment">    SCL1: pin 17 (RB8)
     SDA1: pin 18 (RB9)
 </pre><p>and UART1 (for debug and error output): </p><pre class="fragment">    U1RX: pin 9  (RPA2)
-    U1TX: pin 7  (RPB3)</pre> 
+    U1TX: pin 7  (RPB3)
+</pre><p>Example: </p><pre class="fragment">amp_init();</pre> 
+</div>
+</div>
+<a class="anchor" id="a93cae0c1b9c6abd30cff6bb85ace24ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void amp_sleep </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sleep</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Puts the amplifier to sleep (<code>sleep = true</code>) or awakens it (<code>sleep = false</code>). </p>
+
 </div>
 </div>
 <a class="anchor" id="af0b1cff2c6231205f1f1d555f853bf49"></a>
@@ -432,7 +448,7 @@ TPA2016_AGC_8    --&gt; 1:8</pre>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 14 2019 19:08:16 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 21 2019 18:26:30 for WC PIC32Lib by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

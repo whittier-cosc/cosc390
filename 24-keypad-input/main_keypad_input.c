@@ -39,7 +39,7 @@ int keytable[12] = {0x82,                //    0
 int main(void) {
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     osc_tune(56);
 
     tft_init();

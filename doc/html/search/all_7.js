@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pbclk',['PBCLK',['../hwprofile_8h.html#aac23c0047c8aba00b8c269fc2a181959',1,'hwprofile.h']]]
+  ['wclib_5finit',['wclib_init',['../init_8h.html#a42084cdfd90f7260c161de792fed6909',1,'init.c']]]
 ];

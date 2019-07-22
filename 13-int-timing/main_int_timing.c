@@ -25,7 +25,7 @@ int main(void) {
     // With the given options, this function will change the flash wait states,
     // RAM wait state, and enable prefetch and cache mode.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     TRISA = 0x1D; // make pin 3 (A1) output for measurement purposes
 
     INTCONbits.MVEC = 1; // multi-vector interrupt mode

@@ -114,7 +114,7 @@ void __ISR(_ADC_VECTOR, IPL2SOFT) adc_isr(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     // For debugging
     TRISA = 0x1D; // set A1 as output
 

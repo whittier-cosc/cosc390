@@ -12,5 +12,6 @@ var searchData=
   ['amp_5fsetlimitlevel',['amp_setLimitLevel',['../amp_8h.html#a5a9cb4eb9fd26d2c14228133bd9aec1f',1,'amp.c']]],
   ['amp_5fsetlimitleveloff',['amp_setLimitLevelOff',['../amp_8h.html#a69bf0bd70bc82b76d18993a5a622f15c',1,'amp.c']]],
   ['amp_5fsetlimitlevelon',['amp_setLimitLevelOn',['../amp_8h.html#a5146b67fd4664bb6a5e3d6fbdd08a33f',1,'amp.c']]],
-  ['amp_5fsetreleasecontrol',['amp_setReleaseControl',['../amp_8h.html#a27a033becffe82e7bbad2faededc1d03',1,'amp.c']]]
+  ['amp_5fsetreleasecontrol',['amp_setReleaseControl',['../amp_8h.html#a27a033becffe82e7bbad2faededc1d03',1,'amp.c']]],
+  ['amp_5fsleep',['amp_sleep',['../amp_8h.html#a93cae0c1b9c6abd30cff6bb85ace24ba',1,'amp.c']]]
 ];

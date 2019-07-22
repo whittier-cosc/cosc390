@@ -13,7 +13,7 @@ char dst[17] = "XXXXXXXXXXXXXXXX";
 
 int main() {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     tft_init();
     tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(3); // landscape mode, pins at left

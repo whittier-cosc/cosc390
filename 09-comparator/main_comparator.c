@@ -2,7 +2,7 @@
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     // Comparator voltage reference
     CVRCONbits.CVROE = 1; // enable output on CVrefout (pin 25)
                           // Pin 25 is used for SPI clock output, however,

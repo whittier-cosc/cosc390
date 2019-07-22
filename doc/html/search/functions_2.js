@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['ioe_5fclearbits',['ioe_clearBits',['../io__expander_8h.html#a668a2c2a34f33bc8f7260fb2f45efe2e',1,'io_expander.c']]],
   ['ioe_5finit',['ioe_init',['../io__expander_8h.html#a49dd7fa773dd422fb420be8392a48abc',1,'io_expander.c']]],
   ['ioe_5fportcdisablepullup',['ioe_PortCDisablePullUp',['../io__expander_8h.html#a53a8e6058d4ed283c800d17a407f2668',1,'io_expander.c']]],
   ['ioe_5fportcenablepullup',['ioe_PortCEnablePullUp',['../io__expander_8h.html#ae6cafe0b797beb1f5fc5ff5a8572143c',1,'io_expander.c']]],
@@ -14,5 +15,7 @@ var searchData=
   ['ioe_5fportdsetpinsin',['ioe_PortDSetPinsIn',['../io__expander_8h.html#a74f54972aa8b46f5471d8c4a04104085',1,'io_expander.c']]],
   ['ioe_5fportdsetpinsout',['ioe_PortDSetPinsOut',['../io__expander_8h.html#a73b42c917b6ea5e06594b739db22b1ee',1,'io_expander.c']]],
   ['ioe_5fread',['ioe_read',['../io__expander_8h.html#a6a848bb361f98af710b6c9620e3ed91f',1,'io_expander.c']]],
+  ['ioe_5fsetbits',['ioe_setBits',['../io__expander_8h.html#acf363ac4a0678012ae62f424acba331f',1,'io_expander.c']]],
+  ['ioe_5ftogglebits',['ioe_toggleBits',['../io__expander_8h.html#abcddf18dcc845c7b2116097e933057d5',1,'io_expander.c']]],
   ['ioe_5fwrite',['ioe_write',['../io__expander_8h.html#a0a3a97ee4e136b9fbd9c0b91ea19b3a6',1,'io_expander.c']]]
 ];

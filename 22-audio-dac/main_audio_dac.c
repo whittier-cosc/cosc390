@@ -65,7 +65,7 @@ void __ISR(_TIMER_2_VECTOR, IPL2SOFT) Timer2Handler(void)
 int main(void) {
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-
+    wclib_init(SYSCLK, PBCLK);
     INTCONbits.MVEC = 1;   // multi-vector mode on
 
     ANSELA = 0; ANSELB = 0;

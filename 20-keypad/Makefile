@@ -10,7 +10,8 @@
 
 # This file contains rules to do the following:
 #	1. compile .c files into .o files
-#	2. link the .o files in this directory (and any library code they use) into a .elf binary
+#	2. link the .o files in this directory (and any library code they use) into 
+#		a .elf binary
 #	3. convert the .elf into a .hex
 #	4. write the .hex file to the PIC
 #
@@ -127,10 +128,9 @@ $(LIBDIR)/lib$(LIB).a:
 	make -C $(LIBDIR)
 
 .PHONY: clean
-# Delete all hex, map, object, library, and elf files, and other assorted crud
+# Delete all hex, map, object, and elf files, and other assorted crud
 clean:
 	$(RM) *.hex *.map *.o *.a *.elf *.dep *.dis log.* *.xml* *~
-	cd $(LIBDIR) && $(RM) *.o *~
 
 .PHONY: write
 # Use MPLAB's ipecmd to program the chip
