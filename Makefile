@@ -6,14 +6,14 @@ SKEL_DIR=skeleton
 PROJ_DIRS=[0-9][0-9]-*
 
 all:
-	make -C $(LIB_DIR)
-	make -C $(SKEL_DIR)
-	for d in $(PROJ_DIRS); do make -C $$d; done
+	$(MAKE) -C $(LIB_DIR)
+	$(MAKE) -C $(SKEL_DIR)
+	for d in $(PROJ_DIRS); do $(MAKE) -C $$d; done
 
 clean:
-	make -C $(LIB_DIR) clean
-	make -C $(SKEL_DIR) clean
-	for d in $(PROJ_DIRS); do make -C $$d clean; done
+	$(MAKE) -C $(LIB_DIR) clean
+	$(MAKE) -C $(SKEL_DIR) clean
+	for d in $(PROJ_DIRS); do $(MAKE) -C $$d clean; done
 
 # Copy skeleton Makefile to all project directories.
 copy-makefile:

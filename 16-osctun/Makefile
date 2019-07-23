@@ -93,11 +93,11 @@ PROCESSOR = 32MX250F128B
 CFLAGS = -g -O1 -x c -Wall
 
 # if on Windows (but not MinGW), use a different RM
-ifdef OS
-    ifndef MINGW_PREFIX
-	RM = del /Q
-    endif
-endif
+#ifdef OS
+#    ifndef MINGW_PREFIX
+#	RM = del /Q
+#    endif
+#endif
 
 # What to do for "make all"
 .PHONY: all
