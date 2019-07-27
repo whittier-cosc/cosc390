@@ -22,7 +22,7 @@
 #include "amp.h"
 #include "uart.h"
 
-#define AMP 1  // whether to use amplifier
+#define AMP 0  // whether to use amplifier
 
 char buffer[80];
 int keytable[12] = {0x82,                           //    0

@@ -110,14 +110,14 @@ ${OBJECTDIR}/_ext/1472/main_keypad_audio.o: ../main_keypad_audio.c  nbproject/Ma
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/main_keypad_audio.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../" -I"../../wcpic32lib" -MMD -MF "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" -o ${OBJECTDIR}/_ext/1472/main_keypad_audio.o ../main_keypad_audio.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD) 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../" -I"../../wcpic32lib" -O1 -MMD -MF "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" -o ${OBJECTDIR}/_ext/1472/main_keypad_audio.o ../main_keypad_audio.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD) 
 	
 else
 ${OBJECTDIR}/_ext/1472/main_keypad_audio.o: ../main_keypad_audio.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/main_keypad_audio.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../" -I"../../wcpic32lib" -MMD -MF "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" -o ${OBJECTDIR}/_ext/1472/main_keypad_audio.o ../main_keypad_audio.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD) 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../" -I"../../wcpic32lib" -O1 -MMD -MF "${OBJECTDIR}/_ext/1472/main_keypad_audio.o.d" -o ${OBJECTDIR}/_ext/1472/main_keypad_audio.o ../main_keypad_audio.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD) 
 	
 endif
 
