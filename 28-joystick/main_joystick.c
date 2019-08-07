@@ -1,8 +1,9 @@
 /**
- *  @file   main_seven_segs.c
+ *  @file   main_joystick.c
  *
- *  @brief  multiplex a 4-digit, 7-segment LED display (5461A),
- *          and use a 4051B 8-channel multiplexer to drive segments
+ *  @brief  The world's worst paint program.
+ *
+ *          Uses 2-axis resistive analog "thumb slide" joystick (SparkFun COM-09426).
  *
  *  @author Jeff Lutgen
  */
@@ -14,74 +15,47 @@
 #include "tft.h"
 #include "tft_printline.h"
 
-// precise delay for ADC acquisition
-#define NOP asm("nop");
-// 200 ns
-#define NS_200 {NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;}
-
-#define SAMPLING_PERIOD 15625 // 200 ms (if timer prescaler is 256)
+#define SAMPLING_PERIOD 120 // 3000 ns (if timer 3 prescaler is 1)
 #define NSAMP 8
+
+#define DRAW_COLOR  ILI9340_BLUE
+#define BALL_COLOR  ILI9340_GREEN
+#define BALL_RADIUS 2
+
+#define W  240
+#define H  320
+#define XC (W / 2)
+#define YC (H / 2)
+#define X0 480
+#define Y0 460
+
+// Range of analog readings from joystick
+// x-axis on AN0
+// y-axis on AN5
+#define XR_MIN      170
+#define XR_MAX      580
+#define XR_RANGE    (XR_MAX - XR_MIN)
+#define YR_MIN      150
+#define YR_MAX      800
+#define YR_RANGE    (YR_MAX - YR_MIN)
+
+#define XSCALE ((XR_MAX - XR_MIN) / W)
+#define YSCALE ((YR_MAX - YR_MIN) / H)
 
 char msg[80];
 
 void adc_init() {
-    // configure and enable the ADC
-    CloseADC10();// ensure the ADC is off before setting the configuration
-    // define setup parameters for OpenADC10
-    #define PARAM1 ADC_MODULE_ON | ADC_FORMAT_INTG | ADC_CLK_MANUAL | ADC_AUTO_SAMPLING_OFF
-    #define PARAM2 ADC_VREF_AVDD_AVSS | ADC_OFFSET_CAL_DISABLE | ADC_SCAN_OFF | ADC_ALT_INPUT_ON
-    #define PARAM3 ADC_CONV_CLK_PB | ADC_CONV_CLK_Tcy
-    #define PARAM4 0  // configscan
-    #define PARAM5 ENABLE_AN5_ANA | ENABLE_AN0_ANA  // configport
     // configure to sample AN0 & AN5
-    SetChanADC10(ADC_CH0_NEG_SAMPLEA_NVREF | ADC_CH0_POS_SAMPLEA_AN5 |
-                 ADC_CH0_NEG_SAMPLEB_NVREF | ADC_CH0_POS_SAMPLEB_AN0);
+    SetChanADC10(ADC_CH0_NEG_SAMPLEA_NVREF | ADC_CH0_POS_SAMPLEA_AN0 |
+                 ADC_CH0_NEG_SAMPLEB_NVREF | ADC_CH0_POS_SAMPLEB_AN5);
     // configure ADC and enable it
-    OpenADC10(PARAM1, PARAM2, PARAM3, PARAM4, PARAM5);
+    OpenADC10(ADC_MODULE_ON | ADC_CLK_TMR | ADC_AUTO_SAMPLING_ON, // AD1CON1
+              ADC_ALT_INPUT_ON | ADC_SAMPLES_PER_INT_2,           // AD1CON2
+              ADC_CONV_CLK_PB | ADC_CONV_CLK_2Tcy,                // AD1CON3
+              0,                                                  // configscan
+              ENABLE_AN5_ANA | ENABLE_AN0_ANA);                   // configport
     // Now enable the ADC logic
     EnableADC10();
-}
-
-void __ISR(_TIMER_2_VECTOR, IPL2SOFT) ADC_run(void) {
-    uint32_t reading_x, reading_y;
-    static uint32_t curr_reading_x = 1024, curr_reading_y = 1024;
-    int i;
-    //average NSAMP samples on each channel to smooth things out
-    reading_x = reading_y = 0;
-    for (i = 0; i < NSAMP; i++) {
-        SetChanADC10(ADC_CH0_NEG_SAMPLEA_NVREF | ADC_CH0_POS_SAMPLEA_AN0 |
-                     ADC_CH0_NEG_SAMPLEB_NVREF | ADC_CH0_POS_SAMPLEB_AN5);
-        AD1CON1bits.SAMP = 1; // start sampling
-        NS_200; // wait the minimum 200 ns acquisition time
-        AD1CON1bits.SAMP = 0; // end sampling, start conversion
-        while (!AD1CON1bits.DONE) {
-        }
-        reading_x += ADC1BUF0;
-
-        SetChanADC10(ADC_CH0_NEG_SAMPLEA_NVREF | ADC_CH0_POS_SAMPLEA_AN5 |
-                     ADC_CH0_NEG_SAMPLEB_NVREF | ADC_CH0_POS_SAMPLEB_AN0);
-        AD1CON1bits.SAMP = 1; // start sampling
-        NS_200; // wait the minimum 200 ns acquisition time
-        AD1CON1bits.SAMP = 0; // end sampling, start conversion
-        while (!AD1CON1bits.DONE) {
-        }
-        reading_y += ADC1BUF0;
-    }
-    reading_x = reading_x / NSAMP;
-    reading_y = reading_y / NSAMP;
-
-    if (reading_x != curr_reading_x) {
-        curr_reading_x = reading_x;
-        sprintf(msg, "x: %4d", reading_x);
-        tft_printLine(1, 5, msg);
-    }
-    if (reading_y != curr_reading_y) {
-        curr_reading_y = reading_y;
-        sprintf(msg, "y: %4d", reading_y);
-        tft_printLine(5, 5, msg);
-    }
-
-    mT2ClearIntFlag();
 }
 
 int main(void) {
@@ -90,23 +64,55 @@ int main(void) {
     // Tell wcpic32lib our system clock and peripheral bus clock rates
     wclib_init(SYSCLK, PBCLK);
 
-    INTEnableSystemMultiVectoredInt();
-    __builtin_disable_interrupts();
-
     adc_init();
 
     tft_init();
-    tft_fillScreen(ILI9340_BLUE);
+    tft_fillScreen(ILI9340_BLACK);
     tft_setRotation(0);
-    //tft_printLine(2, 5, "ready");
 
-    OpenTimer2(T2_ON | T2_SOURCE_INT | T2_PS_1_256, SAMPLING_PERIOD);
-    ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_2);
-    mT2ClearIntFlag();
+    OpenTimer3(T3_ON | T3_SOURCE_INT | T2_PS_1_1, SAMPLING_PERIOD);
 
-    __builtin_enable_interrupts();
-
+    uint32_t reading_x, reading_y;
+    uint32_t curr_reading_x = 1024, curr_reading_y = 1024;
+    int16_t x, y;
+    int i;
+    bool redraw = false;
     while(1) {
+        // Average NSAMP samples on each channel to smooth things out.
+        // Once auto-sampling is enabled, conversions are triggered by
+        // Timer 3 match.
+        // Two readings per interrupt; first is from AN0, second from AN5.
+        AD1CON1SET = _AD1CON1_ASAM_MASK; // enable auto-sampling
+        reading_x = reading_y = 0;
+        for (i = 0; i < NSAMP; i++) {
+            while (!mAD1GetIntFlag());
+            reading_x += ADC1BUF0;
+            reading_y += ADC1BUF1;
+            mAD1ClearIntFlag();
+        }
+        AD1CON1CLR = _AD1CON1_ASAM_MASK; // disable auto-sampling
+
+        reading_x = reading_x / NSAMP;
+        reading_y = reading_y / NSAMP;
+
+        if (reading_x != curr_reading_x || reading_y != curr_reading_y) {
+            redraw = true;
+            curr_reading_x = reading_x;
+            curr_reading_y = reading_y;
+            sprintf(msg, "(%3d, %3d)", reading_x, reading_y);
+            tft_printLine(1, 2, msg);
+        }
+
+        if (redraw) {
+            // "erase" current ball using
+            tft_fillCircle(x, y, BALL_RADIUS, DRAW_COLOR);
+            x = (reading_x - XR_MIN) * W / XR_RANGE;
+            y = H - (reading_y - YR_MIN) * H / YR_RANGE;
+            // draw new ball
+            tft_fillCircle(x, y, BALL_RADIUS, BALL_COLOR);
+        }
+
+        delay(50);
     }
     return 0;
 }

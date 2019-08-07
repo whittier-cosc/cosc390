@@ -18,7 +18,7 @@
 void tft_printLine(int line_num, int text_size, char *str) {
     int y = line_num * 10;
     // erase the line by drawing a black filled rectangle
-    tft_fillRect(0, y, tft_width() - 1, 10*text_size, ILI9340_BLUE);
+    tft_fillRect(0, y, tft_width() - 1, 10*text_size, ILI9340_BLACK);
     tft_setCursor(0, y);
     tft_setTextColor(ILI9340_YELLOW);
     tft_setTextSize(text_size);
