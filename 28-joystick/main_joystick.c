@@ -74,7 +74,7 @@ int main(void) {
 
     uint32_t reading_x, reading_y;
     uint32_t curr_reading_x = 1024, curr_reading_y = 1024;
-    int16_t x, y;
+    int16_t x = XC, y = YC;
     int i;
     bool redraw = false;
     while(1) {
@@ -104,7 +104,7 @@ int main(void) {
         }
 
         if (redraw) {
-            // "erase" current ball using
+            // "erase" current ball
             tft_fillCircle(x, y, BALL_RADIUS, DRAW_COLOR);
             x = (reading_x - XR_MIN) * W / XR_RANGE;
             y = H - (reading_y - YR_MIN) * H / YR_RANGE;
@@ -116,4 +116,3 @@ int main(void) {
     }
     return 0;
 }
-
