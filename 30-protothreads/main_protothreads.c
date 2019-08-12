@@ -1,7 +1,7 @@
 /**
- *  @file   main_round-robin.c
+ *  @file   main_protothreads.c
  *
- *  @brief  Round-robin tick-based scheduling experiment.
+ *  @brief  Protothreads experiment.
  *
  *  @author Jeff Lutgen
  */
@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "config.h"
+#include "pt.h"
 #include "util.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -41,13 +42,15 @@
 #define XSCALE ((XR_MAX - XR_MIN) / W)
 #define YSCALE ((YR_MAX - YR_MIN) / H)
 
-//char msg[80];
+char msg[80];
 
 // Task periods in ms
-const uint16_t adc_task_period = 1;
+const uint16_t adc_task_period = 20;
 const uint16_t blink_task_period = 2;
 uint16_t adc_ticks = 0;
 uint16_t blink_ticks = 0;
+bool adc_flag;
+bool blink_flag;
 
 void adc_init() {
     // configure ADC and enable it
@@ -61,27 +64,23 @@ void adc_init() {
     EnableADC10();
 }
 
-#define SAMPLE 0
-#define ERASE 1
-#define DRAW  2
-#define WAIT 3
-#define WAIT_PERIOD 10
-void adc_task() {
+PT_THREAD(adc_thread(struct pt *pt)) {
     uint32_t reading_x, reading_y;
     static uint32_t curr_reading_x = 1024, curr_reading_y = 1024;
     static int16_t x = XC, y = YC;
-    static int8_t state = SAMPLE;
-    static int wait_count;
     int i;
 
-    switch (state) {
+    PT_BEGIN(pt);
+    while (1) {
+        PT_YIELD_UNTIL(pt, adc_flag);
+        adc_flag = false;
+        // sampling phase takes only 100 us
 
-    // sampling phase takes only 100 us
-    case SAMPLE:
         // Average NSAMP samples on each channel to smooth things out.
         // Once auto-sampling is enabled, conversions are triggered by
         // Timer 3 match.
         // Two readings per "interrupt"; first is from AN0, second from AN5.
+        mPORTBToggleBits(BIT_7);
         AD1CON1SET = _AD1CON1_ASAM_MASK; // enable auto-sampling
         reading_x = reading_y = 0;
         for (i = 0; i < NSAMP; i++) {
@@ -91,57 +90,49 @@ void adc_task() {
             mAD1ClearIntFlag();
         }
         AD1CON1CLR = _AD1CON1_ASAM_MASK; // disable auto-sampling
-
+        mPORTBToggleBits(BIT_7);
         reading_x = reading_x / NSAMP;
         reading_y = reading_y / NSAMP;
-
-        if (reading_x != curr_reading_x || reading_y != curr_reading_y) {
-            curr_reading_x = reading_x;
-            curr_reading_y = reading_y;
-            state = ERASE;
-        } else {
-            // otherwise, go to wait state
-            wait_count = 0;
-            state = WAIT;
+        if (reading_x == curr_reading_x && reading_y == curr_reading_y) {
+            continue;
         }
-        break;
+        // otherwise, must redraw
 
-    // next phase (drawing) takes 130 times longer (13 ms) when ball radius = 15:
-    // tft_printLine:  9 ms
-    // tft_fillCircle: 2 ms
-    // tft_fillCircle: 2 ms
-    case ERASE:
+        // next phase ((re)drawing) takes 130 times longer (13 ms) when ball radius = 15:
+        // tft_printLine:  9 ms
+        // tft_fillCircle: 2 ms
+        // tft_fillCircle: 2 ms
+
         //sprintf(msg, "(%3d, %3d)", reading_x, reading_y);
         //tft_printLine(1, 2, msg);
 
+        curr_reading_x = reading_x;
+        curr_reading_y = reading_y;
         // "erase" current ball using "draw color"
-        mPORTBToggleBits(BIT_7);
+        //mPORTBToggleBits(BIT_7);
         tft_fillCircle(x, y, BALL_RADIUS, DRAW_COLOR);
-        state = DRAW;
-        mPORTBToggleBits(BIT_7);
-        break;
+        //mPORTBToggleBits(BIT_7);
 
-    case DRAW:
         // draw new ball using "ball color"
-        mPORTBToggleBits(BIT_7);
+//        mPORTBToggleBits(BIT_7);
         x = (curr_reading_x - XR_MIN) * W / XR_RANGE;
         y = H - (curr_reading_y - YR_MIN) * H / YR_RANGE;
+//        sprintf(msg, "draw %d %d\n", x, y);
+//        uart_write(msg);
         tft_fillCircle(x, y, BALL_RADIUS, BALL_COLOR);
-        wait_count = 0;
-        state = WAIT;
-        mPORTBToggleBits(BIT_7);
-        break;
-
-    case WAIT:
-        if (++wait_count == WAIT_PERIOD) {
-            state = SAMPLE;
-        }
-        break;
+//        mPORTBToggleBits(BIT_7);
     }
+    PT_END(pt);
 }
 
-void blink_task(void) {
-    mPORTBToggleBits(BIT_5);
+PT_THREAD(blink_thread(struct pt *pt)) {
+    PT_BEGIN(pt);
+    while (1) {
+        PT_YIELD_UNTIL(pt, blink_flag);
+        blink_flag = false;
+        mPORTBToggleBits(BIT_5);
+    }
+    PT_END(pt);
 }
 
 void __ISR(_TIMER_1_VECTOR, IPL2SOFT) scheduler_isr(void) {
@@ -152,12 +143,12 @@ void __ISR(_TIMER_1_VECTOR, IPL2SOFT) scheduler_isr(void) {
     // Do blink task first because it takes almost no time
     if (++blink_ticks == blink_task_period) {
         blink_ticks = 0;
-        blink_task();
+        blink_flag = true;
     }
 
     if (++adc_ticks == adc_task_period) {
         adc_ticks = 0;
-        adc_task();
+        adc_flag = true;
     }
 
     mT1ClearIntFlag();
@@ -165,6 +156,7 @@ void __ISR(_TIMER_1_VECTOR, IPL2SOFT) scheduler_isr(void) {
 //    mPORTBToggleBits(BIT_7);
 }
 
+static struct pt pt_adc, pt_blink;
 int main(void) {
     // Configure the device for maximum performance
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
@@ -192,8 +184,11 @@ int main(void) {
     ConfigIntTimer1(T1_INT_ON | T1_INT_PRIOR_2);
     INTEnableSystemMultiVectoredInt();
 
-    while(1) {
-        // Timer 1 ISR will interrupt
+    PT_INIT(&pt_blink);
+    PT_INIT(&pt_adc);
+    while (1) {
+        PT_SCHEDULE(blink_thread(&pt_blink));
+        PT_SCHEDULE(adc_thread(&pt_adc));
     }
     return 0;
 }

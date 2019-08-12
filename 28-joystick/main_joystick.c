@@ -5,6 +5,16 @@
  *
  *          Uses 2-axis resistive analog "thumb slide" joystick (SparkFun COM-09426).
  *
+ *          Top view of joystick:
+ *
+ *          1  2  3  4
+ *          |  |  |  |          1 - 3V3
+ *         ------------         2 - y-axis output
+ *         |          |         3 - ground
+ *         |          |         4 - x-axis output
+ *         |          |
+ *         ------------
+ *
  *  @author Jeff Lutgen
  */
 

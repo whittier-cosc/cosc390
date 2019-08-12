@@ -51,7 +51,7 @@ static inline void SPI_Mode32(void) {  // configure SPI2 for 32-bit mode
  *
  *      CS:  RB7           (Pin 16)
  *      SCK: SCK2          (Pin 26)
- *      SDI: RPB2 --> SDI2 (Pin  6)
+ *      SDI: RPA4 --> SDI2 (Pin 12)
  *      SDO: RPB5 --> SDO2 (Pin 14)
  *
  *  Example:

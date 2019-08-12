@@ -109,8 +109,8 @@ static void tft_spiwrite8(unsigned char c) {   // Transfer one byte c to SPI
     /* The default mode for me is to transfer 16-bits at once
      * However, it is necessary sometimes to transfer only 8-bits at a time
      * But this is required less often than 16-bits at once
-     * So, the default mode is 16-bit mode and is switched to 8-bit mode when
-     *     required, and then switched back at the end of the function
+     * So the default mode is 16-bit mode and is switched to 8-bit mode when
+     * required, and then switched back at the end of the function
      */
     Mode8(); // switch to 8-bit mode
     while (TxBufFullSPI1());
@@ -313,7 +313,7 @@ static void tft_setAddrWindow(unsigned short x0, unsigned short y0, unsigned sho
 
 #define NOP asm("nop");
 #define wait16 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
-#define wait8 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
+#define wait8  NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 #define wait12 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 #define wait15 NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;NOP;
 

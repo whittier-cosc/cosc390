@@ -2,7 +2,7 @@
     Scan keypresses from keypad (Adafruit 1824) connected via I/O expander
  */
 
-// keypad connections:
+// keypad connection to I/O expander:
 // C0 -- col 1 -- internal pullup resistor -- avoid open circuit input when no button pushed
 // C1 -- col 2 -- internal pullup resistor
 // C2 -- col 3 -- internal pullup resistor
