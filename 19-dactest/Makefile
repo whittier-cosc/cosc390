@@ -26,11 +26,17 @@
 # Mac example:
 # XC32PATH =/Applications/microchip/xc32/v1.40/bin
 
-# Windows Subsystem for Linux
-ifdef WSL_DISTRO_NAME
+# IPEPATH is the path to `ipecmd', the command-line tool for programming
+# Microchip devices.
+
+ifdef WSL_DISTRO_NAME        # Windows Subsystem for Linux
     XC32PATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/xc32/v1.40/bin
     IPEPATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/MPLABX/v5.15/mplab_platform/mplab_ipe
+else
+    XC32PATH=
+    IPEPATH=   
 endif
+
 
 
 #
@@ -52,31 +58,31 @@ TOOL=PK4     # pickit 4
 
 # How to call MPLab's ipecmd
 ifdef OS     # Windows
-	IPECMD=ipecmd.exe
+    IPECMD=ipecmd
 else ifdef WSL_DISTRO_NAME # Windows Subsystem for Linux
-	IPECMD=$(IPEPATH)/ipecmd.exe
+    IPECMD=$(IPEPATH)/ipecmd.exe
 else         # MacOS
-	IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
+    IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
 endif
 
 ifdef WSL_DISTRO_NAME
-	# The C compiler
-	CC=$(XC32PATH)/xc32-gcc.exe
-
-	# The hexfile creator
-	HX=$(XC32PATH)/xc32-bin2hex.exe
-
-	# The object dumper
-	OBJDMP=$(XC32PATH)/xc32-objdump.exe
+    # The C compiler
+    CC=$(XC32PATH)/xc32-gcc.exe
+    
+    # The hexfile creator
+    HX=$(XC32PATH)/xc32-bin2hex.exe
+    
+    # The object dumper
+    OBJDMP=$(XC32PATH)/xc32-objdump.exe
 else
-	# The C compiler
-	CC=xc32-gcc
-
-	# The hexfile creator
-	HX=xc32-bin2hex
-
-	# The object dumper
-	OBJDMP=xc32-objdump
+    # The C compiler
+    CC=xc32-gcc
+    
+    # The hexfile creator
+    HX=xc32-bin2hex
+    
+    # The object dumper
+    OBJDMP=xc32-objdump
 endif
 
 # The utility for writing a .hex file to the PIC.
