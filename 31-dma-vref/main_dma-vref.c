@@ -15,7 +15,7 @@
 #include "uart.h"
 #include "util.h"
 
-#define CVREF_CONFIG (CVREF_ENABLE | CVREF_OUTPUT_ENABLE | CVREF_RANGE_LOW | CVREF_SOURCE_AVDD)
+#define CVREF_CONFIG (CVREF_ENABLE | CVREF_OUTPUT_ENABLE | CVREF_RANGE_HIGH | CVREF_SOURCE_AVDD)
 
 uint8_t samples[100]; // 100 samples per cycle gives 440 Hz output when sampled at 44000 Hz
 int sample_index = 0;

@@ -31,7 +31,7 @@
 
 // Range of analog readings from joystick
 // x-axis on AN0
-// y-axis on AN5
+// y-axis on AN1
 #define XR_MIN      170
 #define XR_MAX      580
 #define XR_RANGE    (XR_MAX - XR_MIN)
@@ -46,7 +46,7 @@ char msg[80];
 
 // Task periods in ms
 const uint16_t adc_task_period = 20;
-const uint16_t blink_task_period = 2;
+const uint16_t blink_task_period = 500;
 uint16_t adc_ticks = 0;
 uint16_t blink_ticks = 0;
 bool adc_flag;

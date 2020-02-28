@@ -25,6 +25,14 @@
 # XC32PATH=C:/Program Files (x86)/Microchip/xc32/v1.40/bin
 # Mac example:
 # XC32PATH =/Applications/microchip/xc32/v1.40/bin
+
+# Windows Subsystem for Linux
+ifdef WSL_DISTRO_NAME
+    XC32PATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/xc32/v1.40/bin
+    IPEPATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/MPLABX/v5.15/mplab_platform/mplab_ipe
+endif
+
+
 #
 # PORT is the COM port used by the PIC32
 # Windows Example:
@@ -44,19 +52,32 @@ TOOL=PK4     # pickit 4
 
 # How to call MPLab's ipecmd
 ifdef OS     # Windows
-	IPECMD=ipecmd
+	IPECMD=ipecmd.exe
+else ifdef WSL_DISTRO_NAME # Windows Subsystem for Linux
+	IPECMD=$(IPEPATH)/ipecmd.exe
 else         # MacOS
 	IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
 endif
 
-# The C compiler
-CC=xc32-gcc
+ifdef WSL_DISTRO_NAME
+	# The C compiler
+	CC=$(XC32PATH)/xc32-gcc.exe
 
-# The hexfile creator
-HX=xc32-bin2hex
+	# The hexfile creator
+	HX=$(XC32PATH)/xc32-bin2hex.exe
 
-# The object dumper
-OBJDMP=xc32-objdump
+	# The object dumper
+	OBJDMP=$(XC32PATH)/xc32-objdump.exe
+else
+	# The C compiler
+	CC=xc32-gcc
+
+	# The hexfile creator
+	HX=xc32-bin2hex
+
+	# The object dumper
+	OBJDMP=xc32-objdump
+endif
 
 # The utility for writing a .hex file to the PIC.
 WRITE=$(IPECMD) -P32MX250F128B -TP$(TOOL) -M -OL
@@ -71,6 +92,8 @@ LIB=wcpic32
 LIBDIR=../wcpic32lib
 
 ifdef OS        # Windows
+	TARGETDIR=
+else ifdef WSL_DISTRO_NAME
 	TARGETDIR=
 else            # MacOS
 	TARGETDIR=${CURDIR}/
@@ -116,7 +139,7 @@ $(TARGET).dis: $(TARGET).elf
 $(TARGET).elf: $(OBJS) $(LIBDIR)/lib$(LIB).a
 	@echo Linking elf file $@
 	$(CC) -mprocessor=$(PROCESSOR) -o $(TARGET).elf $(OBJS) -Wl,$(LINKFLAGS) \
-	-L$(LIBDIR) -l$(LIB) -lm
+	-L$(LIBDIR) -l$(LIB)
 
 # Create an object file for each C file. Force recompile if *any* header has changed.
 %.o: %.c $(HDRS)

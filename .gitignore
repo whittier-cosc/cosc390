@@ -13,3 +13,4 @@ log.*
 .vscode/*
 pt-*/
 *.code-workspace
+*.creator.user
