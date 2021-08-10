@@ -13,7 +13,7 @@
 
 #include <xc.h>
 #include <stdarg.h>
-#include "private/clocks.h"
+#include "private/common.h"
 #include "uart.h"
 
 #define BAUDRATE 115200
@@ -29,8 +29,10 @@
  *      RPB3 (pin 7) --> U1TX
  */
 void uart_init() {
-    U1RXR = 0; // Map RPA2 (pin 9) to U1RX
-    RPB3R = 1; // Map RPB3 (pin 7) to U1TX
+    // U1RXR = 0; // Map RPA2 (pin 9) to U1RX
+    // RPB3R = 1; // Map RPB3 (pin 7) to U1TX
+    PPSInput(3, U1RX, RPA2);  // Map RPA2 (pin 9) to U1RX
+    PPSOutput(1, RPB3, U1TX); // Map RPB3 (pin 7) to U1TX
 
     // Set baud to BAUDRATE
     U1MODEbits.BRGH = 0;  // High-speed mode disabled

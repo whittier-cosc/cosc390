@@ -4,7 +4,7 @@
  *  @brief  Initialization routine for the WC PIC32 libraries.
  */
 
-#include "private/clocks.h"
+#include "private/common.h"
 
 // Globals exported to the WC PIC32 libraries
 unsigned _sysclk, _pbclk;

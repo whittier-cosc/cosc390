@@ -33,9 +33,9 @@
  *  BSD license, all text above must be included in any redistribution
  */
 
+#include "private/common.h"
 #include "amp.h"
 #include "uart.h"
-#include "private/clocks.h"
 
 #define DEBUG   // If DEGUG is defined, UART1 will be configured and used for
                 // debug and error message output.
@@ -71,7 +71,7 @@ static void delay();
 void amp_init() {
 
 #ifdef DEBUG
-    uart_init(_pbclk);
+    uart_init();
 #endif
 
     char msg[80];

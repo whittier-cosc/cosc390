@@ -33,11 +33,8 @@
   MIT license, all text above must be included in any redistribution
  ****************************************************/
 
-#define _SUPPRESS_PLIB_WARNING
-#define _DISABLE_OPENADC10_CONFIGPORT_WARNING
-#include <plib.h>
 #include <xc.h>
-#include "private/clocks.h"
+#include "private/common.h"
 #include "private/tft_registers.h"
 
 unsigned short _width, _height;
@@ -100,7 +97,8 @@ static void delay_ms(unsigned long);
 void tft_init() {
     _width = ILI9340_TFTWIDTH;
     _height = ILI9340_TFTHEIGHT;
-    RPB11R = 3;  // Map RPB11 --> SDO1. Goes to MOSI on TFT.
+    // RPB11R = 3;  // Map RPB11 --> SDO1. Goes to MOSI on TFT.
+    PPSOutput(2, RPB11, SDO1); // Map RPB11 --> SDO1. Goes to MOSI on TFT.
 
     tft_begin();
 }

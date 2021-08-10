@@ -19,10 +19,8 @@ void pwm_config(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    wclib_init(SYSCLK, PBCLK);
-    U1RXR = 0; // Map RPA2 (pin 9) to U1RX
-    RPB3R = 1; // Map RPB3 (pin 7) to U1TX
-    RPB2R = 5; // Map RPB2 (pin 6) to OC4 (PWM output)
+    wclib_init(SYSCLK, PBCLK); 
+    PPSOutput(3, RPB2, OC4); // Map RPB2 (pin 6) to OC4 (PWM output)
 
     uart_init();
     pwm_config();

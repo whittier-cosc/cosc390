@@ -3,7 +3,7 @@
 
 #include "uart.h"
 #include "amp.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 int main(void) {
     // Configure the device for maximum performance.

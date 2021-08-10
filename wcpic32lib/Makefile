@@ -6,11 +6,14 @@
 #
 #############################################################
 
-# The C compiler
-CC=xc32-gcc
-
-# The archiver
-AR=xc32-ar
+ifdef WSL_DISTRO_NAME        # Windows Subsystem for Linux
+    XC32PATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/xc32/v1.40/bin
+	CC=$(XC32PATH)/xc32-gcc.exe
+	AR=$(XC32PATH)/xc32-ar.exe
+else
+	CC=xc32-gcc
+	AR=xc32-ar
+endif
 
 # The name of the static library lib$(LIB).a
 LIB=wcpic32

@@ -12,12 +12,8 @@
  *  with the PIC's I/O ports.
  */
 
-#define _SUPPRESS_PLIB_WARNING
-#define _DISABLE_OPENADC10_CONFIGPORT_WARNING
-#include <plib.h>
-
+#include "private/common.h"
 #include "io_expander.h"
-#include "private/clocks.h"
 
 #define IOE_SPI_CHN     SPI_CHANNEL2
 #define IOE_SET_CS()    (mPORTBSetBits(BIT_7))

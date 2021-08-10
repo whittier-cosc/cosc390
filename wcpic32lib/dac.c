@@ -8,11 +8,8 @@
  *  @author Jeff Lutgen (based on code by Bruce R. Land)
  */
 
-#define _SUPPRESS_PLIB_WARNING
-#define _DISABLE_OPENADC10_CONFIGPORT_WARNING
-#include <plib.h>
+#include "private/common.h"
 #include "dac.h"
-#include "private/clocks.h"
 
 #define DAC_SPI_CHN     SPI_CHANNEL2
 #define DAC_SET_CS()    (mPORTBSetBits(BIT_4))

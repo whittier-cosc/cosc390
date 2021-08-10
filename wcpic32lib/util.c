@@ -9,8 +9,7 @@
  */
 
 #include <xc.h>
-#include "tft.h"
-#include "private/clocks.h"
+#include "private/common.h"
 
 /**
  *  Delays for a given number of milliseconds.
