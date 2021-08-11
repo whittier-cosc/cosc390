@@ -1,5 +1,5 @@
 /*
- * Try internal interrupts 0 and 1. Use single-vector mode, so the 
+ * Test external interrupts 0 and 1. Use single-vector mode, so the 
  * ISR needs to examine INTSTAT to determine which of the two interrupts
  * occurred.
  */
@@ -26,9 +26,9 @@ void __ISR_SINGLE__ ExtIntISR(void) {
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
     wclib_init(SYSCLK, PBCLK);
-    // External interrupt 0 is on pin 16 (fixed)
 
-    INT1R = 0; // Map external interrupt 1 to pin 10 (RPA3)
+    // External interrupt 0 is on pin 16 (fixed)
+    PPSInput(4, INT1, RPA3); // Map external interrupt 1 to pin 10 (RPA3)
 
     IEC0bits.INT0IE = 1;   // enable INT0
     IPC0bits.INT0IP = 1;   // priority 1
@@ -44,7 +44,7 @@ int main(void) {
     __builtin_enable_interrupts();
 
     TRISA = 0xfffe;
-    LATAbits.LATA0 = 1;
+    LATAbits.LATA0 = 1; // LED on initially
     int i;
     for (i = 0; i < 6; i++) {
         delay(250);
@@ -52,7 +52,6 @@ int main(void) {
     }
 
     while(1) {
-        ;
     }
     return 0;
 }
