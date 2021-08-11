@@ -1,3 +1,12 @@
+/*
+    Use core timer interrupt to increment a counter and display it on TFT.
+
+    The core timer (CT) increments every two SYSCLK cycles (so 20 MHz if SYSCLK is 40 MHz).
+    An interrupt is generated when CT counter matches CT compare register.
+
+    By setting ROLLOVER to SYSCLK/2, an interrupt is therefore generated every 1 second.
+*/
+
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -5,7 +14,7 @@
 char msg[80];
 volatile int clock;
 
-#define ROLLOVER (SYSCLK / 5)
+#define ROLLOVER (SYSCLK / 2)
 
 void __ISR(_CORE_TIMER_VECTOR, IPL6SOFT) CoreTimerISR(void) {
     IFS0bits.CTIF = 0;              // clear CT int flag IFS0<0>, same as IFS0CLR=0x0001
@@ -17,13 +26,14 @@ void __ISR(_CORE_TIMER_VECTOR, IPL6SOFT) CoreTimerISR(void) {
 
 int main(void) {
     /*
-     * Display an incrementing counter.
      * The tft_printLine function doesn't do anything clever to update
      * the display, so the effect is a bit strobe-like.
      */
 
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    wclib_init(SYSCLK, PBCLK);    __builtin_disable_interrupts();
+    wclib_init(SYSCLK, PBCLK);
+
+    __builtin_disable_interrupts();
     tft_init();
     tft_fillScreen(ILI9340_BLUE);
     tft_setRotation(3); // landscape mode, pins at left

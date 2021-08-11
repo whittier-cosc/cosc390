@@ -3,7 +3,8 @@
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    wclib_init(SYSCLK, PBCLK);    TRISA = 0;        // All port A pins are outputs
+    wclib_init(SYSCLK, PBCLK);    
+    TRISA = 0;        // All port A pins are outputs
     TRISB = 0;        // All port B pins are outputs
     LATA = 0;         // Set all port A pins low 
     LATB = 0;         // Set all port B pins low 
