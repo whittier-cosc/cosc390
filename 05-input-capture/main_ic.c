@@ -14,12 +14,16 @@
 // Finally, the frequency calculation assumes PBCLK is accurate. If it's not,
 // then some calibration is needed.
 
+// TODO: Implement some form of averaging. Right now we're just using two
+//       successive rising-edge capture times to get frequency.
+
+#include <stdint.h>
 #include "config.h"
 #include "util.h"
 #include "uart.h"
 
 char msg[80];
-static volatile int ticks;
+static volatile uint16_t ticks;
 static volatile int interrupts;
 
 void pwm_config(void) {
@@ -32,16 +36,15 @@ void pwm_config(void) {
     // Subsequent changes to duty cycle are made by writing
     // to OC4RS.
     OC4CONbits.OCM = 6; // 3 bits, 110 = PWM mode, fault pin disabled
-    T3CONbits.ON = 1;   // Turn on Timer2
+    T3CONbits.ON = 1;   // Turn on Timer3
     OC4CONbits.ON = 1;  // Turn on PWM.
 }
 
 void __ISR(_INPUT_CAPTURE_1_VECTOR, IPL3SOFT) InputCompareISR(void) {
-    int t0 = IC1BUF;
-    int t1 = IC1BUF;
+    // Read the last two capture times
+    uint16_t t0 = IC1BUF;
+    uint16_t t1 = IC1BUF;
     ticks = t1 - t0; 
-    if (ticks < 0) // Account for overflow
-        ticks += 65536;
     interrupts++;
     IFS0bits.IC1IF = 0; // clear IC1 int flag
 }
@@ -49,7 +52,7 @@ void __ISR(_INPUT_CAPTURE_1_VECTOR, IPL3SOFT) InputCompareISR(void) {
 void ic_config(void) {
     // Configure input capture IC1
     IC1CONbits.ICM = 3;   // every rising edge;
-    IC1CONbits.ICTMR = 1; // Timer2
+    IC1CONbits.ICTMR = 1; // Timer2 (16-bit)
     IC1CONbits.ICI = 1;   // interrupt every 2nd capture
     IEC0bits.IC1IE = 1;   // enable IC1 interrupt
     IPC1bits.IC1IP = 3;   // interrupt priority 3
@@ -60,7 +63,8 @@ void ic_config(void) {
 
 int main(void) {
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-    wclib_init(SYSCLK, PBCLK);    osc_tune(56);
+    wclib_init(SYSCLK, PBCLK);
+    osc_tune(56);
 
     __builtin_disable_interrupts();
 
@@ -69,10 +73,12 @@ int main(void) {
     INTCONbits.MVEC = 0x1;
 
     // peripheral pin select
-    U1RXR = 0; // map RPA2 (pin 9) to U1RX
-    RPB3R = 1; // map RPB3 (pin 7) to U1TX
-    RPB2R = 5; // map RPB2 (pin 6) to OC4 (PWM)
-    IC1R = 2;  // map RPA4 (pin 12) to IC1
+    // U1RXR = 0; // map RPA2 (pin 9) to U1RX
+    // RPB3R = 1; // map RPB3 (pin 7) to U1TX
+    // RPB2R = 5; // map RPB2 (pin 6) to OC4 (PWM)
+    // IC1R = 2;  // map RPA4 (pin 12) to IC1
+    PPSOutput(3, RPB2, OC4);
+    PPSInput(3, IC1, RPA4);
 
     uart_init();
     pwm_config();
@@ -83,7 +89,8 @@ int main(void) {
     __builtin_enable_interrupts();
 
     uart_write("RESET\r\n");
-    int myticks, myinterrupts;
+    uint16_t myticks;
+    int myinterrupts;
     while(1) {
         uart_read(msg, 39); // block until user hits ENTER
         uart_write("running\r\n");
