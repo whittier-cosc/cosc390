@@ -30,8 +30,8 @@
 # Microchip devices.
 
 ifdef WSL_DISTRO_NAME        # Windows Subsystem for Linux
-    XC32PATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/xc32/v1.40/bin
-    IPEPATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/MPLABX/v5.15/mplab_platform/mplab_ipe
+    XC32PATH=/mnt/c/Program\ Files/Microchip/xc32/v3.01/bin
+    IPEPATH=/mnt/c/Program\ Files/Microchip/MPLABX/v5.50/mplab_platform/mplab_ipe
 else
     XC32PATH=
     IPEPATH=   

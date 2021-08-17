@@ -7,7 +7,7 @@
 #############################################################
 
 ifdef WSL_DISTRO_NAME        # Windows Subsystem for Linux
-    XC32PATH=/mnt/c/Program\ Files\ \(x86\)/Microchip/xc32/v1.40/bin
+    XC32PATH=/mnt/c/Program\ Files/Microchip/xc32/v3.01/bin
 	CC=$(XC32PATH)/xc32-gcc.exe
 	AR=$(XC32PATH)/xc32-ar.exe
 else
