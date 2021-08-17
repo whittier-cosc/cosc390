@@ -18,8 +18,9 @@
  *  @author Jeff Lutgen
  */
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"

@@ -7,6 +7,7 @@
  */
 
 #include <stdint.h>
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"
@@ -91,7 +92,6 @@ int main(void) {
     int ms;   // delay between digits (ms)
     uint32_t reading;
     uint32_t curr_ms = 9999;
-    uint32_t total;
 
     ANSELA = 1; // A0 analog input for delay controller
     ANSELB = 0;
