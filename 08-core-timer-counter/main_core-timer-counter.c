@@ -7,6 +7,7 @@
     By setting ROLLOVER to SYSCLK/2, an interrupt is therefore generated every 1 second.
 */
 
+#include <stdio.h>
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"

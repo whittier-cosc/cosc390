@@ -33,6 +33,7 @@
  *  BSD license, all text above must be included in any redistribution
  */
 
+#include <stdio.h>
 #include "private/common.h"
 #include "amp.h"
 #include "uart.h"

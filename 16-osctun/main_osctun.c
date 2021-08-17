@@ -22,6 +22,7 @@
  * With OSCTUN = 31 (max speedup), it is          8.148 MHz (+1.5%)
  */
 
+#include <stdio.h>
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -63,7 +64,6 @@ int main(void) {
     _CP0_SET_COUNT(0);              // set core timer counter to 0
 
     while(1) {
-        ;
     }
     return 0;
 }

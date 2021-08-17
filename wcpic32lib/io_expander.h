@@ -83,8 +83,8 @@ void ioe_PortDEnablePullUp(unsigned char);
 void ioe_PortCDisablePullUp(unsigned char);
 void ioe_PortDDisablePullUp(unsigned char);
 
-inline void ioe_write(unsigned char, unsigned char);
-inline unsigned char ioe_read(unsigned char);
+void ioe_write(unsigned char, unsigned char);
+unsigned char ioe_read(unsigned char);
 
 #endif
 

@@ -18,6 +18,7 @@
 //       successive rising-edge capture times to get frequency.
 
 #include <stdint.h>
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "uart.h"

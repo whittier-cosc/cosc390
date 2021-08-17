@@ -12,13 +12,13 @@
 // D3 -- row 4 -- thru 300 ohm resistor
 
 
+//#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"
 #include "tft_printline.h"
 #include "io_expander.h"
 //#include "uart.h"
-//#include <stdio.h>
 
 // some precise, fixed, short delays
 // to use for extending pulse durations on the keypad

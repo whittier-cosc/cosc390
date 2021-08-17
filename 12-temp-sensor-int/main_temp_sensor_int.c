@@ -12,6 +12,7 @@
  * erature sensor.
  */
 
+#include <stdio.h>
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -129,7 +130,6 @@ int main(void) {
     __builtin_enable_interrupts();
 
     while(1) {
-        ;
     }
     return 0;
 }

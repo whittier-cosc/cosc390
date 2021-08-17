@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"

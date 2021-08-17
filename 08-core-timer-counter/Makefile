@@ -119,7 +119,9 @@ OBJS := $(patsubst %.c, %.o, $(wildcard *.c))
 HDRS := $(wildcard *.h)
 
 PROCESSOR = 32MX250F128B
-CFLAGS = -g -O1 -x c -Wall -Wno-unused-value
+# As of XC32 v3.00, we need -fgnu89-inline
+# See https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-v3.00-full-install-release-notes.html#Migration
+CFLAGS = -g -O1 -x c -Wall -Wno-unused-value -fgnu89-inline
 
 # if on Windows (but not MinGW), use a different RM
 #ifdef OS

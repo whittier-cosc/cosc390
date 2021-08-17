@@ -30,7 +30,7 @@ OBJS := $(patsubst %.c, %.o, $(wildcard *.c))
 HDRS := $(wildcard *.h)
 
 PROCESSOR = 32MX250F128B
-CFLAGS = -g -O1 -x c -Wall
+CFLAGS = -g -O1 -x c -Wall -fgnu89-inline
 
 # if on Windows (but not MinGW), use a different RM
 ifdef OS

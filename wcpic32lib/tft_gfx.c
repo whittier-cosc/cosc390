@@ -52,7 +52,7 @@
 
 #include <stdlib.h>
 #include "tft_gfx.h"
-#include "glcdfont.c"
+#include "private/glcdfont.h"
 #include "tft_master.h"
 
 #define pgm_read_byte(addr) (*(const unsigned char *)(addr))

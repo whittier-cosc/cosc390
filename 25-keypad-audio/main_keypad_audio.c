@@ -274,8 +274,6 @@ int main(void) {
     __builtin_enable_interrupts();  // start the whole shebang running
 
     while(1) {
-
     }
-
     return 0;
 }

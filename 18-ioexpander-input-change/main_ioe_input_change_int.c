@@ -3,6 +3,7 @@
 
  */
 
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"
@@ -44,7 +45,6 @@ int main(void) {
     ioe_PortCIntEnable(0x01); // enable interrupt-on-change for C0
     PPSInput(4, INT1, RPA3); // Pin 10
 
-
     TRISA = 0xFFFE;         // Pin 0 of Port A is LED. Clear
     // bit 0 to zero, for output.  Others are inputs.
     LATAbits.LATA0 = 0;     // Turn LED off.
@@ -52,7 +52,6 @@ int main(void) {
     __builtin_enable_interrupts();
 
     while(1) {
-        ;
     }
     return 0;
 }

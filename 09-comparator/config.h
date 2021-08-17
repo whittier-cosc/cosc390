@@ -49,7 +49,6 @@
 #define _SUPPRESS_PLIB_WARNING 
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #include <plib.h>
-#include <peripheral/pps.h>  // Why do I need this on Mac but not Windows??
 #include "init.h"
 
 #endif

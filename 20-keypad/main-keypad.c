@@ -11,6 +11,7 @@
 // B8 -- col 2 -- internal pulldown resistor
 // B9 -- col 3 -- internal pulldown resistor
 
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"

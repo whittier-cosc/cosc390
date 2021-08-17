@@ -11,6 +11,7 @@
  * the writes to the TFT display.
  */
 
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "tft.h"

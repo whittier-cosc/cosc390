@@ -19,6 +19,7 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+#include <stdio.h>
 #include "config.h"
 #include "util.h"
 #include "amp.h"
@@ -95,7 +96,7 @@ int main(void) {
     amp_enableChannel(true, true);
     delay(250);
 
-    // OK now we'll turn the AGC back on and mess with the settings :)
+    // OK, now we'll turn the AGC back on and mess with the settings :)
 
     // AGC can be TPA2016_AGC_OFF (no AGC) or
     //  TPA2016_AGC_2 (1:2 compression)
@@ -127,7 +128,6 @@ int main(void) {
     amp_setReleaseControl(11);
 
     while(1) {
-        ;
     }
     return 0;
 }

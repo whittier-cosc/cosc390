@@ -2,6 +2,7 @@
  * See how long an interrupt service takes.
  */
 
+#include <stdio.h>
 #include "config.h"
 #include "tft.h"
 #include "tft_printline.h"
@@ -79,7 +80,6 @@ int main(void) {
     // 49 - 11 = 38 ticks, or 0.95 us.
 
     while(1) {
-        ;
     }
     return 0;
 }
