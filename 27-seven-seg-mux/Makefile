@@ -168,6 +168,12 @@ clean:
 write: $(TARGET).hex $(TARGET).dis
 	$(WRITE) -F$(TARGETDIR)$(TARGET).hex 
 
+.PHONY: batch-write
+# Use MPLAB's ipecmd in batch mode (faster after the first download)
+# to program the chip
+batch-write: $(TARGET).hex $(TARGET).dis
+	$(WRITE) -F$(TARGETDIR)$(TARGET).hex -OB
+
 .PHONY: termite
 termite:
 	"/c/Program Files (x86)/Termite/Termite.exe" &
