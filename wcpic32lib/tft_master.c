@@ -59,15 +59,15 @@ static void tft_setAddrWindow(unsigned short x0, unsigned short y0,
 
 static void delay_ms(unsigned long);
 
-#define _dc         LATBbits.LATB0
-#define TRIS_dc     TRISBbits.TRISB0
-#define _dc_high()  {LATBSET = 1;}
-#define _dc_low()   {LATBCLR = 1;}
+#define _dc         LATBbits.LATB9
+#define TRIS_dc     TRISBbits.TRISB9
+#define _dc_high()  {LATBSET = 1 << 9;}
+#define _dc_low()   {LATBCLR = 1 << 9;}
 
-#define _cs         LATBbits.LATB1
-#define TRIS_cs     TRISBbits.TRISB1
-#define _cs_high()  {LATBSET = 2;}
-#define _cs_low()   {LATBCLR = 2;}
+#define _cs         LATBbits.LATB8
+#define TRIS_cs     TRISBbits.TRISB8
+#define _cs_high()  {LATBSET = 1 << 8;}
+#define _cs_low()   {LATBCLR = 1 << 8;}
 
 #define _rst        LATBbits.LATB2
 #define TRIS_rst    TRISBbits.TRISB2
