@@ -71,8 +71,8 @@ static void delay_ms(unsigned long);
 
 #define _rst        LATBbits.LATB2
 #define TRIS_rst    TRISBbits.TRISB2
-#define _rst_high() {LATBSET = 4;}
-#define _rst_low()  {LATBCLR = 4;}
+#define _rst_high() {LATBSET = 1 << 2;}
+#define _rst_low()  {LATBCLR = 1 << 2;}
 
 #define SPI_freq    20000000  // 20 MHz
 
@@ -86,8 +86,8 @@ static void delay_ms(unsigned long);
  *      ----    ---------------------
  *      MOSI    RB11 (pin 22) --> SDO1
  *      SCK     RB14 (pin 25) --> SCK1
- *      D/C     RB0  (pin 4)
- *      CS      RB1  (pin 5)
+ *      D/C     RB9  (pin 18)
+ *      CS      RB8  (pin 17)
  *      RST     RB2  (pin 6)
  *
  *  In addition, connect TFT's VIN to 3.3V supply and GND to ground;
