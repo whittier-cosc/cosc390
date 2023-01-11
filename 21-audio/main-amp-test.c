@@ -25,11 +25,13 @@
 #include "amp.h"
 #include "tft.h"
 #include "tft_printline.h"
+#include "uart.h"
 
 char msg[80];
 
 void display_message(char *message) {
-    tft_printLine(1, 2, message);
+    // tft_printLine(1, 2, message);
+    uart_write(msg);
 }
 
 int main(void) {
@@ -39,9 +41,10 @@ int main(void) {
     // RAM wait state, and enable prefetch and cache mode.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
     wclib_init(SYSCLK, PBCLK);	
-    tft_init();
-    tft_fillScreen(ILI9340_BLACK);
-    tft_setRotation(3); // landscape mode, pins at left
+    uart_init();
+    // tft_init();
+    // tft_fillScreen(ILI9340_BLACK);
+    // tft_setRotation(3); // landscape mode, pins at left
 	
     // amp_init() sets up I2C:
     //      SCL1 pin 17 (B8)

@@ -107,6 +107,7 @@ endif
 
 # Additional linker flags
 LINKFLAGS=-Map=$(TARGET).map
+LINKFLAGS+=-Wl,--defsym=_min_heap_size=300
 
 # if we have specified a linker script, add it
 ifdef LINKSCRIPT
