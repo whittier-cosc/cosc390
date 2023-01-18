@@ -15,75 +15,15 @@
 #	3. convert the .elf into a .hex
 #	4. write the .hex file to the PIC
 #
-# The following may need to be edited by you so that
-# make knows where to find the compiler tools (xc32-*).
-#
-# XC32PATH is the path to the xc32 bin directory. This directory contains
-# tools such as the compiler (xc32-gcc) and hex converter 
-# (xc32-bin2hex)
-# Windows example (note the use of slashes not backslashes):
-# XC32PATH=C:/Program Files (x86)/Microchip/xc32/v1.40/bin
-# Mac example:
-# XC32PATH =/Applications/microchip/xc32/v1.40/bin
 
-# IPEPATH is the path to `ipecmd', the command-line tool for programming
-# Microchip devices.
+# The C compiler
+CC=xc32-gcc
 
-ifdef WSL_DISTRO_NAME        # Windows Subsystem for Linux
-    XC32PATH=/mnt/c/Program\ Files/Microchip/xc32/v3.01/bin
-    IPEPATH=/mnt/c/Program\ Files/Microchip/MPLABX/v5.50/mplab_platform/mplab_ipe
-else
-    XC32PATH=
-    IPEPATH=   
-endif
+# The hexfile creator
+HX=xc32-bin2hex
 
-
-
-#
-# PORT is the COM port used by the PIC32
-# Windows Example:
-# PORT=\\.\COM22
-# Mac Example:
-# PORT=/dev/tty.usbserial=00001024A
-#
-# TERMEMU is your terminal emulator
-# Windows example:
-# TERMEMU=C:/Program Files (x86)/PuTTY/putty.exe
-# Mac example (screen is pre-installed and already on your execution path 
-# so you can safely omit the full path)
-# TERMEMU=screen
-
-#TOOL=PKOB   # microstickII pickit on board
-TOOL=PK4     # pickit 4
-
-# How to call MPLab's ipecmd
-ifdef OS     # Windows
-    IPECMD=ipecmd
-else ifdef WSL_DISTRO_NAME # Windows Subsystem for Linux
-    IPECMD=$(IPEPATH)/ipecmd.exe
-else         # MacOS
-    IPECMD=/Applications/microchip/mplabx/v5.15/mplab_platform/mplab_ipe/bin/ipecmd.sh
-endif
-
-ifdef WSL_DISTRO_NAME
-    # The C compiler
-    CC=$(XC32PATH)/xc32-gcc.exe
-    
-    # The hexfile creator
-    HX=$(XC32PATH)/xc32-bin2hex.exe
-    
-    # The object dumper
-    OBJDMP=$(XC32PATH)/xc32-objdump.exe
-else
-    # The C compiler
-    CC=xc32-gcc
-    
-    # The hexfile creator
-    HX=xc32-bin2hex
-    
-    # The object dumper
-    OBJDMP=xc32-objdump
-endif
+# The object dumper
+OBJDMP=xc32-objdump
 
 # The utility for writing a .hex file to the PIC.
 WRITE=$(IPECMD) -P32MX250F128B -TP$(TOOL) -M -OL
@@ -107,7 +47,6 @@ endif
 
 # Additional linker flags
 LINKFLAGS=-Map=$(TARGET).map
-LINKFLAGS+=-Wl,--defsym=_min_heap_size=300
 
 # if we have specified a linker script, add it
 ifdef LINKSCRIPT
@@ -169,20 +108,4 @@ clean:
 write: $(TARGET).hex $(TARGET).dis
 	$(WRITE) -F$(TARGETDIR)$(TARGET).hex 
 
-.PHONY: batch-write
-# Use MPLAB's ipecmd in batch mode (faster after the first download)
-# to program the chip
-batch-write: $(TARGET).hex $(TARGET).dis
-	$(WRITE) -F$(TARGETDIR)$(TARGET).hex -OB
 
-.PHONY: termite
-termite:
-	"/c/Program Files (x86)/Termite/Termite.exe" &
-
-.PHONY: putty
-putty:
-	"$(TERMEMU)" -serial -sercfg 230400,R "$(PORT)"
-
-.PHONY: screen
-screen:
-	"$(TERMEMU)" "$(PORT)" 230400,crtscts
