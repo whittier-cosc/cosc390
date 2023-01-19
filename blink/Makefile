@@ -25,8 +25,12 @@ HX=xc32-bin2hex
 # The object dumper
 OBJDMP=xc32-objdump
 
+# The PIC device to be programmed
+PROCESSOR = 32MX250F128B
+
 # The utility for writing a .hex file to the PIC.
-WRITE=$(IPECMD) -P32MX250F128B -TP$(TOOL) -M -OL
+WRITE=nsprog
+WRITEFLAGS=p -d PIC$(PROCESSOR) -i
 
 # The output target $(TARGET).hex
 TARGET=out
@@ -36,14 +40,6 @@ LIB=wcpic32
 
 # Location of source files for static library.
 LIBDIR=../wcpic32lib
-
-ifdef OS        # Windows
-	TARGETDIR=
-else ifdef WSL_DISTRO_NAME
-	TARGETDIR=
-else            # MacOS
-	TARGETDIR=${CURDIR}/
-endif
 
 # Additional linker flags
 LINKFLAGS=-Map=$(TARGET).map
@@ -58,17 +54,9 @@ OBJS := $(patsubst %.c, %.o, $(wildcard *.c))
 
 HDRS := $(wildcard *.h)
 
-PROCESSOR = 32MX250F128B
 # As of XC32 v3.00, we need -fgnu89-inline
 # See https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-v3.00-full-install-release-notes.html#Migration
 CFLAGS = -g -O1 -x c -Wall -Wno-unused-value -fgnu89-inline
-
-# if on Windows (but not MinGW), use a different RM
-#ifdef OS
-#    ifndef MINGW_PREFIX
-#	RM = del /Q
-#    endif
-#endif
 
 # What to do for "make all"
 .PHONY: all
@@ -104,8 +92,7 @@ clean:
 	$(RM) *.hex *.map *.o *.a *.elf *.dep *.dis log.* *.xml* *~
 
 .PHONY: write
-# Use MPLAB's ipecmd to program the chip
+# Use Northern Software's nsprog to program the chip
 write: $(TARGET).hex $(TARGET).dis
-	$(WRITE) -F$(TARGETDIR)$(TARGET).hex 
-
-
+	@echo Writing $< to PIC32 chip
+	$(WRITE) $(WRITEFLAGS) $(TARGET).hex 

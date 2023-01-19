@@ -10,7 +10,6 @@ log.*
 *.xml*
 *.swp
 *~     
-.vscode/*
 pt-*/
 *.code-workspace
 *.creator.user
