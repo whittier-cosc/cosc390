@@ -1,6 +1,29 @@
 {
     "configurations": [
         {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/Applications/microchip/xc32/v4.10/pic32mx/include/lega-c",
+                "/Applications/microchip/xc32/v4.10/pic32mx/include"
+            ],
+            "defines": ["__32MX250F128B__"],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/Applications/microchip/xc32/v4.10/bin/xc32-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++98",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/Applications/microchip/xc32/v4.10/pic32mx/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            }
+        },
+        {
             "name": "Linux",
             "includePath": [
                 "wcpic32lib",
