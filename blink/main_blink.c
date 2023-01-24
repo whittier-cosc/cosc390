@@ -1,10 +1,6 @@
 #include "config.h"
 #include "util.h"
 
-#include "uart.h"
-#include "amp.h"
-//#include <stdio.h>
-
 int main(void) {
     // Configure the device for maximum performance.
     SYSTEMConfig(SYSCLK, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
