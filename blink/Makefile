@@ -93,4 +93,4 @@ clean:
 .PHONY: write
 # Use Northern Software's nsprog to program the chip
 write: $(TARGET).hex $(TARGET).dis
-	$(WRITE) p -d PIC$(PROCESSOR) -i $(TARGETDIR)$(TARGET).hex 
+	$(WRITE) p -d PIC$(PROCESSOR) -i $(TARGET).hex 

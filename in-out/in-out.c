@@ -8,6 +8,7 @@ int main(void) {
     // B2: digital input
     TRISBbits.TRISB2 = 1; // input
     ANSELBbits.ANSB2 = 0; // digital, not analog
+    CNPUBbits.CNPUB2 = 1; // enable internal pull-up
 
     // B3: digital output
     TRISBbits.TRISB3 = 0; // output
