@@ -14,7 +14,7 @@
                 "__XC32_VERSION=4210",
                 "__32MX250F128B__"
             ],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/opt/microchip/xc32/v4.21/bin/xc32-gcc",
             "cStandard": "c11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x64"
