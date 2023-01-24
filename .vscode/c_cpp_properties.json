@@ -22,6 +22,25 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
             }
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "wcpic32lib",
+                "/opt/microchip/xc32/v4.21/lib/gcc/pic32mx/8.3.1/include/",
+                "/opt/microchip/xc32/v4.21/pic32mx/include/proc/PIC32MX/",
+                "/opt/microchip/xc32/v4.21/pic32mx/include",
+                "/opt/microchip/xc32/v4.21/pic32mx/include/pic32m-libs/lega-c",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "__XC32_VERSION=4210",
+                "__32MX250F128B__"
+            ],
+            "compilerPath": "/opt/microchip/xc32/v4.21/bin/xc32-gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
