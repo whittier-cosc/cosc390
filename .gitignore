@@ -10,6 +10,8 @@ log.*
 *.xml*
 *.swp
 *~     
+.vscode/*.vc.db*
+.vscode/settings.json
 pt-*/
 *.code-workspace
 *.creator.user
