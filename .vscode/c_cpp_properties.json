@@ -15,12 +15,7 @@
             "cStandard": "c11",
             "cppStandard": "c++98",
             "browse": {
-                "path": [
-                    "${workspaceFolder}/**",
-                    "/Applications/microchip/xc32/v4.10/pic32mx/include"
-                ],
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
             }
         },
         {
@@ -40,7 +35,10 @@
             "compilerPath": "/opt/microchip/xc32/v4.21/bin/xc32-gcc",
             "cStandard": "c11",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
