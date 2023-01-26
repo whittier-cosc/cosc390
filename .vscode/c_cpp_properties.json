@@ -15,7 +15,7 @@
             "cStandard": "c11",
             "cppStandard": "c++98",
             "browse": {
-                "limitSymbolsToIncludedHeaders": true,
+                "limitSymbolsToIncludedHeaders": true
             }
         },
         {
