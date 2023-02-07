@@ -17,6 +17,7 @@ int main(void) {
     wclib_init(SYSCLK, PBCLK);
 
     tft_init(); // uses B2, B8, B9, B11, B14
+    tft_
 
     // A0: analog input (default)
 
@@ -29,6 +30,7 @@ int main(void) {
 
     // ADC init
     AD1CON3bits.ADCS = 0xff;
+    AD1CHSbits.CH0SA = 
     AD1CON1bits.ON = 1;
 
     float volts;
