@@ -17,14 +17,11 @@ int main(void) {
     wclib_init(SYSCLK, PBCLK);
 
     tft_init(); // uses B2, B8, B9, B11, B14
-<<<<<<< HEAD
-    tft_
-=======
     tft_setRotation(3);
     tft_fillScreen(ILI9340_BLACK);
->>>>>>> c5cde3960cbd44b37cd2b95c01c27b2c17084662
 
     // A1: analog input (default)
+    ConfigCNAPullups()
 
     // B3, B4, B5, B7, B10: digital outputs (LEDs)
     TRISBbits.TRISB3 = 0;   // output
